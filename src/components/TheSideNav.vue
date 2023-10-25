@@ -1,26 +1,26 @@
 <script setup lang="ts">
 import router from "../router/index"
 import { useUserStore } from '../stores/user';
-import BaseAvatar from './BaseComponents/BaseAvatar.vue'
+import BaseAvatar from './base/BaseAvatar.vue'
 const userStore = useUserStore()
 
-const menu = [
+const navItems = [
     {
         icon: "mdi-account-multiple",
         key: "users",
-        route: "users",
+        route: "/dashboard/users",
         label: "Utenti"
     },
     {
         icon: "mdi-cards",
         key: "cards",
-        route: "cards",
+        route: "/dashboard/cards",
         label: "Schede"
     },
     {
         icon: "mdi-run",
         key: "exercises",
-        route: "exercises",
+        route: "/dashboard/exercises",
         label: "Esercizi"
     },
 ]
@@ -33,7 +33,7 @@ const itemRounded = "xl"
             >
             <v-list-item 
             :title="userStore.getCompleteName" 
-            @click="router.push('/')"
+            @click="router.push('/dashboard/')"
             :rounded="itemRounded"
             >
                 <template v-slot:prepend>
@@ -47,7 +47,7 @@ const itemRounded = "xl"
             </v-list-item>
 
             <v-divider class="mt-3 mb-3"></v-divider>
-            <v-list-item v-for="item in menu" 
+            <v-list-item v-for="item in navItems" 
             :prepend-icon="item.icon" 
             :title="item.label" 
             :key="item.key"
@@ -59,8 +59,11 @@ const itemRounded = "xl"
 
         <template v-slot:append>
             <div class="pa-2">
-                <v-btn block>
-                    Logout
+                <v-btn 
+                    block
+                    prepend-icon="mdi-exit-to-app" 
+                    @click="router.push('/')"
+                >Logout
                 </v-btn>
             </div>
         </template>
