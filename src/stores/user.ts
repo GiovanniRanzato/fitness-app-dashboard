@@ -1,12 +1,30 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+interface UserState {
+  id: Number
+  name: String
+  lastName: String,
+  avatar: String,
+  isAdmin: Boolean,
+  isTrainer: Boolean
+}
 
-export const useUserStore = defineStore('user', () => {
-  const userId = ref(0)
-  const getUserId = computed(() => userId.value) // This is for example
-  function isLogin() {
-    return userId.value ?? false
-  } // This is for example
-
-  return { userId, getUserId, isLogin }
-})
+export const useUserStore = defineStore('user', {
+    state: () => {
+      return {
+        id: 123456,
+        name: "Johon",
+        lastName: 'Doe',
+        avatar: "",
+        isAdmin: false,
+        isTrainer: true
+      }
+    },
+    getters: {
+      isLogin: (state: UserState) => state.id ?? false,
+      getCompleteName: (state: any) => state.name + " " + state.lastName,
+      getRole: (state: any) => state.isAdmin ? 'admin' : state.isTrainer ? 'trainer': '',
+      getColor: (state: any) => state.isAdmin ? 'red' : state.isTrainer ? 'blue': '',
+    }
+  }
+)

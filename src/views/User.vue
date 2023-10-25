@@ -5,6 +5,6 @@ const userStore = useUserStore()
 
 <template>
   <main>
-    User: {{ userStore.userId }} panel with personal informations and action to update
+    User: {{ userStore.id }} panel with personal informations and action to update
   </main>
 </template>
