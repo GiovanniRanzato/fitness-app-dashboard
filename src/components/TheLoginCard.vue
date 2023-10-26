@@ -21,7 +21,7 @@ function onSubmit() {
       max-width="448"
       rounded="lg"
     >
-      <div class="text-subtitle-1 text-medium-emphasis mb-1">Account</div>
+      <div class="text-subtitle-1 text-medium-emphasis mb-1">Email</div>
 
       <v-text-field
         rounded="xl"
@@ -29,7 +29,6 @@ function onSubmit() {
         :readonly="loading"
         :rules="[required]"
         clearable
-        label="Email"
         density="compact"
         placeholder="example@email.com"
         prepend-inner-icon="mdi-email-outline"
@@ -63,22 +62,19 @@ function onSubmit() {
       ></v-text-field>
       <v-btn
         block
-        class="mb-8"
+        class="mb-8 mt-8"
         color="blue"
         size="large"
         variant="tonal"
         rounded="xl"
         @click="onSubmit"
       >
-        Log In
+        Accedi
       </v-btn>
 
       <v-card-text class="text-center">
-        <BaseLink
-          class="text-blue text-decoration-none"
-          to="/register"
-        >
-          Sign up now <v-icon icon="mdi-chevron-right"></v-icon>
+        <BaseLink to="/register">
+          Non sei registrato<v-icon icon="mdi-chevron-right"></v-icon>
         </BaseLink>
       </v-card-text>
     </v-card>
