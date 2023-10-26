@@ -15,7 +15,7 @@ const emailRules = [
 
 const passwordRules = [
   (v: string) => !!v || 'La password è richiesta',
-  (v: string) => v.length >= passwordCounter || 'La password deve contenere almeno ${passwordCounter} caratteri',
+  (v: string) => v.length >= passwordCounter || 'La password deve contenere almeno '+passwordCounter+' caratteri',
   (v: string) => /[a-z]/.test(v) || 'La password deve contenere almeno una lettera minuscola',
   (v: string) => /[A-Z]/.test(v) || 'La password deve contenere almeno una lettera maiuscola',
   (v: string) => /\d/.test(v) || 'La password deve contenere almeno un numero',
@@ -25,10 +25,6 @@ const passwordRules = [
 const nameRules = [
   (v: string) => !!v || 'Il nome è richiesto',
 ]
-
-function required(v: string) {
-  return !!v || 'Field is required'
-}
 
 function onSubmit() {
   console.log(email.value, password.value)

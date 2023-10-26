@@ -2,6 +2,8 @@
 import router from "../router/index"
 import { useUserStore } from '../stores/user';
 import BaseAvatar from './base/BaseAvatar.vue'
+import BaseLogo from './base/BaseLogo.vue'
+
 const userStore = useUserStore()
 
 const navItems = [
@@ -27,7 +29,8 @@ const navItems = [
 const itemRounded = "xl"
 </script>
 <template>
-    <v-navigation-drawer class="grey-darken-3 mx-auto pa-2" theme="dark" permanent>
+    <v-navigation-drawer class="mx-auto pa-2" theme="dark" permanent>
+        <BaseLogo min-width="150" theme="dark" />
         <v-list 
             color="transparent"
             >
