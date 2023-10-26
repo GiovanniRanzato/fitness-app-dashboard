@@ -3,6 +3,7 @@ import router from "../router/index"
 import { useUserStore } from '../stores/user';
 import BaseAvatar from './base/BaseAvatar.vue'
 import BaseLogo from './base/BaseLogo.vue'
+import BaseBtnSecondary from './base/BaseBtnSecondary.vue'
 
 const userStore = useUserStore()
 
@@ -62,12 +63,13 @@ const itemRounded = "xl"
 
         <template v-slot:append>
             <div class="pa-2">
-                <v-btn 
+                <BaseBtnSecondary 
                     block
+                    variant="tonal"
                     prepend-icon="mdi-exit-to-app" 
                     @click="router.push('/')"
                 >Logout
-                </v-btn>
+                </BaseBtnSecondary>
             </div>
         </template>
     </v-navigation-drawer>

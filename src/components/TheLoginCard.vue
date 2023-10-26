@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {ref} from 'vue'
 import BaseLink from '../components/base/BaseLink.vue'
-import BasePrimaryBtn from '../components/base/BasePrimaryBtn.vue'
+import BaseBtnPrimary from '../components/base/BaseBtnPrimary.vue'
 import BaseTextField from '../components/base/BaseTextField.vue'
 import BaseInputLabel from '../components/base/BaseInputLabel.vue'
 import BaseCard from '../components/base/BaseCard.vue'
@@ -50,13 +50,13 @@ function onSubmit() {
         :rules="[required]"
         @click:append-inner="showPassword = !showPassword"
       ></BaseTextField>
-      <BasePrimaryBtn
+      <BaseBtnPrimary
         block
         class="mt-8"
         @click="onSubmit"
       >
         Accedi
-      </BasePrimaryBtn>
+      </BaseBtnPrimary>
 
       <v-card-text class="text-center pb-0">
         <BaseLink to="/register">

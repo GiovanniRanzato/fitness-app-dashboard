@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import BaseLink from '../components/base/BaseLink.vue'
-import BasePrimaryBtn from '../components/base/BasePrimaryBtn.vue'
+import BaseBtnPrimary from '../components/base/BaseBtnPrimary.vue'
 import BaseTextField from '../components/base/BaseTextField.vue'
 import BaseInputLabel from '../components/base/BaseInputLabel.vue'
 import BaseCard from '../components/base/BaseCard.vue'
@@ -19,7 +19,7 @@ const emailRules = [
 
 const passwordRules = [
   (v: string) => !!v || 'La password è richiesta',
-  (v: string) => v.length >= passwordCounter || 'La password deve contenere almeno '+passwordCounter+' caratteri',
+  (v: string) => v.length >= passwordCounter || 'La password deve contenere almeno ' + passwordCounter + ' caratteri',
   (v: string) => /[a-z]/.test(v) || 'La password deve contenere almeno una lettera minuscola',
   (v: string) => /[A-Z]/.test(v) || 'La password deve contenere almeno una lettera maiuscola',
   (v: string) => /\d/.test(v) || 'La password deve contenere almeno un numero',
@@ -37,22 +37,21 @@ function onSubmit() {
 <template>
   <BaseCard max-width="448">
     <BaseInputLabel>Nome</BaseInputLabel>
-    <BaseTextField v-model="name" :readonly="loading" :rules="nameRules" clearable
-      placeholder="example@email.com" prepend-inner-icon="mdi-account"></BaseTextField>
+    <BaseTextField v-model="name" :readonly="loading" :rules="nameRules" clearable placeholder="example@email.com"
+      prepend-inner-icon="mdi-account"></BaseTextField>
 
-      <BaseInputLabel>Email</BaseInputLabel>
-    <BaseTextField v-model="email" :readonly="loading" :rules="emailRules" clearable
-      placeholder="example@email.com" prepend-inner-icon="mdi-email-outline"></BaseTextField>
+    <BaseInputLabel>Email</BaseInputLabel>
+    <BaseTextField v-model="email" :readonly="loading" :rules="emailRules" clearable placeholder="example@email.com"
+      prepend-inner-icon="mdi-email-outline"></BaseTextField>
 
-      <BaseInputLabel>Password</BaseInputLabel>
+    <BaseInputLabel>Password</BaseInputLabel>
     <BaseTextField v-model="password" :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
-      :type="showPassword ? 'text' : 'password'" placeholder="Enter your password"
-      prepend-inner-icon="mdi-lock-outline"  :readonly="loading" :rules="passwordRules"
-      @click:append-inner="showPassword = !showPassword"></BaseTextField>
+      :type="showPassword ? 'text' : 'password'" placeholder="Enter your password" prepend-inner-icon="mdi-lock-outline"
+      :readonly="loading" :rules="passwordRules" @click:append-inner="showPassword = !showPassword"></BaseTextField>
 
-      <BasePrimaryBtn block class="mb-8 mt-8" @click="onSubmit">
+    <BaseBtnPrimary block class="mb-8 mt-8" @click="onSubmit">
       Registrati
-    </BasePrimaryBtn>
+    </BaseBtnPrimary>
     <v-card-text class="text-center pb-0">
       <BaseLink to="/">
         Sei già registrato<v-icon icon="mdi-chevron-right"></v-icon>
