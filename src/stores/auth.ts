@@ -52,6 +52,17 @@ export const useAuthStore = defineStore('auth', {
         this.isAdmin= true
         this.isTrainer= false
         router.push('/dashboard')
+      },
+      logout(){
+        console.log('logout')
+        this.userId = 0
+        this.email= ""
+        this.name= ""
+        this.lastName= ''
+        this.avatar= ""
+        this.isAdmin= false
+        this.isTrainer= false
+        router.push('/')
       }
     }
   }

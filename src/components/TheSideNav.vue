@@ -67,7 +67,7 @@ const itemRounded = "xl"
                     block
                     variant="tonal"
                     prepend-icon="mdi-exit-to-app" 
-                    @click="router.push('/')"
+                    @click="authStore.logout()"
                 >Logout
                 </BaseBtnSecondary>
             </div>
