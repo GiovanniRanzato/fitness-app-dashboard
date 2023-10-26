@@ -23,8 +23,8 @@ export const useUserStore = defineStore('user', {
     getters: {
       isLogin: (state: UserState) => state.id ?? false,
       getCompleteName: (state: any) => state.name + " " + state.lastName,
-      getRole: (state: any) => state.isAdmin ? 'admin' : state.isTrainer ? 'trainer': '',
-      getColor: (state: any) => state.isAdmin ? 'red' : state.isTrainer ? 'blue': '',
+      getRole: (state: any) => state.isAdmin ? 'admin' : state.isTrainer ? 'trainer': 'user',
+      getColor: (state: any) => state.isAdmin ? 'red' : state.isTrainer ? 'blue': 'white',
     }
   }
 )
