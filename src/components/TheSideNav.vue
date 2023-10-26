@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import router from "../router/index"
-import { useUserStore } from '../stores/user';
+import { useAuthStore } from '../stores/auth';
 import BaseAvatar from './base/BaseAvatar.vue'
 import BaseLogo from './base/BaseLogo.vue'
 import BaseBtnSecondary from './base/BaseBtnSecondary.vue'
 
-const userStore = useUserStore()
+const authStore = useAuthStore()
 
 const navItems = [
     {
@@ -36,18 +36,18 @@ const itemRounded = "xl"
             color="transparent"
             >
             <v-list-item 
-            :title="userStore.getCompleteName" 
+            :title="authStore.getCompleteName" 
             @click="router.push('/dashboard/')"
             :rounded="itemRounded"
             >
                 <template v-slot:prepend>
                     <BaseAvatar 
-                        :avatar="userStore.avatar"
-                        :name="userStore.name"
-                        :lastName="userStore.lastName"
-                        :color="userStore.getColor"
+                        :avatar="authStore.avatar"
+                        :name="authStore.name"
+                        :lastName="authStore.lastName"
+                        :color="authStore.getColor"
                     /></template>
-                <template v-slot:subtitle><v-chip size="small" :color="userStore.getColor" class="mt-1">{{ userStore.getRole }}</v-chip></template>
+                <template v-slot:subtitle><v-chip size="small" :color="authStore.getColor" class="mt-1">{{ authStore.getRole }}</v-chip></template>
             </v-list-item>
 
             <v-divider class="mt-3 mb-3"></v-divider>
@@ -73,4 +73,4 @@ const itemRounded = "xl"
             </div>
         </template>
     </v-navigation-drawer>
-</template>
+</template>../stores/auth
