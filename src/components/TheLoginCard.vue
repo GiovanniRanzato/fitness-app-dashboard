@@ -4,6 +4,7 @@ import BaseLink from '../components/base/BaseLink.vue'
 import BasePrimaryBtn from '../components/base/BasePrimaryBtn.vue'
 import BaseTextField from '../components/base/BaseTextField.vue'
 import BaseInputLabel from '../components/base/BaseInputLabel.vue'
+import BaseCard from '../components/base/BaseCard.vue'
 
 const email = ref('')
 const password = ref('')
@@ -18,12 +19,7 @@ function onSubmit() {
 }
 </script>
 <template>
-    <v-card
-      class="mx-auto pa-12 pb-8"
-      elevation="8"
-      max-width="448"
-      rounded="lg"
-    >
+    <BaseCard max-width="448">
       <BaseInputLabel>Email</BaseInputLabel>
       <BaseTextField
         v-model="email"
@@ -56,16 +52,16 @@ function onSubmit() {
       ></BaseTextField>
       <BasePrimaryBtn
         block
-        class="mt-3"
+        class="mt-8"
         @click="onSubmit"
       >
         Accedi
       </BasePrimaryBtn>
 
-      <v-card-text class="text-center">
+      <v-card-text class="text-center pb-0">
         <BaseLink to="/register">
           Non sei registrato<v-icon icon="mdi-chevron-right"></v-icon>
         </BaseLink>
       </v-card-text>
-    </v-card>
+    </BaseCard>
 </template>

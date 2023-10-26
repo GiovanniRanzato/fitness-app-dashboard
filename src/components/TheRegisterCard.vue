@@ -4,6 +4,7 @@ import BaseLink from '../components/base/BaseLink.vue'
 import BasePrimaryBtn from '../components/base/BasePrimaryBtn.vue'
 import BaseTextField from '../components/base/BaseTextField.vue'
 import BaseInputLabel from '../components/base/BaseInputLabel.vue'
+import BaseCard from '../components/base/BaseCard.vue'
 
 const loading = ref(false)
 const email = ref('')
@@ -34,30 +35,28 @@ function onSubmit() {
 }
 </script>
 <template>
-  <v-card class="mx-auto pa-12 pb-8" elevation="8" max-width="448" rounded="lg">
-
+  <BaseCard max-width="448">
     <BaseInputLabel>Nome</BaseInputLabel>
     <BaseTextField v-model="name" :readonly="loading" :rules="nameRules" clearable
       placeholder="example@email.com" prepend-inner-icon="mdi-account"></BaseTextField>
-    
-    <BaseInputLabel>Email</BaseInputLabel>
+
+      <BaseInputLabel>Email</BaseInputLabel>
     <BaseTextField v-model="email" :readonly="loading" :rules="emailRules" clearable
       placeholder="example@email.com" prepend-inner-icon="mdi-email-outline"></BaseTextField>
 
-    <BaseInputLabel>Password</BaseInputLabel>
+      <BaseInputLabel>Password</BaseInputLabel>
     <BaseTextField v-model="password" :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
       :type="showPassword ? 'text' : 'password'" placeholder="Enter your password"
       prepend-inner-icon="mdi-lock-outline"  :readonly="loading" :rules="passwordRules"
       @click:append-inner="showPassword = !showPassword"></BaseTextField>
-    
-    <BasePrimaryBtn block class="mb-8 mt-8" @click="onSubmit">
+
+      <BasePrimaryBtn block class="mb-8 mt-8" @click="onSubmit">
       Registrati
     </BasePrimaryBtn>
-
-    <v-card-text class="text-center">
+    <v-card-text class="text-center pb-0">
       <BaseLink to="/">
         Sei già registrato<v-icon icon="mdi-chevron-right"></v-icon>
       </BaseLink>
     </v-card-text>
-  </v-card>
+  </BaseCard>
 </template>
