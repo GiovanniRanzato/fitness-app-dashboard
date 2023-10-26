@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import {ref} from 'vue'
 import BaseLink from '../components/base/BaseLink.vue'
+import BasePrimaryBtn from '../components/base/BasePrimaryBtn.vue'
+import BaseTextField from '../components/base/BaseTextField.vue'
+import BaseInputLabel from '../components/base/BaseInputLabel.vue'
 
 const email = ref('')
 const password = ref('')
@@ -21,56 +24,43 @@ function onSubmit() {
       max-width="448"
       rounded="lg"
     >
-      <div class="text-subtitle-1 text-medium-emphasis mb-1">Email</div>
-
-      <v-text-field
-        rounded="xl"
+      <BaseInputLabel>Email</BaseInputLabel>
+      <BaseTextField
         v-model="email"
         :readonly="loading"
         :rules="[required]"
         clearable
-        density="compact"
         placeholder="example@email.com"
         prepend-inner-icon="mdi-email-outline"
-        variant="outlined"
-      ></v-text-field>
+      ></BaseTextField>
 
-      <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between mb-1">
+      <BaseInputLabel class="d-flex align-center justify-space-between">
         Password
-
         <a v-if="false"
           class="text-caption text-decoration-none text-blue"
           href="#"
           rel="noopener noreferrer"
           target="_blank"
-        >
-          Forgot login password?</a>
-      </div>
+        >Hai dimenticato la password?</a>
+      </BaseInputLabel>
 
-      <v-text-field
-        rounded="xl"
+      <BaseTextField
         v-model="password"
         :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
         :type="showPassword ? 'text' : 'password'"
-        density="compact"
         placeholder="Enter your password"
         prepend-inner-icon="mdi-lock-outline"
-        variant="outlined"
         :readonly="loading"
         :rules="[required]"
         @click:append-inner="showPassword = !showPassword"
-      ></v-text-field>
-      <v-btn
+      ></BaseTextField>
+      <BasePrimaryBtn
         block
-        class="mb-8 mt-8"
-        color="blue"
-        size="large"
-        variant="tonal"
-        rounded="xl"
+        class="mt-3"
         @click="onSubmit"
       >
         Accedi
-      </v-btn>
+      </BasePrimaryBtn>
 
       <v-card-text class="text-center">
         <BaseLink to="/register">
