@@ -15,6 +15,11 @@
         color: {
             type: String,
             required: true
+        },
+        size: {
+            type: String || Number,
+            required: false,
+            default: 'default'
         }
     })
     function getNameInitials(){
@@ -22,13 +27,13 @@
     }
 </script>
 <template>
-    <v-avatar v-if="props.avatar">
+    <v-avatar v-if="props.avatar" :size="props.size">
       <v-img
         :src="props.avatar"
         :alt="getNameInitials()"
       ></v-img>
     </v-avatar>
-    <v-avatar :color="props.color" v-else>
+    <v-avatar :color="props.color" :size="props.size" v-else>
       <span class="text-h5">{{getNameInitials()}}</span>
     </v-avatar>
 </template>
