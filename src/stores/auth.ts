@@ -1,6 +1,7 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import router from '../router/index'
+import type { User} from '@/interfaces'
 
 export const useAuthStore =defineStore('auth', {
     state: () => {
@@ -23,10 +24,29 @@ export const useAuthStore =defineStore('auth', {
       }
     },
     getters: {
-      isLogin: (state: AuthStore) => state.userId ?? false,
-      getCompleteName: (state: AuthStore) => state.name + ' ' + state.lastName,
-      getRole: (state: AuthStore) => state.role == '1' ? 'admin' : state.role == '2' ? 'trainer':'',
-      getColor: (state: AuthStore) => state.role == '1' ? 'red' : state.role == '2' ? 'blue':'',
+      isLogin: (state: User) => state.userId ?? false,
+      getCompleteName: (state: User) => state.name + ' ' + state.lastName,
+      getRole: (state: User) => state.role == '1' ? 'admin' : state.role == '2' ? 'trainer':'',
+      getColor: (state: User) => state.role == '1' ? 'red' : state.role == '2' ? 'blue':'',
+      getAttributesValues(state) {
+        return {
+          userId: state.userId,
+          email: state.email,
+          name: state.name,
+          lastName: state.lastName,
+          phone: state.phone,
+          sex: state.sex,
+          birthdate: state.birthdate,
+          weight: state.weight,
+          height: state.height,
+          address: state.address,
+          city: state.city,
+          zip: state.zip,
+          country: state.country,
+          avatar: state.avatar,
+          role: state.role,
+        };
+      },
     },
     actions: {
       login(email: String, password: String) {
