@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import BaseBtnPrimary from '../components/base/BaseBtnPrimary.vue'
 import BaseTextField from '../components/base/BaseTextField.vue'
+import BaseSelect from '../components/base/BaseSelect.vue'
 import BaseInputLabel from '../components/base/BaseInputLabel.vue'
 import { useAuthStore } from '../stores/auth'
 
@@ -61,8 +62,8 @@ function onSubmit(){
       <v-divider class="mt-6 mb-6"></v-divider>
 
       <BaseInputLabel>Sesso</BaseInputLabel>
-      <v-select variant="outlined"  rounded="xl" v-model="sex" :readonly="loading"
-        append-inner-icon="mdi-gender-male-female" :items="[{value: 'M', title: 'Maschio'}, {value: 'F', title: 'Femmina'}]"></v-select>
+      <BaseSelect v-model="sex" :readonly="loading"
+        append-inner-icon="mdi-gender-male-female" :items="[{value: 'M', title: 'Maschio'}, {value: 'F', title: 'Femmina'}]"></BaseSelect>
 
       <BaseInputLabel>Data di nascita</BaseInputLabel>
       <BaseTextField v-model="birthdate" :readonly="loading" type="date"></BaseTextField>
