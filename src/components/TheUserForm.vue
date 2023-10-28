@@ -4,9 +4,11 @@ import BaseBtnPrimary from '../components/base/BaseBtnPrimary.vue'
 import BaseTextField from '../components/base/BaseTextField.vue'
 import BaseSelect from '../components/base/BaseSelect.vue'
 import BaseInputLabel from '../components/base/BaseInputLabel.vue'
-import { useAuthStore } from '../stores/auth'
+import { useAuthStore} from '../stores/auth'
+import { useCommonDataStore} from '../stores/commonData'
 
 const authStore = useAuthStore()
+const commonDataStore = useCommonDataStore()
 
 const form = ref(false)
 const loading = ref(false)
@@ -63,7 +65,7 @@ function onSubmit(){
 
       <BaseInputLabel>Sesso</BaseInputLabel>
       <BaseSelect v-model="sex" :readonly="loading"
-        append-inner-icon="mdi-gender-male-female" :items="[{value: 'M', title: 'Maschio'}, {value: 'F', title: 'Femmina'}]"></BaseSelect>
+        append-inner-icon="mdi-gender-male-female" :items="commonDataStore.getGenders"></BaseSelect>
 
       <BaseInputLabel>Data di nascita</BaseInputLabel>
       <BaseTextField v-model="birthdate" :readonly="loading" type="date"></BaseTextField>
