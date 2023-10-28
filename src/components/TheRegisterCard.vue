@@ -56,7 +56,7 @@ function onSubmit() {
         :type="showPassword ? 'text' : 'password'" placeholder="Enter your password" prepend-inner-icon="mdi-lock-outline"
         :readonly="loading" :rules="passwordRules" @click:append-inner="showPassword = !showPassword"></BaseTextField>
 
-      <BaseBtnPrimary block class="mb-8 mt-8" @click="onSubmit">
+      <BaseBtnPrimary block class="mb-8 mt-8" :disabled="!form" @click="onSubmit">
         Registrati
       </BaseBtnPrimary>
     </v-form>

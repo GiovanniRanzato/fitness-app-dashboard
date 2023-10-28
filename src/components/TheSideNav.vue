@@ -30,12 +30,12 @@ const navItems = [
 const itemRounded = "xl"
 </script>
 <template>
-    <v-navigation-drawer class="mx-auto pa-2" theme="dark" permanent>
+    <v-navigation-drawer class="mx-auto pa-2 d-xs-none d-sm-flex" theme="dark">
         <BaseLogo min-width="150" theme="dark" />
         <v-list 
             color="transparent"
             >
-            <v-list-item 
+            <v-list-item
             :title="authStore.getCompleteName" 
             @click="router.push('/dashboard/')"
             :rounded="itemRounded"
