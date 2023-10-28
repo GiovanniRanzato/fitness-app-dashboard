@@ -2,25 +2,6 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import router from '../router/index'
 
-interface AuthState {
-  userId: Number
-  name: String
-  email: String
-  lastName: String,
-  phone: String,
-  sex: String,
-  birthdate: String,
-  weight: Number,
-  height: Number,
-  address: String,
-  city: String,
-  zip: Number,
-  country: String,
-  avatar: String,
-  isAdmin: Boolean,
-  isTrainer: Boolean
-}
-
 export const useAuthStore =defineStore('auth', {
     state: () => {
       return {
@@ -38,15 +19,14 @@ export const useAuthStore =defineStore('auth', {
         zip:0,
         country:'',
         avatar:'',
-        isAdmin: false,
-        isTrainer: false
+        role:''
       }
     },
     getters: {
-      isLogin: (state: AuthState) => state.userId ?? false,
-      getCompleteName: (state: AuthState) => state.name + ' ' + state.lastName,
-      getRole: (state: AuthState) => state.isAdmin ? 'admin' : state.isTrainer ? 'trainer':'user',
-      getColor: (state: AuthState) => state.isAdmin ? 'red' : state.isTrainer ? 'blue':'white',
+      isLogin: (state: AuthStore) => state.userId ?? false,
+      getCompleteName: (state: AuthStore) => state.name + ' ' + state.lastName,
+      getRole: (state: AuthStore) => state.role == '1' ? 'admin' : state.role == '2' ? 'trainer':'',
+      getColor: (state: AuthStore) => state.role == '1' ? 'red' : state.role == '2' ? 'blue':'',
     },
     actions: {
       login(email: String, password: String) {
@@ -65,8 +45,7 @@ export const useAuthStore =defineStore('auth', {
         this.zip=35016,
         this.country='Italia',
         this.avatar=''
-        this.isAdmin=false
-        this.isTrainer=true
+        this.role='2'
         router.push('/dashboard')
       },
       register(name: String, email: String, password: String) {
@@ -74,19 +53,7 @@ export const useAuthStore =defineStore('auth', {
         this.userId =12345
         this.email='john@doe.com'
         this.name='John'
-        this.lastName='Doe',
-        this.phone='389 455 6543',
-        this.sex='M'
-        this.birthdate='1986-10-11',
-        this.weight=86,
-        this.height=178,
-        this.address='Via dei limoni 12',
-        this.city='Piazzola sul brenta (PD)',
-        this.zip=35016,
-        this.country='Italia',
-        this.avatar=''
-        this.isAdmin=true
-        this.isTrainer=false
+        this.role='1'
         router.push('/dashboard')
       },
       logout(){
@@ -105,8 +72,7 @@ export const useAuthStore =defineStore('auth', {
         this.zip=0,
         this.country='',
         this.avatar=''
-        this.isAdmin=false
-        this.isTrainer=false
+        this.role=''
         router.push('/')
       }
     }

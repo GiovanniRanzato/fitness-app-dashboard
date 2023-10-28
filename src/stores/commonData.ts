@@ -1,11 +1,4 @@
 import { defineStore } from 'pinia';
-interface SelectItem {
-    value: String,
-    title: String
-}
-interface CommonDataStore {
-    genders: SelectItem[]
-}
 
 export const useCommonDataStore = defineStore('commonData', {
   state: () => ({
