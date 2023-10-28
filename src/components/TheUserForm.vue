@@ -100,4 +100,4 @@ function onSubmit(){
         Salva
       </BaseBtnPrimary>
     </v-form>
-</template>@/interfaces
+</template>

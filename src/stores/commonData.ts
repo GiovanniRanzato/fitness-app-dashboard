@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import type { CommonDataStore} from '@/interfaces'
 
 export const useCommonDataStore = defineStore('commonData', {
   state: () => ({
@@ -11,9 +12,8 @@ export const useCommonDataStore = defineStore('commonData', {
             value: 'F',
             title: 'Femmina'
         },
-    ],
+    ]
   }),
-
   getters: {
     getGenders: (state: CommonDataStore) => state.genders,
   },
