@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { useAuthStore } from '../stores/auth';
 import BaseAvatar from './../components/base/BaseAvatar.vue'
+import BaseContainer from './../components/base/BaseContainer.vue'
+import BasePageTitle from './../components/base/BasePageTitle.vue'
 import TheUserForm from '../components/TheUserForm.vue'
 const authStore = useAuthStore()
 </script>
 
 <template>
   <main>
-    <v-container style="max-width: 1200px">
-      <h1 class="text-h3 mb-6">Profilo utente</h1>
+    <BaseContainer>
+      <BasePageTitle>Profilo utente</BasePageTitle>
       <v-sheet class="text-center mx-auto" width="100%">
         <BaseAvatar 
         :avatar="authStore.avatar"
@@ -20,6 +22,6 @@ const authStore = useAuthStore()
       </v-sheet>
       <v-divider class="mt-6 mb-6"/>
       <TheUserForm/>
-    </v-container>
+    </BaseContainer>
   </main>
 </template>
