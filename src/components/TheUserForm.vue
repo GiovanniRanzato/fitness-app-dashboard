@@ -15,7 +15,7 @@ const props = defineProps({
       type: Object as () => User,
       required: false,
       default: {
-        userId: 0,
+        id: 0,
         name: '',
         email: '',
         lastName: '',
@@ -40,7 +40,7 @@ const props = defineProps({
 const form = ref(false)
 const loading = ref(false)
 
-const user  = ref(props.user)
+const userClone  = ref(JSON.parse(JSON.stringify(props.user)) )
 
 const required = [
   (v: string) => !!v || 'Il campo è richiesto',
@@ -50,57 +50,57 @@ const numeric = [
 ];
 
 function onSubmit(){
-  props.onSubmit(user.value)
+  props.onSubmit(userClone.value)
 }
 
 </script>
 <template>
     <v-form v-model="form">
       <BaseInputLabel>Nome</BaseInputLabel>
-      <BaseTextField v-model="user.name" :readonly="loading" :rules="required" placeholder="Severus"
+      <BaseTextField v-model="userClone.name" :readonly="loading" :rules="required" placeholder="Severus"
         append-inner-icon="mdi-account"></BaseTextField>
       
       <BaseInputLabel>Cognome</BaseInputLabel>
-      <BaseTextField v-model="user.lastName" :readonly="loading" placeholder="Piton"
+      <BaseTextField v-model="userClone.lastName" :readonly="loading" placeholder="Piton"
         append-inner-icon="mdi-account-outline"></BaseTextField>
   
       <BaseInputLabel>Telefono</BaseInputLabel>
-      <BaseTextField v-model="user.phone" :readonly="loading" placeholder="+12 345 678 9000"
+      <BaseTextField v-model="userClone.phone" :readonly="loading" placeholder="+12 345 678 9000"
         append-inner-icon="mdi-phone"></BaseTextField>
 
       <v-divider class="mt-6 mb-6"></v-divider>
 
       <BaseInputLabel>Sesso</BaseInputLabel>
-      <BaseSelect v-model="user.sex" :readonly="loading"
+      <BaseSelect v-model="userClone.sex" :readonly="loading"
         append-inner-icon="mdi-gender-male-female" :items="commonDataStore.getGenders"></BaseSelect>
 
       <BaseInputLabel>Data di nascita</BaseInputLabel>
-      <BaseTextField v-model="user.birthdate" :readonly="loading" type="date"></BaseTextField>
+      <BaseTextField v-model="userClone.birthdate" :readonly="loading" type="date"></BaseTextField>
       
       <BaseInputLabel>Peso (kg)</BaseInputLabel>
-      <BaseTextField v-model="user.weight" :readonly="loading" type="number" placeholder="85"
+      <BaseTextField v-model="userClone.weight" :readonly="loading" type="number" placeholder="85"
         append-inner-icon="mdi-weight-kilogram"></BaseTextField>
 
       <BaseInputLabel>Altezza (cm)</BaseInputLabel>
-      <BaseTextField v-model="user.height" :readonly="loading" type="number" placeholder="185"
+      <BaseTextField v-model="userClone.height" :readonly="loading" type="number" placeholder="185"
         append-inner-icon="mdi-human-male-height"></BaseTextField>
 
       <v-divider class="mt-6 mb-6"></v-divider>
 
       <BaseInputLabel>Via</BaseInputLabel>
-      <BaseTextField v-model="user.address" :readonly="loading" type="text" placeholder=""
+      <BaseTextField v-model="userClone.address" :readonly="loading" type="text" placeholder=""
         append-inner-icon="mdi-map-marker"></BaseTextField>
 
       <BaseInputLabel>Citta</BaseInputLabel>
-      <BaseTextField v-model="user.city" :readonly="loading" type="text" placeholder="example@email.com"
+      <BaseTextField v-model="userClone.city" :readonly="loading" type="text" placeholder="example@email.com"
         append-inner-icon="mdi-city"></BaseTextField>
       
       <BaseInputLabel>Cap</BaseInputLabel>
-      <BaseTextField v-model="user.zip" :readonly="loading" :rules="numeric" type="text" placeholder="example@email.com"
+      <BaseTextField v-model="userClone.zip" :readonly="loading" :rules="numeric" type="text" placeholder="example@email.com"
       append-inner-icon="mdi-target"></BaseTextField>
       
       <BaseInputLabel>Paese</BaseInputLabel>
-      <BaseTextField v-model="user.country" :readonly="loading" type="text" placeholder="example@email.com"
+      <BaseTextField v-model="userClone.country" :readonly="loading" type="text" placeholder="example@email.com"
       append-inner-icon="mdi-earth"></BaseTextField>
 
       <BaseBtnPrimary class="mb-8 mt-8" @click="onSubmit" :disabled="!form">

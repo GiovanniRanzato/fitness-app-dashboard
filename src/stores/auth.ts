@@ -6,7 +6,7 @@ import type { User} from '@/interfaces'
 export const useAuthStore =defineStore('auth', {
     state: () => {
       return {
-        userId:0,
+        id:0,
         email:'',
         name:'',
         lastName:'',
@@ -24,13 +24,13 @@ export const useAuthStore =defineStore('auth', {
       }
     },
     getters: {
-      isLogin: (state: User) => state.userId ?? false,
+      isLogin: (state: User) => state.id ?? false,
       getCompleteName: (state: User) => state.name + ' ' + state.lastName,
       getRole: (state: User) => state.role == '1' ? 'admin' : state.role == '2' ? 'trainer':'',
       getColor: (state: User) => state.role == '1' ? 'red' : state.role == '2' ? 'blue':'',
       getAttributesValues(state: User) {
         return {
-          userId: state.userId,
+          id: state.id,
           email: state.email,
           name: state.name,
           lastName: state.lastName,
@@ -51,7 +51,7 @@ export const useAuthStore =defineStore('auth', {
     actions: {
       login(email: String, password: String) {
         console.log(email, password)
-        this.userId =12345
+        this.id =12345
         this.email='john@doe.com'
         this.name='John'
         this.lastName='Doe',
@@ -70,7 +70,7 @@ export const useAuthStore =defineStore('auth', {
       },
       register(name: String, email: String, password: String) {
         console.log(name, email, password)
-        this.userId =12345
+        this.id =12345
         this.email='john@doe.com'
         this.name='John'
         this.role='1'
@@ -78,7 +78,7 @@ export const useAuthStore =defineStore('auth', {
       },
       logout(){
         console.log('logout')
-        this.userId =0
+        this.id =0
         this.email=''
         this.name=''
         this.lastName='',

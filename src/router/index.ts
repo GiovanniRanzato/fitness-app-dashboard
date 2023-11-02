@@ -25,12 +25,29 @@ const router = createRouter({
         {
           path: 'users',
           name: 'users',
-          component: () => import('../views/UsersIndex.vue')
+          component: () => import('../views/UsersIndex.vue'),
+          meta: {
+            keepAlive: false,
+          }
         },
         {
           path: 'users/add',
           name: 'users-add',
-          component: () => import('../views/UsersAdd.vue')
+          component: () => import('../views/UsersAdd.vue'),
+          meta: {
+            keepAlive: false,
+          },
+          
+        },
+        {
+          path: 'users/edit/:id',
+          name: 'users-edit',
+          component: () => import('../views/UsersEdit.vue'),
+          props: true,
+          meta: {
+            keepAlive: false,
+          },
+          
         },
         {
           path: 'cards',

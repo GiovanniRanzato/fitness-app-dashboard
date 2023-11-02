@@ -5,7 +5,7 @@ export interface SelectItem {
 export interface MetadataPagination {
     pageNumber: number,
     pageSize: number
-    total: number
+    pageTotal: number
 }
 
 
@@ -15,11 +15,11 @@ export interface CommonDataStore {
 
 export interface UseresStore {
     users: User[] | null,
-    metadata: MetadataPagination | null
+    metadata: MetadataPagination
 }
 
 export interface User {
-    userId: number
+    id: number
     name: string
     email: string
     lastName: string,

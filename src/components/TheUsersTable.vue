@@ -1,10 +1,21 @@
 <script setup lang="ts">
-import { ref } from "vue"
+import { computed } from "vue"
 import { useUsersStore } from "../stores/users"
 import BaseTableBtnEdit from "../components/base/BaseTableBtnEdit.vue"
 import BaseTableBtnDelete from "../components/base/BaseTableBtnDelete.vue"
+import BaseAlertInfo from "../components/base/BaseAlertInfo.vue"
+import router from "../router/index"
+
 const usersStore = useUsersStore()
-const page =ref(1)
+
+const users = computed(() => usersStore.getUsersForCurrentPage)
+const metadata = usersStore.getMetadata
+
+const editUser = (userId: Number) =>{ 
+  router.push({ name: 'users-edit', params: { id: userId } })
+}
+
+console.log(users, metadata)
 </script>
 <template>
   <v-table>
@@ -18,14 +29,14 @@ const page =ref(1)
       </tr>
     </thead>
     <tbody>
-      <tr v-for="item in usersStore.getUsers" :key="item.name">
+      <tr v-for="item in users" :key="item.name">
         <td>{{ item.name }}</td>
         <td>{{ item.lastName }}</td>
         <td>{{ item.email }}</td>
         <td><v-chip size="small" :color="usersStore.getColor(item.role)" class="mt-1">{{ usersStore.getRole(item.role)
         }}</v-chip></td>
         <td class="text-right"><v-col cols="auto">
-            <BaseTableBtnEdit />
+            <BaseTableBtnEdit @click="()=> editUser(item.id)"/>
             <BaseTableBtnDelete />
         </v-col></td>
       </tr>
@@ -33,9 +44,11 @@ const page =ref(1)
   </v-table>
   <v-divider class="mb-6"></v-divider>
   <v-pagination
-    v-model="page"
-    :length="4"
+    v-if="metadata.pageTotal > 1"
+    v-model="metadata.pageNumber"
+    :length="metadata.pageTotal"
     active-color="blue"
     rounded="circle"
   ></v-pagination>
+  <BaseAlertInfo v-if="!users || users.length == 0">Nessun record presente</BaseAlertInfo>
 </template>
