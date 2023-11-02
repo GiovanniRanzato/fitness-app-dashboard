@@ -9,7 +9,7 @@ import type { User } from '@/interfaces'
 
 const usersStore = useUsersStore()
 const save = (user: User) => {
-    user.id = 11;
+    user.id = Math.floor(Math.random() * 1000000001);
     usersStore.addUser(user)
     router.push({ name: 'users-edit', params: { id: user.id } });
 }
