@@ -8,6 +8,7 @@ import BaseAlertWarning from './../../components/base/BaseAlertWarning.vue'
 import { useUsersStore } from "../../stores/users"
 
 import type { User } from '@/interfaces'
+
 const props = defineProps({
   id: {
     type: String,

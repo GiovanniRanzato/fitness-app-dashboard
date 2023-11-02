@@ -70,6 +70,12 @@ export const useUsersStore = defineStore('users', {
         type: 'success',
         text: 'Utente aggiornato.'
       })
+    },
+    deleteUser(userId: Number) {
+      const index = this.users.findIndex((u) => u.id === userId);
+      if (index !== -1) {
+        this.users.splice(index, 1);
+      }
     }
   }
 })

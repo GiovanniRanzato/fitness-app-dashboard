@@ -6,14 +6,20 @@ import BaseTableBtnDelete from "../../components/base/BaseTableBtnDelete.vue"
 import BaseAlertInfo from "../../components/base/BaseAlertInfo.vue"
 import router from "../../router/index"
 
+import type { User } from '@/interfaces'
+
 const usersStore = useUsersStore()
 
 const users = computed(() => usersStore.getUsersForCurrentPage)
 const metadata = usersStore.getMetadata
 
 const editUser = (userId: Number) =>{ 
-  router.push({ name: 'users-edit', params: { id: userId } })
+  router.push({ name: 'users-edit', params: { id: userId.toString() } })
 }
+const deleteUser = (userId: Number) =>{ 
+  usersStore.deleteUser(userId)
+}
+
 
 console.log(users, metadata)
 </script>
@@ -37,7 +43,7 @@ console.log(users, metadata)
         }}</v-chip></td>
         <td class="text-right"><v-col cols="auto">
             <BaseTableBtnEdit @click="()=> editUser(item.id)"/>
-            <BaseTableBtnDelete />
+            <BaseTableBtnDelete @click="() => deleteUser(item.id)" />
         </v-col></td>
       </tr>
     </tbody>
