@@ -43,7 +43,7 @@ console.log(users, metadata)
         }}</v-chip></td>
         <td class="text-right"><v-col cols="auto">
             <BaseTableBtnEdit @click="()=> editUser(item.id)"/>
-            <BaseTableBtnDelete @click="() => deleteUser(item.id)" />
+            <BaseTableBtnDelete :onConfirmDelete="() => deleteUser(item.id)" />
         </v-col></td>
       </tr>
     </tbody>
