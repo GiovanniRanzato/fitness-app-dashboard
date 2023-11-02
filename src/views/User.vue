@@ -21,7 +21,7 @@ const authStore = useAuthStore()
         <div class="text-h6 text-grey-darken-1">{{ authStore.email }}<v-chip :color="authStore.getColor" class="ml-1">{{ authStore.getRole }}</v-chip></div>
       </v-sheet>
       <v-divider class="mt-6 mb-6"/>
-      <TheUserForm/>
+      <TheUserForm :user="authStore.getAttributesValues" :onSubmit="() => console.log('ciao')"/>
     </BaseContainer>
   </main>
 </template>

@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue"
 import { useUsersStore } from "../stores/users"
+import BaseTableBtnEdit from "../components/base/BaseTableBtnEdit.vue"
+import BaseTableBtnDelete from "../components/base/BaseTableBtnDelete.vue"
 const usersStore = useUsersStore()
 const page =ref(1)
 </script>
@@ -23,8 +25,8 @@ const page =ref(1)
         <td><v-chip size="small" :color="usersStore.getColor(item.role)" class="mt-1">{{ usersStore.getRole(item.role)
         }}</v-chip></td>
         <td class="text-right"><v-col cols="auto">
-            <v-btn icon="mdi-pencil" class="text-blue" variant="flat" size="small"></v-btn>
-            <v-btn icon="mdi-delete" class="text-red" variant="flat" size="small"></v-btn>
+            <BaseTableBtnEdit />
+            <BaseTableBtnDelete />
         </v-col></td>
       </tr>
     </tbody>
@@ -33,6 +35,7 @@ const page =ref(1)
   <v-pagination
     v-model="page"
     :length="4"
+    active-color="blue"
     rounded="circle"
   ></v-pagination>
 </template>

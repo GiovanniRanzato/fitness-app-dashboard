@@ -28,7 +28,7 @@ export const useAuthStore =defineStore('auth', {
       getCompleteName: (state: User) => state.name + ' ' + state.lastName,
       getRole: (state: User) => state.role == '1' ? 'admin' : state.role == '2' ? 'trainer':'',
       getColor: (state: User) => state.role == '1' ? 'red' : state.role == '2' ? 'blue':'',
-      getAttributesValues(state) {
+      getAttributesValues(state: User) {
         return {
           userId: state.userId,
           email: state.email,
