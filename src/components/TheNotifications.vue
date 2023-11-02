@@ -17,7 +17,9 @@ const removeNotification = (notification: Notification) =>{
       <v-snackbar
         v-for="(notification, i) in notifications" :key="'notification_'+i"
         :model-value="true"
+        location="bottom right"
         multiline>{{ notification.text }}
+        
         <template v-slot:actions>
           <v-btn
             :color="notification.type"
