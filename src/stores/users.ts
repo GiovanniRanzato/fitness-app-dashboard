@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed } from 'vue'
 import type { UseresStore, User } from '@/interfaces'
+import { sendNotification } from '@/services/notifications'
 
 export const useUsersStore = defineStore('users', {
   state: (): UseresStore => {
@@ -20,9 +21,6 @@ export const useUsersStore = defineStore('users', {
       const startIndex = (state.metadata.pageNumber - 1) * state.metadata.pageSize;
       const endIndex = startIndex + state.metadata.pageSize;
       return users.slice(startIndex, endIndex);
-    },
-    getUserById: (state) => (userId: Number) => {
-      return state.users?.find(user => user.id === userId);
     },
     getUserAttributesValuesById: (state) => (userId: Number) => computed(() => {
       const user = state.users?.find(user => user.id === userId);
@@ -57,6 +55,10 @@ export const useUsersStore = defineStore('users', {
         this.metadata.pageNumber++;
         this.metadata.pageTotal++;
       }
+      sendNotification({
+        type: 'success',
+        text: 'Utente creato.'
+      })
     },
     updateUser(user: User) {
       if(!this.users) this.users = []
@@ -64,6 +66,10 @@ export const useUsersStore = defineStore('users', {
       if (index !== -1) {
         this.users[index] = user;
       }
+      sendNotification({
+        type: 'success',
+        text: 'Utente aggiornato.'
+      })
     }
   }
 })

@@ -14,8 +14,12 @@ export interface CommonDataStore {
 }
 
 export interface UseresStore {
-    users: User[] | null,
+    users: User[],
     metadata: MetadataPagination
+}
+
+export interface NotificationStore {
+    notifications: Notification[]
 }
 
 export interface User {
@@ -34,4 +38,10 @@ export interface User {
     country: string,
     avatar: string,
     role: string
+}
+
+export interface Notification {
+    text: string,
+    type: string,
+    timeout?: number
 }

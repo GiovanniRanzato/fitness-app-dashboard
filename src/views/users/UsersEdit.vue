@@ -15,6 +15,7 @@ const props = defineProps({
   }
 })
 const usersStore = useUsersStore()
+
 const save = (user: User) => {
   usersStore.updateUser(user)
 }

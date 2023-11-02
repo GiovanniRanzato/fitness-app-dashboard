@@ -8,6 +8,7 @@ import router from "../../router/index"
 import type { User } from '@/interfaces'
 
 const usersStore = useUsersStore()
+
 const save = (user: User) => {
     user.id = Math.floor(Math.random() * 1000000001);
     usersStore.addUser(user)

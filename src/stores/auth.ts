@@ -2,6 +2,7 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import router from '../router/index'
 import type { User} from '@/interfaces'
+import { sendNotification } from '@/services/notifications'
 
 export const useAuthStore =defineStore('auth', {
     state: () => {
@@ -108,6 +109,10 @@ export const useAuthStore =defineStore('auth', {
         this.zip=user.zip
         this.country=user.country
         this.avatar=user.avatar
+        sendNotification({
+          type: 'success',
+          text: 'Profilo utente aggiornato.'
+        })
       }
     }
   }

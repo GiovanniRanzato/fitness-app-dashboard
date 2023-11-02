@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useAuthStore } from '../../stores/auth';
+
 import BaseAvatar from './../../components/base/BaseAvatar.vue'
 import BaseContainer from './../../components/base/BaseContainer.vue'
 import BasePageTitle from './../../components/base/BasePageTitle.vue'
@@ -8,6 +9,7 @@ import TheUserForm from './TheUserForm.vue'
 import type { User } from '@/interfaces'
 
 const authStore = useAuthStore()
+
 const save = (user: User) => {
     authStore.update(user)
 }
