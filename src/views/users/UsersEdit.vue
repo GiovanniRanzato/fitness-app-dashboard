@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import {computed} from 'vue'
-import BaseContainer from './../components/base/BaseContainer.vue'
-import BasePageTitle from './../components/base/BasePageTitle.vue'
-import TheUserForm from './../components/TheUserForm.vue'
-import BaseAlertWarning from './../components/base/BaseAlertWarning.vue'
+import BaseContainer from './../../components/base/BaseContainer.vue'
+import BasePageTitle from './../../components/base/BasePageTitle.vue'
+import TheUserForm from './TheUserForm.vue'
+import BaseAlertWarning from './../../components/base/BaseAlertWarning.vue'
 
-import { useUsersStore } from "../stores/users"
+import { useUsersStore } from "../../stores/users"
 
 import type { User } from '@/interfaces'
 const props = defineProps({

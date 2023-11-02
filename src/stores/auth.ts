@@ -20,14 +20,14 @@ export const useAuthStore =defineStore('auth', {
         zip:0,
         country:'',
         avatar:'',
-        role:''
+        role:'0'
       }
     },
     getters: {
       isLogin: (state: User) => state.id ?? false,
       getCompleteName: (state: User) => state.name + ' ' + state.lastName,
-      getRole: (state: User) => state.role == '1' ? 'admin' : state.role == '2' ? 'trainer':'',
-      getColor: (state: User) => state.role == '1' ? 'red' : state.role == '2' ? 'blue':'',
+      getRole: (state: User) => state.role == '1' ? 'admin' : state.role == '2' ? 'trainer':'user',
+      getColor: (state: User) => state.role == '1' ? 'red' : state.role == '2' ? 'blue':'white',
       getAttributesValues(state: User) {
         return {
           id: state.id,
@@ -94,6 +94,20 @@ export const useAuthStore =defineStore('auth', {
         this.avatar=''
         this.role=''
         router.push('/')
+      },
+      update(user: User){
+        this.name=user.name
+        this.lastName=user.lastName
+        this.phone=user.phone
+        this.sex=user.sex
+        this.birthdate=user.birthdate
+        this.weight=user.weight
+        this.height=user.height
+        this.address=user.address
+        this.city=user.city
+        this.zip=user.zip
+        this.country=user.country
+        this.avatar=user.avatar
       }
     }
   }

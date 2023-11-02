@@ -20,12 +20,12 @@ const router = createRouter({
         {
           path: '',
           name: 'user-profile',
-          component: () => import('../views/User.vue')
+          component: () => import('../views/users/UserProfile.vue')
         },
         {
           path: 'users',
           name: 'users',
-          component: () => import('../views/UsersIndex.vue'),
+          component: () => import('../views/users/UsersIndex.vue'),
           meta: {
             keepAlive: false,
           }
@@ -33,7 +33,7 @@ const router = createRouter({
         {
           path: 'users/add',
           name: 'users-add',
-          component: () => import('../views/UsersAdd.vue'),
+          component: () => import('../views/users/UsersAdd.vue'),
           meta: {
             keepAlive: false,
           },
@@ -42,7 +42,7 @@ const router = createRouter({
         {
           path: 'users/edit/:id',
           name: 'users-edit',
-          component: () => import('../views/UsersEdit.vue'),
+          component: () => import('../views/users/UsersEdit.vue'),
           props: true,
           meta: {
             keepAlive: false,

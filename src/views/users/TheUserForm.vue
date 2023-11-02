@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import BaseBtnPrimary from '../components/base/BaseBtnPrimary.vue'
-import BaseTextField from '../components/base/BaseTextField.vue'
-import BaseSelect from '../components/base/BaseSelect.vue'
-import BaseInputLabel from '../components/base/BaseInputLabel.vue'
+import BaseBtnPrimary from '../../components/base/BaseBtnPrimary.vue'
+import BaseTextField from '../../components/base/BaseTextField.vue'
+import BaseSelect from '../../components/base/BaseSelect.vue'
+import BaseInputLabel from '../../components/base/BaseInputLabel.vue'
 
-import { useCommonDataStore} from '../stores/commonData'
+import { useCommonDataStore} from '../../stores/commonData'
 import type { User } from '@/interfaces'
 
 const commonDataStore = useCommonDataStore()

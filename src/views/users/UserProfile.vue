@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import { useAuthStore } from '../stores/auth';
-import BaseAvatar from './../components/base/BaseAvatar.vue'
-import BaseContainer from './../components/base/BaseContainer.vue'
-import BasePageTitle from './../components/base/BasePageTitle.vue'
-import TheUserForm from '../components/TheUserForm.vue'
+import { useAuthStore } from '../../stores/auth';
+import BaseAvatar from './../../components/base/BaseAvatar.vue'
+import BaseContainer from './../../components/base/BaseContainer.vue'
+import BasePageTitle from './../../components/base/BasePageTitle.vue'
+import TheUserForm from './TheUserForm.vue'
+
+import type { User } from '@/interfaces'
+
 const authStore = useAuthStore()
+const save = (user: User) => {
+    authStore.update(user)
+}
 </script>
 
 <template>
@@ -21,7 +27,7 @@ const authStore = useAuthStore()
         <div class="text-h6 text-grey-darken-1">{{ authStore.email }}<v-chip :color="authStore.getColor" class="ml-1">{{ authStore.getRole }}</v-chip></div>
       </v-sheet>
       <v-divider class="mt-6 mb-6"/>
-      <TheUserForm :user="authStore.getAttributesValues" :onSubmit="() => console.log('ciao')"/>
+      <TheUserForm :user="authStore.getAttributesValues" :onSubmit="save"/>
     </BaseContainer>
   </main>
 </template>

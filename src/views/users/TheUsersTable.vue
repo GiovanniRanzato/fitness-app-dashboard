@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { computed } from "vue"
-import { useUsersStore } from "../stores/users"
-import BaseTableBtnEdit from "../components/base/BaseTableBtnEdit.vue"
-import BaseTableBtnDelete from "../components/base/BaseTableBtnDelete.vue"
-import BaseAlertInfo from "../components/base/BaseAlertInfo.vue"
-import router from "../router/index"
+import { useUsersStore } from "../../stores/users"
+import BaseTableBtnEdit from "../../components/base/BaseTableBtnEdit.vue"
+import BaseTableBtnDelete from "../../components/base/BaseTableBtnDelete.vue"
+import BaseAlertInfo from "../../components/base/BaseAlertInfo.vue"
+import router from "../../router/index"
 
 const usersStore = useUsersStore()
 

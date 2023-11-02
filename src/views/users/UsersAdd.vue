@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import BaseContainer from './../components/base/BaseContainer.vue'
-import BasePageTitle from './../components/base/BasePageTitle.vue'
-import TheUserForm from './../components/TheUserForm.vue'
-import { useUsersStore } from "../stores/users"
-import router from "../router/index"
+import BaseContainer from './../../components/base/BaseContainer.vue'
+import BasePageTitle from './../../components/base/BasePageTitle.vue'
+import TheUserForm from './TheUserForm.vue'
+import { useUsersStore } from "../../stores/users"
+import router from "../../router/index"
 
 import type { User } from '@/interfaces'
 
