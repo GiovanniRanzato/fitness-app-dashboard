@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import TheSideNav from "../components/TheSideNav.vue"
+import TheAppBar from '../components/TheAppBar.vue'
 </script>
 
 <template>
-    <v-layout full-height>
+    <v-app>
         <TheSideNav />
+        <TheAppBar />
         <v-main>
-          <v-sheet width="100%" min-height="100vh" class="pa-8 mx-auto">
-              <RouterView />
-          </v-sheet>
+            <v-sheet width="100%" min-height="100vh" class="pa-8 mx-auto">
+                <RouterView />
+            </v-sheet>
         </v-main>
-    </v-layout>
+    </v-app>
 </template>

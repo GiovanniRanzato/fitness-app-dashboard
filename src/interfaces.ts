@@ -22,6 +22,11 @@ export interface NotificationStore {
     notifications: Notification[]
 }
 
+export interface UiStore {
+    sideNavIsOpen: boolean
+}
+
+
 export interface User {
     id: number
     name: string

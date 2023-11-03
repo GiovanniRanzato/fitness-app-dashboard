@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import router from "../router/index"
+import {ref} from "vue"
 import { useAuthStore } from '../stores/auth';
+import { useUiStore } from '../stores/ui';
+
 import BaseAvatar from './base/BaseAvatar.vue'
 import BaseLogo from './base/BaseLogo.vue'
 import BaseBtnSecondary from './base/BaseBtnSecondary.vue'
 
 const authStore = useAuthStore()
+const uiStore = useUiStore()
 
 const navItems = [
     {
@@ -30,7 +34,10 @@ const navItems = [
 const itemRounded = "xl"
 </script>
 <template>
-    <v-navigation-drawer class="mx-auto pa-2 d-xs-none d-sm-flex" theme="dark">
+    <v-navigation-drawer 
+        class="mx-auto pa-2 d-xs-none d-sm-flex" 
+        theme="dark" 
+        v-model="uiStore.sideNavIsOpen">
         <BaseLogo min-width="150" theme="dark" />
         <v-list 
             color="transparent"
@@ -73,4 +80,4 @@ const itemRounded = "xl"
             </div>
         </template>
     </v-navigation-drawer>
-</template>../stores/auth
+</template>
