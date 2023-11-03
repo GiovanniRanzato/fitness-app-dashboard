@@ -8,3 +8,4 @@ import TheNotifications from './components/TheNotifications.vue'
   <TheNotifications />
 </template>
 
+

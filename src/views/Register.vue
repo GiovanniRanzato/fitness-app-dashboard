@@ -3,8 +3,8 @@ import TheRegisterCard from "../components/TheRegisterCard.vue"
 import BaseLogo from "../components/base/BaseLogo.vue"
 </script>
 <template>
-  <div>
-    <BaseLogo min-width="300" class="mb-8 mt-8"/>
+  <main class="mt-12">
+    <BaseLogo min-width="300" class="mb-12 mt-12"/>
     <TheRegisterCard />
-  </div>
+  </main>
 </template>
