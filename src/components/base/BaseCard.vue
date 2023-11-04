@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <v-card class="pa-12 mx-auto" elevation="6" rounded="xl">
+    <v-card rounded="xl" variant="flat" color="grey-lighten-5">
         <slot default></slot>
     </v-card>
 </template>

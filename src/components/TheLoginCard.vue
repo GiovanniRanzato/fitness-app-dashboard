@@ -23,7 +23,7 @@ function onSubmit() {
 }
 </script>
 <template>
-  <BaseCard max-width="448">
+  <v-card class="pa-12 mx-auto" elevation="6" rounded="xl" max-width="448">
     <v-form v-model="form">
       <BaseInputLabel>Email</BaseInputLabel>
       <BaseTextField v-model="email" :readonly="loading" :rules="[required]" clearable placeholder="example@email.com"
@@ -48,5 +48,5 @@ function onSubmit() {
         </BaseLink>
       </v-card-text>
     </v-form>
-  </BaseCard>
+  </v-card>
 </template>

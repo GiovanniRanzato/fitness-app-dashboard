@@ -41,7 +41,7 @@ function onSubmit() {
 }
 </script>
 <template>
-  <BaseCard max-width="448">
+  <v-card class="pa-12 mx-auto" elevation="6" rounded="xl" max-width="448">
     <v-form v-model="form">
       <BaseInputLabel>Nome</BaseInputLabel>
       <BaseTextField v-model="name" :readonly="loading" :rules="nameRules" clearable placeholder="example@email.com"
@@ -65,5 +65,5 @@ function onSubmit() {
         Sei già registrato<v-icon icon="mdi-chevron-right"></v-icon>
       </BaseLink>
     </v-card-text>
-  </BaseCard>
+  </v-card>
 </template>
