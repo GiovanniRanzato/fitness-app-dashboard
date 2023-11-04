@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { useUiStore } from '../stores/ui';
+import router from "../router/index"
+
 const uiStore = useUiStore()
 
 function toggleSideNav(){
@@ -10,7 +12,7 @@ function toggleSideNav(){
 <template>
     <v-app-bar :elevation="2">
         <template v-slot:prepend>
-            <v-btn icon>
+            <v-btn icon @click="router.back">
           <v-icon>mdi-chevron-left</v-icon>
         </v-btn>
         </template>

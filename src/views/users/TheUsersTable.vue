@@ -6,8 +6,6 @@ import BaseTableBtnDelete from "../../components/base/BaseTableBtnDelete.vue"
 import BaseAlertInfo from "../../components/base/BaseAlertInfo.vue"
 import router from "../../router/index"
 
-import type { User } from '@/interfaces'
-
 const usersStore = useUsersStore()
 
 const users = computed(() => usersStore.getUsersForCurrentPage)
@@ -35,7 +33,7 @@ console.log(users, metadata)
       </tr>
     </thead>
     <tbody>
-      <tr v-for="item in users" :key="item.name">
+      <tr v-for="item in users" :key="item.name" >
         <td>{{ item.name }}</td>
         <td>{{ item.lastName }}</td>
         <td>{{ item.email }}</td>
@@ -48,7 +46,6 @@ console.log(users, metadata)
       </tr>
     </tbody>
   </v-table>
-  <v-divider class="mb-6"></v-divider>
   <v-pagination
     v-if="metadata.pageTotal > 1"
     v-model="metadata.pageNumber"
@@ -58,3 +55,22 @@ console.log(users, metadata)
   ></v-pagination>
   <BaseAlertInfo v-if="!users || users.length == 0">Nessun record presente</BaseAlertInfo>
 </template>
+<style>
+/* table {
+  border-spacing: 0 0.5rem !important;
+  border-collapse: separate !important;
+}
+table td:first-child,
+table th:first-child
+{
+  border-radius: 1rem 0 0 1rem;
+}
+table td:last-child,
+table th:last-child
+{
+  border-radius: 0 1rem 1rem 0;
+}
+table th {
+  border-bottom: unset !important;
+} */
+</style>

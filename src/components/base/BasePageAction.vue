@@ -2,5 +2,7 @@
 </script>
 
 <template>
-    <v-btn class="text-blue-lighten-2" variant="flat" icon="mdi-plus" size="large" elevation="6"></v-btn>
+    <v-btn color="blue" size="large" variant="tonal" rounded="xl">
+        <slot default></slot>
+    </v-btn>
 </template>

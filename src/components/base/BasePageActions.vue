@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import BasePageAction from './BasePageAction.vue';
+import BaseBtnPrimary from './BaseBtnSecondary.vue';
 const props = defineProps({
         onAdd: {
             type: Function,
@@ -8,7 +9,9 @@ const props = defineProps({
 </script>
 
 <template>
-    <v-row align="end" justify="end" >
-        <BasePageAction v-if="props.onAdd"  icon="mdi-plus" @click="props.onAdd()"/>
-    </v-row>
+    <div class="d-flex justify-end">
+        <BasePageAction v-if="props.onAdd"  @click="props.onAdd()">
+            Aggiungi nuovo
+        </BasePageAction>
+    </div>
 </template>
