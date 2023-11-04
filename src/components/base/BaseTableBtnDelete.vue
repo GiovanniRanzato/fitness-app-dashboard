@@ -16,7 +16,7 @@ const showConfirmDialog = ref(false)
 <template>
     <v-menu v-model="showConfirmDialog" :close-on-content-click="true" location="bottom" >
         <template v-slot:activator="{ props }">
-            <v-btn icon="mdi-delete" class="text-red-lighten-2" variant="flat" size="small" v-bind="props"></v-btn>
+            <v-btn icon="mdi-delete" class="text-red" variant="flat" size="small" v-bind="props"></v-btn>
         </template>
         <v-card min-width="300" class="pa-3 mt-1">
             <v-card-text>Sicuro di voler eliminare l'elemento selezionato?</v-card-text>

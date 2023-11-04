@@ -46,6 +46,7 @@ console.log(users, metadata)
       </tr>
     </tbody>
   </v-table>
+  <v-divider class="mb-6"></v-divider>
   <v-pagination
     v-if="metadata.pageTotal > 1"
     v-model="metadata.pageNumber"
