@@ -8,7 +8,13 @@ function toggleSideNav(){
 
 </script>
 <template>
-    <v-app-bar :elevation="2" class="d-none d-sm-flex d-md-flex d-lg-none">
+    <v-app-bar :elevation="2">
+        <template v-slot:prepend>
+            <v-btn icon>
+          <v-icon>mdi-chevron-left</v-icon>
+        </v-btn>
+        </template>
+        <v-app-bar-title>{{ uiStore.getPageTitle }}</v-app-bar-title>
         <template v-slot:append>
             <v-app-bar-nav-icon @click="toggleSideNav"></v-app-bar-nav-icon>
         </template>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {computed} from 'vue'
 import BaseContainer from './../../components/base/BaseContainer.vue'
 import BasePageTitle from './../../components/base/BasePageTitle.vue'
 import TheUserForm from './TheUserForm.vue'
@@ -26,7 +25,7 @@ const userAttributesValues = usersStore.getUserAttributesValuesById(parseInt(pro
 <template>
   <main>
     <BaseContainer>
-      <BasePageTitle>Modifica utente</BasePageTitle>
+      <BasePageTitle title="Modifica utente"/>
       <TheUserForm v-if="userAttributesValues" :user=userAttributesValues :onSubmit="save" />
       <BaseAlertWarning v-else>Si è verificato un problema: dati utente non presenti.</BaseAlertWarning>
     </BaseContainer>

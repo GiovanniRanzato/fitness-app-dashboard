@@ -19,7 +19,7 @@ const save = (user: User) => {
 <template>
   <main>
     <BaseContainer>
-      <BasePageTitle>Crea nuovo utente</BasePageTitle>
+      <BasePageTitle title="Crea nuovo utente"/>
       <TheUserForm :onSubmit="save"/>
     </BaseContainer>
   </main>

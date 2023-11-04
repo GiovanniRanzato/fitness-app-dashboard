@@ -1,7 +1,14 @@
 <script setup lang="ts">
-</script>
+import { useUiStore} from "../../stores/ui"
 
+const props = defineProps({
+    title: {
+        type: String,
+        required: true
+    }
+})
+const uiStore = useUiStore()
+uiStore.setPageTitle(props.title)
+</script>
 <template>
-    <h1 class="text-h3 mb-6"><slot default></slot></h1>
-    <v-divider class="mt-6 mb-6"/>
 </template>

@@ -23,7 +23,8 @@ export interface NotificationStore {
 }
 
 export interface UiStore {
-    sideNavIsOpen: boolean
+    sideNavIsOpen: boolean,
+    pageTitle: string
 }
 
 

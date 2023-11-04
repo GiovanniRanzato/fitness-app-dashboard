@@ -13,7 +13,7 @@ const addItem = () => {
 <template>
   <main>
     <BaseContainer>
-      <BasePageTitle>Utenti</BasePageTitle>
+      <BasePageTitle title="Utenti" />
       <BasePageActions :onAdd="addItem"/>
       <TheUsersTable />
     </BaseContainer>

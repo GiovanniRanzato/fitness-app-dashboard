@@ -18,7 +18,7 @@ const save = (user: User) => {
 <template>
   <main>
     <BaseContainer>
-      <BasePageTitle>Profilo utente</BasePageTitle>
+      <BasePageTitle title="Profilo utente"/>
       <v-sheet class="text-center mx-auto" width="100%">
         <BaseAvatar 
         :avatar="authStore.avatar"
