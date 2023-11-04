@@ -121,10 +121,10 @@ function onSubmit() {
         </BaseCard>
       </v-col>
     </v-row>
-
-
-    <BaseBtnPrimary class="mt-6" @click="onSubmit" :disabled="!form">
-      Salva
-    </BaseBtnPrimary>
+    <div class="d-flex justify-end mt-6">
+      <BaseBtnPrimary @click="onSubmit" :disabled="!form">
+        Salva
+      </BaseBtnPrimary>
+    </div>
   </v-form>
 </template>
