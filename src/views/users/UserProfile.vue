@@ -21,12 +21,12 @@ const save = (user: User) => {
       <BasePageTitle title="Profilo utente"/>
       <v-sheet class="text-center mx-auto" width="100%">
         <BaseAvatar 
-        :avatar="authStore.avatar"
-        :name="authStore.name" 
-        :lastName="authStore.lastName"
+        :avatar="authStore.user.avatar"
+        :name="authStore.user.name" 
+        :lastName="authStore.user.lastName"
         :color="authStore.getColor" size="80" />
         <div class="text-h4 mt-6">{{ authStore.getCompleteName }}</div>
-        <div class="text-h6 text-grey-darken-1">{{ authStore.email }}<v-chip :color="authStore.getColor" class="ml-1">{{ authStore.getRole }}</v-chip></div>
+        <div class="text-h6 text-grey-darken-1">{{ authStore.user.email }}<v-chip :color="authStore.getColor" class="ml-1">{{ authStore.getRole }}</v-chip></div>
       </v-sheet>
       <v-divider class="mt-6 mb-6"/>
       <TheUserForm :user="authStore.getAttributesValues" :onSubmit="save"/>

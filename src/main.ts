@@ -16,10 +16,6 @@ import '@mdi/font/css/materialdesignicons.css'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
-import axios from 'axios'
-
-// Develop
-axios.defaults.baseURL = 'http://127.0.0.1:8000/api/v1'
 
 const vuetify = createVuetify({
   theme: {

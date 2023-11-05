@@ -48,9 +48,9 @@ const itemRounded = "xl"
             >
                 <template v-slot:prepend>
                     <BaseAvatar 
-                        :avatar="authStore.avatar"
-                        :name="authStore.name"
-                        :lastName="authStore.lastName"
+                        :avatar="authStore.user.avatar"
+                        :name="authStore.user.name"
+                        :lastName="authStore.user.lastName"
                         :color="authStore.getColor"
                     /></template>
                 <template v-slot:subtitle><v-chip size="small" :color="authStore.getColor" class="mt-1">{{ authStore.getRole }}</v-chip></template>

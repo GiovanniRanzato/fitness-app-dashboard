@@ -4,7 +4,6 @@ import BaseLink from '../components/base/BaseLink.vue'
 import BaseBtnPrimary from '../components/base/BaseBtnPrimary.vue'
 import BaseTextField from '../components/base/BaseTextField.vue'
 import BaseInputLabel from '../components/base/BaseInputLabel.vue'
-import BaseCard from '../components/base/BaseCard.vue'
 import { useAuthStore } from '../stores/auth'
 
 const authStore = useAuthStore()
@@ -19,7 +18,7 @@ function required(v: string) {
 }
 
 function onSubmit() {
-  authStore.login(email.value, password.value)
+  authStore.login({email: email.value, password: password.value})
 }
 </script>
 <template>

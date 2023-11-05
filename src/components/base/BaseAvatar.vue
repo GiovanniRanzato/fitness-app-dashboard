@@ -10,7 +10,7 @@
         },
         lastName: {
             type: String,
-            required: true
+            required: false
         },
         color: {
             type: String,
@@ -23,7 +23,9 @@
         }
     })
     function getNameInitials(){
-        return props.name[0]+props.lastName[0]
+        const name = props.name ?? '??'
+        const lastName = props.lastName ?? name.slice(1)
+        return name[0]+lastName[0]
     }
 </script>
 <template>
