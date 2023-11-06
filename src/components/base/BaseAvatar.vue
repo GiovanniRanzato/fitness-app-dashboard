@@ -23,9 +23,10 @@
         }
     })
     function getNameInitials(){
-        const name = props.name ?? '??'
-        const lastName = props.lastName ?? name.slice(1)
-        return name[0]+lastName[0]
+        console.log()
+        const firstLetter = props.name[0] ?? '?'
+        const secondLetter = props.lastName ? props.lastName[0] : (props.name.slice(1) ? props.name.slice(1) : ' ')
+        return firstLetter+secondLetter
     }
 </script>
 <template>

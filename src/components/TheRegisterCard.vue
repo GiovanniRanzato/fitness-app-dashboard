@@ -37,7 +37,7 @@ const nameRules = [
 function onSubmit() {
   if (!form.value) 
     return false;
-  authStore.register(name.value, email.value, password.value)
+  authStore.register({name: name.value, email: email.value, password: password.value})
 }
 </script>
 <template>

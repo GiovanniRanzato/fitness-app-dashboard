@@ -6,9 +6,9 @@ export default {
         const response = await api.post('login', credentials);
         return response;
     },
-    async register(userData: UserRegistrationData) {
-      // Effettua la chiamata API per la registrazione
-      // Restituisci l'utente registrato o gestisci gli errori
+    async register(userRegistrationData: UserRegistrationData) {
+      const response = await api.post('register', userRegistrationData);
+      return response;
     },
   };
   

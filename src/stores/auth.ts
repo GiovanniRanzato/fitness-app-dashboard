@@ -6,28 +6,29 @@ import authService from '../services/auth'
 import { handleException } from '../services/exceptionsHandler'
 
 import type { AuthStore, UserCredentials, UserRegistrationData } from '@/interfaces'
-import type { AxiosError } from 'axios'
+
+const EMPTY_USER = {
+  id: 0,
+  email: '',
+  name: '',
+  lastName: '',
+  phone: '',
+  sex: '',
+  birthdate: '',
+  weight: 0,
+  height: 0,
+  address: '',
+  city: '',
+  zip: 0,
+  country: '',
+  avatar: '',
+  role: '0'
+}
 
 export const useAuthStore = defineStore('auth', {
   state: (): AuthStore => {
     return {
-      user: {
-        id: 0,
-        email: '',
-        name: '',
-        lastName: '',
-        phone: '',
-        sex: '',
-        birthdate: '',
-        weight: 0,
-        height: 0,
-        address: '',
-        city: '',
-        zip: 0,
-        country: '',
-        avatar: '',
-        role: '0'
-      },
+      user: EMPTY_USER,
       token: ''
     }
   },
@@ -43,13 +44,19 @@ export const useAuthStore = defineStore('auth', {
     getColor: (state: AuthStore) => state.user.role == '1' ? 'red' : state.user.role == '2' ? 'blue' : 'green',
     getAttributesValues(state: AuthStore) {
       return JSON.parse(JSON.stringify(state.user))
-    },
+    }
   },
   actions: {
     async login(credentials: UserCredentials) {
       try {
         const response = await authService.login(credentials);
-        this.user = response.data.attributes
+        if (response.status >= 300)
+          throw 'login error'
+        
+        if (!('token' in response) || typeof response.token !== 'string')
+          throw 'impossible to get token from server response'
+
+        this.user = {...this.user, ...response.data.attributes}
         this.token = response.data.token
         router.push('/dashboard')
       } catch (exception: any) {
@@ -61,31 +68,30 @@ export const useAuthStore = defineStore('auth', {
       }
 
     },
-    register(name: String, email: String, password: String) {
-      console.log(name, email, password)
-      this.user.id = 12345
-      this.user.email = 'john@doe.com'
-      this.user.name = 'John'
-      this.user.role = '1'
+    async register(userRegistrationData: UserRegistrationData) {
+      try {
+        const response = await authService.register(userRegistrationData);
+        if (response.status >= 300)
+          throw 'register error'
+        
+        if (!('token' in response) || typeof response.token !== 'string')
+          throw 'impossible to get token from server response'
+        
+        this.user = {...this.user, ...response.data.attributes}
+        this.token = response.token
+      
       router.push('/dashboard')
+      } catch (exception: any) {
+        const message = handleException(exception)
+        sendNotification({
+          type: 'error',
+          text: message
+        })
+      }
     },
     logout() {
       console.log('logout')
-      this.user.id = 0
-      this.user.email = ''
-      this.user.name = ''
-      this.user.lastName = '',
-      this.user.phone = '',
-      this.user.sex = ''
-      this.user.birthdate = '',
-      this.user.weight = 0,
-      this.user.height = 0,
-      this.user.address = '',
-      this.user.city = '',
-      this.user.zip = 0,
-      this.user.country = '',
-      this.user.avatar = ''
-      this.user.role = ''
+      this.user = EMPTY_USER
       router.push('/')
     },
     update(user: User) {
