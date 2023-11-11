@@ -3,6 +3,8 @@ import router from '../router/index'
 import type { User } from '@/interfaces'
 import { sendNotification } from '@/services/notifications'
 import authService from '../services/auth'
+import api from '../services/api'
+import { apiData } from '../services/apiData'
 import { handleException } from '../services/exceptionsHandler'
 
 import type { AuthStore, UserCredentials, UserRegistrationData } from '@/interfaces'
@@ -52,12 +54,13 @@ export const useAuthStore = defineStore('auth', {
         const response = await authService.login(credentials);
         if (response.status >= 300)
           throw 'login error'
-        
+
         if (!('token' in response) || typeof response.token !== 'string')
           throw 'impossible to get token from server response'
 
-        this.user = {...this.user, ...response.data.attributes}
-        this.token = response.data.token
+        this.user = { ...this.user, ...response.data.attributes }
+
+        this.token = response.token
         router.push('/dashboard')
       } catch (exception: any) {
         const message = handleException(exception)
@@ -73,14 +76,34 @@ export const useAuthStore = defineStore('auth', {
         const response = await authService.register(userRegistrationData);
         if (response.status >= 300)
           throw 'register error'
-        
+
         if (!('token' in response) || typeof response.token !== 'string')
           throw 'impossible to get token from server response'
-        
-        this.user = {...this.user, ...response.data.attributes}
+
+        this.user = { ...this.user, ...response.data.attributes }
         this.token = response.token
-      
-      router.push('/dashboard')
+
+        router.push('/dashboard')
+      } catch (exception: any) {
+        const message = handleException(exception)
+        sendNotification({
+          type: 'error',
+          text: message
+        })
+      }
+    },
+    async update(user: User) {
+      try {
+        const response = await api.patch('users/' + this.user.id, apiData.prepareUser(user));
+        if (response.status >= 300)
+          throw 'update user error'
+
+        this.user = { ...this.user, ...user }
+
+        sendNotification({
+          type: 'success',
+          text: 'Profilo utente aggiornato.'
+        })
       } catch (exception: any) {
         const message = handleException(exception)
         sendNotification({
@@ -92,26 +115,9 @@ export const useAuthStore = defineStore('auth', {
     logout() {
       console.log('logout')
       this.user = EMPTY_USER
+      this.token = ''
       router.push('/')
     },
-    update(user: User) {
-      this.user.name = user.name
-      this.user.lastName = user.lastName
-      this.user.phone = user.phone
-      this.user.sex = user.sex
-      this.user.birthdate = user.birthdate
-      this.user.weight = user.weight
-      this.user.height = user.height
-      this.user.address = user.address
-      this.user.city = user.city
-      this.user.zip = user.zip
-      this.user.country = user.country
-      this.user.avatar = user.avatar
-      sendNotification({
-        type: 'success',
-        text: 'Profilo utente aggiornato.'
-      })
-    }
   }
 }
 )
