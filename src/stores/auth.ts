@@ -4,7 +4,7 @@ import type { User } from '@/interfaces'
 import { sendNotification } from '@/services/notifications'
 import authService from '../services/auth'
 import api from '../services/api'
-import { apiData } from '../services/apiData'
+import { userData } from '../services/userData'
 import { handleException } from '../services/exceptionsHandler'
 
 import type { AuthStore, UserCredentials, UserRegistrationData } from '@/interfaces'
@@ -16,7 +16,8 @@ const EMPTY_USER = {
   lastName: '',
   phone: '',
   sex: '',
-  birthdate: '',
+  birthDate: '',
+  job: '',
   weight: 0,
   height: 0,
   address: '',
@@ -45,7 +46,7 @@ export const useAuthStore = defineStore('auth', {
     getRole: (state: AuthStore) => state.user.role == '1' ? 'admin' : state.user.role == '2' ? 'trainer' : 'user',
     getColor: (state: AuthStore) => state.user.role == '1' ? 'red' : state.user.role == '2' ? 'blue' : 'green',
     getAttributesValues(state: AuthStore) {
-      return JSON.parse(JSON.stringify(state.user))
+      return { ...state.user }
     }
   },
   actions: {
@@ -58,7 +59,7 @@ export const useAuthStore = defineStore('auth', {
         if (!('token' in response) || typeof response.token !== 'string')
           throw 'impossible to get token from server response'
 
-        this.user = { ...this.user, ...response.data.attributes }
+        this.user = userData.fromApi(response.data.attributes)
 
         this.token = response.token
         router.push('/dashboard')
@@ -80,7 +81,7 @@ export const useAuthStore = defineStore('auth', {
         if (!('token' in response) || typeof response.token !== 'string')
           throw 'impossible to get token from server response'
 
-        this.user = { ...this.user, ...response.data.attributes }
+        this.user = userData.fromApi(response.data.attributes)
         this.token = response.token
 
         router.push('/dashboard')
@@ -94,7 +95,7 @@ export const useAuthStore = defineStore('auth', {
     },
     async update(user: User) {
       try {
-        const response = await api.patch('users/' + this.user.id, apiData.prepareUser(user));
+        const response = await api.patch('users/' + this.user.id, userData.toApi(user));
         if (response.status >= 300)
           throw 'update user error'
 

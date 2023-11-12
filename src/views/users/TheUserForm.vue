@@ -41,13 +41,18 @@ const props = defineProps({
 const form = ref(false)
 const loading = ref(false)
 
-const userClone = ref(JSON.parse(JSON.stringify(props.user)))
+const userClone =  ref({ ...props.user })
 
 const required = [
   (v: string) => !!v || 'Il campo è richiesto',
 ]
 const numeric = [
-  (v: string) => /^-?\d*(\.\d+)?$/.test(v) || 'Il campo deve essere numerico',
+  (v: string) => {
+    if (v === null) {
+      return true
+    }
+    return /^-?\d*(\.\d+)?$/.test(v) || 'Il campo deve essere numerico'
+  },
 ];
 
 function onSubmit() {
@@ -62,11 +67,11 @@ function onSubmit() {
         <BaseCard title="Informazioni contatto">
           <v-card-item>
             <BaseInputLabel>Nome</BaseInputLabel>
-            <BaseTextField v-model="userClone.name" :readonly="loading" :rules="required" placeholder="Severus"
+            <BaseTextField v-model="userClone.name" :readonly="loading" :rules="required" placeholder="Bruce"
               append-inner-icon="mdi-account"></BaseTextField>
 
             <BaseInputLabel>Cognome</BaseInputLabel>
-            <BaseTextField v-model="userClone.lastName" :readonly="loading" placeholder="Piton"
+            <BaseTextField v-model="userClone.lastName" :readonly="loading" placeholder="Wayne"
               append-inner-icon="mdi-account-outline"></BaseTextField>
 
             <BaseInputLabel>Telefono</BaseInputLabel>
@@ -85,14 +90,14 @@ function onSubmit() {
               :items="commonDataStore.getGenders"></BaseSelect>
 
             <BaseInputLabel>Data di nascita</BaseInputLabel>
-            <BaseTextField v-model="userClone.birthdate" :readonly="loading" type="date"></BaseTextField>
+            <BaseTextField v-model="userClone.birthDate" :readonly="loading" type="date"></BaseTextField>
 
             <BaseInputLabel>Peso (kg)</BaseInputLabel>
-            <BaseTextField v-model="userClone.weight" :readonly="loading" type="number" placeholder="85"
+            <BaseTextField v-model="userClone.weight" :readonly="loading" type="number" placeholder="95"
               append-inner-icon="mdi-weight-kilogram"></BaseTextField>
 
             <BaseInputLabel>Altezza (cm)</BaseInputLabel>
-            <BaseTextField v-model="userClone.height" :readonly="loading" type="number" placeholder="185"
+            <BaseTextField v-model="userClone.height" :readonly="loading" type="number" placeholder="195"
               append-inner-icon="mdi-human-male-height"></BaseTextField>
           </v-card-item>
         </BaseCard>
@@ -103,19 +108,19 @@ function onSubmit() {
           <v-card-item>
 
             <BaseInputLabel>Via</BaseInputLabel>
-            <BaseTextField v-model="userClone.address" :readonly="loading" type="text" placeholder=""
+            <BaseTextField v-model="userClone.address" :readonly="loading" type="text" placeholder="Saint Rafael Drive 380"
               append-inner-icon="mdi-map-marker"></BaseTextField>
 
             <BaseInputLabel>Citta</BaseInputLabel>
-            <BaseTextField v-model="userClone.city" :readonly="loading" type="text" placeholder="example@email.com"
+            <BaseTextField v-model="userClone.city" :readonly="loading" type="text" placeholder="Gotham City"
               append-inner-icon="mdi-city"></BaseTextField>
 
             <BaseInputLabel>Cap</BaseInputLabel>
             <BaseTextField v-model="userClone.zip" :readonly="loading" :rules="numeric" type="text"
-              placeholder="example@email.com" append-inner-icon="mdi-target"></BaseTextField>
+              placeholder="12345" append-inner-icon="mdi-target"></BaseTextField>
 
             <BaseInputLabel>Paese</BaseInputLabel>
-            <BaseTextField v-model="userClone.country" :readonly="loading" type="text" placeholder="example@email.com"
+            <BaseTextField v-model="userClone.country" :readonly="loading" type="text" placeholder="Us"
               append-inner-icon="mdi-earth"></BaseTextField>
           </v-card-item>
         </BaseCard>
