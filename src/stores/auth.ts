@@ -7,7 +7,7 @@ import api from '../services/api'
 import { userData } from '../services/userData'
 import { handleException } from '../services/exceptionsHandler'
 
-import type { AuthStore, UserCredentials, UserRegistrationData } from '@/interfaces'
+import type { AuthStore, UserCredentials, UserRegistrationData, UserRole } from '@/interfaces'
 
 const EMPTY_USER = {
   id: 0,
@@ -25,7 +25,7 @@ const EMPTY_USER = {
   zip: 0,
   country: '',
   avatar: '',
-  role: '0'
+  role: '0' as UserRole
 }
 
 export const useAuthStore = defineStore('auth', {

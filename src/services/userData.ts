@@ -1,4 +1,4 @@
-import type { User } from '../interfaces';
+import type { User, UserRole } from '../interfaces';
 
 export const userData = {
   toApi(user: User) {
@@ -17,7 +17,7 @@ export const userData = {
         city: user.city ? user.city : '',
         postal_code: user.zip ? user.zip.toString() : null,
         address: user.address ? user.address.toString() : '',
-        role: user.role,
+        role: user.role ?? '0' as UserRole,
         avatar: user.avatar ? user.avatar : '',
       };
       return Object.fromEntries(
@@ -41,7 +41,7 @@ export const userData = {
       zip: userAttributes.postal_code ?? null,
       country: userAttributes.country ?? null,
       avatar: userAttributes.avatar ?? null,
-      role: userAttributes.role ?? null,
+      role: userAttributes.role ?? '0' as UserRole,
     }
   }
 };

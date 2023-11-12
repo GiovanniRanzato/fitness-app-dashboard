@@ -7,7 +7,7 @@ import BaseSelect from '../../components/base/BaseSelect.vue'
 import BaseInputLabel from '../../components/base/BaseInputLabel.vue'
 
 import { useCommonDataStore } from '../../stores/commonData'
-import type { User } from '@/interfaces'
+import type { User, UserRole} from '@/interfaces'
 
 const commonDataStore = useCommonDataStore()
 
@@ -30,7 +30,7 @@ const props = defineProps({
       zip: 0,
       country: '',
       avatar: '',
-      role: '0',
+      role: '0' as UserRole,
     }
   },
   onSubmit: {

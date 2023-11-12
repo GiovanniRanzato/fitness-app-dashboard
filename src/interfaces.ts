@@ -41,6 +41,7 @@ export interface UiStore {
     pageTitle: string
 }
 
+export type UserRole = '0' | '1' | '2';
 
 export interface User {
     id: number
@@ -58,7 +59,7 @@ export interface User {
     zip: number,
     country: string,
     avatar: string,
-    role: string
+    role: UserRole
 }
 
 export interface Notification {
