@@ -47,7 +47,8 @@ export const useAuthStore = defineStore('auth', {
     getColor: (state: AuthStore) => state.user.role == '1' ? 'red' : state.user.role == '2' ? 'blue' : 'green',
     getAttributesValues(state: AuthStore) {
       return { ...state.user }
-    }
+    },
+    canCreateUser: (state: AuthStore) => state.user.role == '1' ? true : false
   },
   actions: {
     async login(credentials: UserCredentials) {
