@@ -36,6 +36,11 @@ const props = defineProps({
   onSubmit: {
     type: Function,
     required: true
+  },
+  isCreate: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 })
 const form = ref(false)
@@ -43,21 +48,25 @@ const loading = ref(false)
 
 const userClone =  ref({ ...props.user })
 
-const required = [
-  (v: string) => !!v || 'Il campo è richiesto',
-]
-const numeric = [
-  (v: string) => {
-    if (v === null) {
-      return true
-    }
-    return /^-?\d*(\.\d+)?$/.test(v) || 'Il campo deve essere numerico'
-  },
-];
+const required = (v: string) => !!v || 'Il campo è richiesto'
+
+const numeric = (v: string) => {
+  if (v === null) {
+    return true
+  }
+  return /^-?\d*(\.\d+)?$/.test(v) || 'Il campo deve essere numerico'
+}
+
+const email = (v: string) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(v) || 'Inserisci un indirizzo email valido'
+}
 
 function onSubmit() {
   props.onSubmit(userClone.value)
 }
+const password = ref('')
+const confirmPassword = ref('')
 
 </script>
 <template>
@@ -67,12 +76,16 @@ function onSubmit() {
         <BaseCard title="Informazioni contatto">
           <v-card-item>
             <BaseInputLabel>Nome</BaseInputLabel>
-            <BaseTextField v-model="userClone.name" :readonly="loading" :rules="required" placeholder="Bruce"
+            <BaseTextField v-model="userClone.name" :readonly="loading" :rules="[required]" placeholder="Bruce"
               append-inner-icon="mdi-account"></BaseTextField>
 
             <BaseInputLabel>Cognome</BaseInputLabel>
             <BaseTextField v-model="userClone.lastName" :readonly="loading" placeholder="Wayne"
               append-inner-icon="mdi-account-outline"></BaseTextField>
+            
+            <BaseInputLabel>Email</BaseInputLabel>
+            <BaseTextField v-model="userClone.email" :readonly="!isCreate" :disabled="!isCreate" placeholder="bruce@wayne.com" :rules="[email]"
+              append-inner-icon="mdi-email"></BaseTextField>
 
             <BaseInputLabel>Telefono</BaseInputLabel>
             <BaseTextField v-model="userClone.phone" :readonly="loading" placeholder="+12 345 678 9000"
@@ -116,7 +129,7 @@ function onSubmit() {
               append-inner-icon="mdi-city"></BaseTextField>
 
             <BaseInputLabel>Cap</BaseInputLabel>
-            <BaseTextField v-model="userClone.zip" :readonly="loading" :rules="numeric" type="text"
+            <BaseTextField v-model="userClone.zip" :readonly="loading" :rules="[numeric]" type="text"
               placeholder="12345" append-inner-icon="mdi-target"></BaseTextField>
 
             <BaseInputLabel>Paese</BaseInputLabel>

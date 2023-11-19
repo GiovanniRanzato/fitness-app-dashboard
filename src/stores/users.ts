@@ -1,7 +1,11 @@
 import { defineStore } from 'pinia'
 import { computed } from 'vue'
+import router from '../router/index'
 import type { UseresStore, User } from '@/interfaces'
 import { sendNotification } from '@/services/notifications'
+import api from '@/services/api'
+import { userData } from '@/services/userData'
+import { handleException } from '../services/exceptionsHandler'
 
 export const useUsersStore = defineStore('users', {
   state: (): UseresStore => {
@@ -32,17 +36,41 @@ export const useUsersStore = defineStore('users', {
 
   },
   actions: {
-    addUser(user: User) {
-      if(!this.users) this.users = []
-      this.users.push(user);
-      if (this.users.length/this.metadata.pageTotal > this.metadata.pageSize) {
-        this.metadata.pageNumber++;
-        this.metadata.pageTotal++;
+    async addUser(user: User) {
+      try {
+        const response = await api.post('users/', userData.toApi(user));
+        if (response.status >= 300)
+          throw 'add user error'
+
+        console.log(response)
+        if (!('id' in response.data.attributes))
+          throw 'impossible to get new user id from server response'
+
+        user = userData.fromApi(response.data.attributes)
+        
+        if(!this.users) this.users = []
+        
+        this.users.push(user);
+        
+        if (this.users.length/this.metadata.pageTotal > this.metadata.pageSize) {
+          this.metadata.pageNumber++;
+          this.metadata.pageTotal++;
+        }
+
+        sendNotification({
+          type: 'success',
+          text: 'Utente creato.'
+        })
+
+        router.push({ name: 'users-edit', params: { id: user.id } })
+
+      } catch (exception: any) {
+        const message = handleException(exception)
+        sendNotification({
+          type: 'error',
+          text: message
+        })
       }
-      sendNotification({
-        type: 'success',
-        text: 'Utente creato.'
-      })
     },
     updateUser(user: User) {
       if(!this.users) this.users = []
