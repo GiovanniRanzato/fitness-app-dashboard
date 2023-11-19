@@ -63,16 +63,27 @@ export const useUsersStore = defineStore('users', {
         })
       }
     },
-    updateUser(user: User) {
-      if(!this.users) this.users = []
-      const index = this.users.findIndex((u) => u.id === user.id);
-      if (index !== -1) {
-        this.users[index] = user;
+    async updateUser(user: User) {
+      try {
+        const response = await api.patch(`users/${user.id.toString()}`, userData.toApi(user));
+
+        const updatedUser = userData.fromApi(response.data.attributes)
+                
+        const index = this.users.findIndex((u) => u.id === updatedUser.id);
+        if (index !== -1) {
+          this.users[index] = updatedUser;
+        }
+        sendNotification({
+          type: 'success',
+          text: 'Utente aggiornato.'
+        })
+      } catch (exception: any) {
+        const message = handleException(exception)
+        sendNotification({
+          type: 'error',
+          text: message
+        })
       }
-      sendNotification({
-        type: 'success',
-        text: 'Utente aggiornato.'
-      })
     },
     async retrieveUsers() {
       try {

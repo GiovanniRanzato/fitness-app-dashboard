@@ -41,7 +41,7 @@ export const userData = {
       zip: userAttributes.postal_code ?? null,
       country: userAttributes.country ?? null,
       avatar: userAttributes.avatar ?? null,
-      role: userAttributes.role ?? '0' as UserRole,
+      role: userAttributes.role ? userAttributes.role.toString() : '0' as UserRole,
     }
   }
 };

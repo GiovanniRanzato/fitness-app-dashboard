@@ -48,7 +48,9 @@ export const useAuthStore = defineStore('auth', {
     getAttributesValues(state: AuthStore) {
       return { ...state.user }
     },
-    canCreateUser: (state: AuthStore) => state.user.role == '1' ? true : false
+    canCreateUsers: (state: AuthStore) => state.user.role == '1' ? true : false,
+    canUpdateUsers: (state: AuthStore) => state.user.role == '1' ? true : false,
+    canDeleteUsers: (state: AuthStore) => state.user.role == '1' ? true : false
   },
   actions: {
     async login(credentials: UserCredentials) {

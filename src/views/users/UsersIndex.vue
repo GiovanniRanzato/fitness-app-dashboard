@@ -17,7 +17,7 @@ const addItem = () => {
   <main>
     <BaseContainer>
       <BasePageTitle title="Utenti" />
-      <BasePageActions v-if="authStore.canCreateUser" :onAdd="addItem"/>
+      <BasePageActions v-if="authStore.canCreateUsers" :onAdd="addItem"/>
       <TheUsersTable />
     </BaseContainer>
   </main>
