@@ -11,7 +11,7 @@ export const useUiStore = defineStore('ui', {
           key: "users",
           route: "/dashboard/users",
           label: "Utenti",
-          allowed: ["0","1", "2"]
+          allowed: ["1", "2"]
       },
       {
           icon: "mdi-cards",
@@ -25,7 +25,7 @@ export const useUiStore = defineStore('ui', {
           key: "exercises",
           route: "/dashboard/exercises",
           label: "Esercizi",
-          allowed: ["0","1", "2"]
+          allowed: ["1", "2"]
       },
   ]
   }),

@@ -20,12 +20,6 @@ export const useUsersStore = defineStore('users', {
   },
   getters: {
     getUsers: (state: UseresStore) => state.users,
-    getUsersForCurrentPage: (state: UseresStore) => {
-      const users = state.users ?? [];
-      const startIndex = (state.metadata.pageNumber - 1) * state.metadata.pageSize;
-      const endIndex = startIndex + state.metadata.pageSize;
-      return users.slice(startIndex, endIndex);
-    },
     getUserAttributesValuesById: (state) => (userId: Number) => computed(() => {
       const user = state.users?.find(user => user.id === userId);
       return user ? { ...user }: null;
@@ -82,10 +76,12 @@ export const useUsersStore = defineStore('users', {
     },
     async retrieveUsers() {
       try {
-        const response: RetrieveDataResponseInterface = await api.get('users/');
+        const pageNumber = this.metadata.pageNumber
+        const response: RetrieveDataResponseInterface = await api.get(`users?page=${pageNumber.toString()}`);
         this.users = response.data.map((element: any) => userData.fromApi(element.attributes))
         this.metadata.pageNumber = response.meta.current_page
         this.metadata.pageTotal = response.meta.last_page
+        this.metadata.pageSize = response.meta.per_page
 
       } catch (exception: any) {
         const message = handleException(exception)

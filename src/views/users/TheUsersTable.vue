@@ -9,7 +9,7 @@ import router from "../../router/index"
 const usersStore = useUsersStore()
 
 usersStore.retrieveUsers()
-const users = computed(() => usersStore.getUsersForCurrentPage)
+const users = computed(() => usersStore.getUsers)
 const metadata = usersStore.getMetadata
 
 const editUser = (userId: Number) =>{ 
@@ -17,6 +17,10 @@ const editUser = (userId: Number) =>{
 }
 const deleteUser = (userId: Number) =>{ 
   usersStore.deleteUser(userId)
+}
+
+const onPageChange = () => {
+  usersStore.retrieveUsers()
 }
 </script>
 <template>
@@ -51,6 +55,7 @@ const deleteUser = (userId: Number) =>{
     :length="metadata.pageTotal"
     active-color="blue"
     rounded="circle"
+    @click="onPageChange"
   ></v-pagination>
   <BaseAlertInfo v-if="!users || users.length == 0">Nessun record presente</BaseAlertInfo>
 </template>

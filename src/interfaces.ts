@@ -80,7 +80,8 @@ export interface Notification {
 export interface RetrieveDataResponseInterface {
     data: any[],
     meta: {
-      current_page: number;
-      last_page: number;
+      current_page: number,
+      last_page: number,
+      per_page: number
     };
   }
