@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed } from 'vue'
 import router from '../router/index'
-import type { UseresStore, User } from '@/interfaces'
+import type { UseresStore, User, RetrieveDataResponseInterface } from '@/interfaces'
 import { sendNotification } from '@/services/notifications'
 import api from '@/services/api'
 import { userData } from '@/services/userData'
@@ -39,10 +39,7 @@ export const useUsersStore = defineStore('users', {
     async addUser(user: User) {
       try {
         const response = await api.post('users/', userData.toApi(user));
-        if (response.status >= 300)
-          throw 'add user error'
 
-        console.log(response)
         if (!('id' in response.data.attributes))
           throw 'impossible to get new user id from server response'
 
@@ -82,6 +79,21 @@ export const useUsersStore = defineStore('users', {
         type: 'success',
         text: 'Utente aggiornato.'
       })
+    },
+    async retrieveUsers() {
+      try {
+        const response: RetrieveDataResponseInterface = await api.get('users/');
+        this.users = response.data.map((element: any) => userData.fromApi(element.attributes))
+        this.metadata.pageNumber = response.meta.current_page
+        this.metadata.pageTotal = response.meta.last_page
+
+      } catch (exception: any) {
+        const message = handleException(exception)
+        sendNotification({
+          type: 'error',
+          text: message
+        })
+      }
     },
     deleteUser(userId: Number) {
       const index = this.users.findIndex((u) => u.id === userId);

@@ -8,6 +8,7 @@ import router from "../../router/index"
 
 const usersStore = useUsersStore()
 
+usersStore.retrieveUsers()
 const users = computed(() => usersStore.getUsersForCurrentPage)
 const metadata = usersStore.getMetadata
 

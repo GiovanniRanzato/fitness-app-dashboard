@@ -75,3 +75,12 @@ export interface Notification {
     type: string,
     timeout?: number
 }
+
+// FROM API
+export interface RetrieveDataResponseInterface {
+    data: any[],
+    meta: {
+      current_page: number;
+      last_page: number;
+    };
+  }
