@@ -26,7 +26,7 @@ const userAttributesValues = usersStore.getUserAttributesValuesById(parseInt(pro
   <main>
     <BaseContainer>
       <BasePageTitle title="Modifica utente"/>
-      <TheUserForm v-if="userAttributesValues" :user=userAttributesValues :onSubmit="save" />
+      <TheUserForm v-if="userAttributesValues" :user="userAttributesValues" :onSubmit="save" />
       <BaseAlertWarning v-else>Si è verificato un problema: dati utente non presenti.</BaseAlertWarning>
     </BaseContainer>
   </main>

@@ -14,10 +14,17 @@ export interface UserRegistrationData extends UserCredentials{
 
 export interface MetadataPagination {
     pageNumber: number,
-    pageSize: number
+    pageSize: number,
     pageTotal: number
 }
 
+export interface NavItem {
+    icon: string,
+    key:string,
+    route: string,
+    label: string,
+    allowed: UserRole[]
+}
 
 export interface CommonDataStore {
     genders: SelectItem[]
@@ -38,7 +45,8 @@ export interface NotificationStore {
 
 export interface UiStore {
     sideNavIsOpen: boolean,
-    pageTitle: string
+    pageTitle: string,
+    navItems: NavItem[]
 }
 
 export type UserRole = '0' | '1' | '2';

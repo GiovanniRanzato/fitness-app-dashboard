@@ -17,9 +17,6 @@ const editUser = (userId: Number) =>{
 const deleteUser = (userId: Number) =>{ 
   usersStore.deleteUser(userId)
 }
-
-
-console.log(users, metadata)
 </script>
 <template>
   <v-table>
@@ -56,22 +53,3 @@ console.log(users, metadata)
   ></v-pagination>
   <BaseAlertInfo v-if="!users || users.length == 0">Nessun record presente</BaseAlertInfo>
 </template>
-<style>
-/* table {
-  border-spacing: 0 0.5rem !important;
-  border-collapse: separate !important;
-}
-table td:first-child,
-table th:first-child
-{
-  border-radius: 1rem 0 0 1rem;
-}
-table td:last-child,
-table th:last-child
-{
-  border-radius: 0 1rem 1rem 0;
-}
-table th {
-  border-bottom: unset !important;
-} */
-</style>

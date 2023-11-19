@@ -10,26 +10,8 @@ import BaseBtnSecondary from './base/BaseBtnSecondary.vue'
 const authStore = useAuthStore()
 const uiStore = useUiStore()
 
-const navItems = [
-    {
-        icon: "mdi-account-multiple",
-        key: "users",
-        route: "/dashboard/users",
-        label: "Utenti"
-    },
-    {
-        icon: "mdi-cards",
-        key: "cards",
-        route: "/dashboard/cards",
-        label: "Schede"
-    },
-    {
-        icon: "mdi-run",
-        key: "exercises",
-        route: "/dashboard/exercises",
-        label: "Esercizi"
-    },
-]
+const navItems = uiStore.getNavItemsByUserRole(authStore.user.role)
+
 const itemRounded = "xl"
 </script>
 <template>

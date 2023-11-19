@@ -24,23 +24,7 @@ export const useUsersStore = defineStore('users', {
     },
     getUserAttributesValuesById: (state) => (userId: Number) => computed(() => {
       const user = state.users?.find(user => user.id === userId);
-      return user ? {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        lastName: user.lastName,
-        phone: user.phone,
-        sex: user.sex,
-        birthdate: user.birthdate,
-        weight: user.weight,
-        height: user.height,
-        address: user.address,
-        city: user.city,
-        zip: user.zip,
-        country: user.country,
-        avatar: user.avatar,
-        role: user.role,
-      }: null;
+      return user ? { ...user }: null;
     }),
     getMetadata: (state: UseresStore) => state.metadata,
     getRole: () => (role: string) => role == '1' ? 'admin' : role == '2' ? 'trainer' : 'utente',
