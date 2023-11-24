@@ -77,6 +77,7 @@ export const useExercisesStore = defineStore('exercises', {
                   type: 'success',
                   text: 'Esercizio aggiornato.'
                 })
+                router.push({ name: 'exercises' })
               } catch (exception: any) {
                 const message = handleException(exception)
                 sendNotification({
@@ -122,8 +123,6 @@ export const useExercisesStore = defineStore('exercises', {
                   type: 'success',
                   text: 'Esercizio eliminato.'
                 })
-                router.push({ name: 'exercises' })
-        
               } catch (exception: any) {
                 const message = handleException(exception)
                 sendNotification({
