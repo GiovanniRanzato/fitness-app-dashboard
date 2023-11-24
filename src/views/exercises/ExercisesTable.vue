@@ -4,6 +4,8 @@ import { useExercisesStore } from "../../stores/exercises"
 import { useAuthStore } from '../../stores/auth'
 import BaseTableBtnEdit from "../../components/base/BaseTableBtnEdit.vue"
 import BaseTableBtnDelete from "../../components/base/BaseTableBtnDelete.vue"
+import BaseTableBtnView from "../../components/base/BaseTableBtnView.vue"
+
 import BaseAlertInfo from "../../components/base/BaseAlertInfo.vue"
 import router from "../../router/index"
 
@@ -14,6 +16,10 @@ exercisesStore.retrieveExercises()
 const exercises = computed(() => exercisesStore.getExercises)
 const metadata = exercisesStore.getMetadata
 
+
+const viewExercise = (exerciseId: Number) => { 
+  router.push({ name: 'exercises-view', params: { id: exerciseId.toString() } })
+}
 const editExercise = (exerciseId: Number) => { 
   router.push({ name: 'exercises-edit', params: { id: exerciseId.toString() } })
 }
@@ -39,6 +45,7 @@ const onPageChange = () => {
 
 
         <td class="text-right"><v-col cols="auto">
+            <BaseTableBtnView @click="()=> viewExercise(item.id)"/>
             <BaseTableBtnEdit v-if="authStore.canUpdateExercises" @click="()=> editExercise(item.id)"/>
             <BaseTableBtnDelete v-if="authStore.canDeleteExercises" :onConfirmDelete="() => deleteExercise(item.id)" />
         </v-col></td>

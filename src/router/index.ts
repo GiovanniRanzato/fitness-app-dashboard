@@ -71,9 +71,17 @@ const router = createRouter({
           props: true,
           meta: {
             keepAlive: false,
-          },
+          }
+        },
+        {
+          path: 'exercises/view/:id',
+          name: 'exercises-view',
+          component: () => import('../views/exercises/ExerciseView.vue'),
+          props: true,
+          meta: {
+            keepAlive: false,
+          }
         }
-
       ]
     },
 
