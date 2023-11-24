@@ -54,8 +54,7 @@ export const useUsersStore = defineStore('users', {
           type: 'success',
           text: 'Utente creato.'
         })
-
-        router.push({ name: 'users-edit', params: { id: user.id } })
+        router.push({ name: 'users' })
 
       } catch (exception: any) {
         const message = handleException(exception)
@@ -81,6 +80,7 @@ export const useUsersStore = defineStore('users', {
           type: 'success',
           text: 'Utente aggiornato.'
         })
+        router.push({ name: 'users' })
       } catch (exception: any) {
         const message = handleException(exception)
         sendNotification({
@@ -107,10 +107,31 @@ export const useUsersStore = defineStore('users', {
         })
       }
     },
-    deleteUser(userId: Number) {
-      const index = this.users.findIndex((u) => u.id === userId);
-      if (index !== -1) {
-        this.users.splice(index, 1);
+    async deleteUser(userId: Number) {
+      try {
+        const response = await api.delete('users/' + userId);
+        console.log(response)
+        if (response.status >= 300)
+          throw 'Impossible cancellare utente'
+
+        const exerciseToDelete = this.users.findIndex(user => user.id == userId)
+        this.users.splice(exerciseToDelete, 1);
+        
+        if (this.users.length/this.metadata.pageTotal > this.metadata.pageSize) {
+          this.metadata.pageNumber--;
+          this.metadata.pageTotal--;
+        }
+
+        sendNotification({
+          type: 'success',
+          text: 'Utente eliminato.'
+        })
+      } catch (exception: any) {
+        const message = handleException(exception)
+        sendNotification({
+          type: 'error',
+          text: message
+        })
       }
     }
   }
