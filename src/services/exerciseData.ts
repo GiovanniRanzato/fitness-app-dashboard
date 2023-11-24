@@ -7,7 +7,7 @@ export const exerciseData = {
         description: exercise.description,
         media_url: exercise.mediaUrl,
         notes: exercise.notes,
-        creator_user_id: exercise.creatorUserId
+        creator_user_id: exercise.creatorUserId ? exercise.creatorUserId  : null
 
       };
       return Object.fromEntries(
@@ -19,7 +19,7 @@ export const exerciseData = {
       id: exerciseAttributes.id ?? null,
       name: exerciseAttributes.name ?? null,
       description: exerciseAttributes.description ?? null,
-      mediaUrl: exerciseAttributes.mediaUrl ?? null,
+      mediaUrl: exerciseAttributes.media_url ?? null,
       notes: exerciseAttributes.notes ?? null,
       creatorUserId: exerciseAttributes.creatorUserId ?? null
     }

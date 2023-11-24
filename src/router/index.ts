@@ -63,6 +63,15 @@ const router = createRouter({
           path: 'exercises/add',
           name: 'exercises-add',
           component: () => import('../views/exercises/ExerciseAdd.vue')
+        },
+        {
+          path: 'exercises/edit/:id',
+          name: 'exercises-edit',
+          component: () => import('../views/exercises/ExerciseEdit.vue'),
+          props: true,
+          meta: {
+            keepAlive: false,
+          },
         }
 
       ]

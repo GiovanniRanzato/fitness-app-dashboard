@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { computed } from 'vue'
-// import router from '../router/index'
+import router from '../router/index'
 import type { ExercisesStore, Exercise, RetrieveDataResponseInterface } from '@/interfaces'
 import { sendNotification } from '@/services/notifications'
 import api from '@/services/api'
@@ -28,10 +28,58 @@ export const useExercisesStore = defineStore('exercises', {
     },
     actions: {
         async addExercise(exercise: Exercise) {
-            // TODO: Add addExercise
+            try {
+                const response = await api.post('exercises/', exerciseData.toApi(exercise));
+        
+                if (!('id' in response.data.attributes))
+                  throw 'impossible to get new exercise id from server response'
+        
+                  exercise = exerciseData.fromApi(response.data.attributes)
+                
+                if(!this.exercises) this.exercises = []
+                
+                this.exercises.push(exercise);
+                
+                if (this.exercises.length/this.metadata.pageTotal > this.metadata.pageSize) {
+                  this.metadata.pageNumber++;
+                  this.metadata.pageTotal++;
+                }
+        
+                sendNotification({
+                  type: 'success',
+                  text: 'Esercizio creato.'
+                })
+                router.push({ name: 'exercises' })
+        
+              } catch (exception: any) {
+                const message = handleException(exception)
+                sendNotification({
+                  type: 'error',
+                  text: message
+                })
+              }
         },
         async updateExercise(exercise: Exercise) {
-            // TODO: Add updateExercise
+            try {
+                const response = await api.patch(`exercises/${exercise.id.toString()}`, exerciseData.toApi(exercise));
+        
+                const updatedExercise = exerciseData.fromApi(response.data.attributes)
+                        
+                const index = this.exercises.findIndex((u) => u.id === updatedExercise.id);
+                if (index !== -1) {
+                  this.exercises[index] = updatedExercise;
+                }
+                sendNotification({
+                  type: 'success',
+                  text: 'Esercizio aggiornato.'
+                })
+              } catch (exception: any) {
+                const message = handleException(exception)
+                sendNotification({
+                  type: 'error',
+                  text: message
+                })
+              }
         },
         async retrieveExercises() {
             try {
