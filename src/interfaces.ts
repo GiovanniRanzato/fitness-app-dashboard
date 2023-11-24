@@ -39,6 +39,11 @@ export interface UseresStore {
     metadata: MetadataPagination
 }
 
+export interface ExercisesStore {
+    exercises: Exercise[],
+    metadata: MetadataPagination
+}
+
 export interface NotificationStore {
     notifications: Notification[]
 }
@@ -68,6 +73,15 @@ export interface User {
     country: string,
     avatar: string,
     role: UserRole
+}
+
+export interface Exercise {
+    id: number
+    name: string,
+    description: string,
+    mediaUrl: string,
+    notes: string,
+    creatorUserId: string
 }
 
 export interface Notification {

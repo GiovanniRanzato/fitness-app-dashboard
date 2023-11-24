@@ -50,7 +50,10 @@ export const useAuthStore = defineStore('auth', {
     },
     canCreateUsers: (state: AuthStore) => state.user.role == '1' ? true : false,
     canUpdateUsers: (state: AuthStore) => state.user.role == '1' ? true : false,
-    canDeleteUsers: (state: AuthStore) => state.user.role == '1' ? true : false
+    canDeleteUsers: (state: AuthStore) => state.user.role == '1' ? true : false,
+    canCreateExercises: (state: AuthStore) => state.user.role == '1' || state.user.role == '2'  ? true : false,
+    canUpdateExercises: (state: AuthStore) => state.user.role == '1' || state.user.role == '2'? true : false,
+    canDeleteExercises: (state: AuthStore) => state.user.role == '1' || state.user.role == '2'? true : false
   },
   actions: {
     async login(credentials: UserCredentials) {
