@@ -30,11 +30,13 @@ export const useExercisesStore = defineStore('exercises', {
         async addExercise(exercise: Exercise) {
             try {
                 const response = await api.post('exercises/', exerciseData.toApi(exercise));
-        
-                if (!('id' in response.data.attributes))
+                if(response.status >= 300)
+                    throw 'Impossible creare esercizio'
+
+                if (!('id' in response.data.data.attributes))
                   throw 'impossible to get new exercise id from server response'
         
-                  exercise = exerciseData.fromApi(response.data.attributes)
+                  exercise = exerciseData.fromApi(response.data.data.attributes)
                 
                 if(!this.exercises) this.exercises = []
                 
@@ -62,8 +64,10 @@ export const useExercisesStore = defineStore('exercises', {
         async updateExercise(exercise: Exercise) {
             try {
                 const response = await api.patch(`exercises/${exercise.id.toString()}`, exerciseData.toApi(exercise));
-        
-                const updatedExercise = exerciseData.fromApi(response.data.attributes)
+                if(response.status >= 300)
+                    throw 'Impossible aggiornare esercizio'
+
+                const updatedExercise = exerciseData.fromApi(response.data.data.attributes)
                         
                 const index = this.exercises.findIndex((u) => u.id === updatedExercise.id);
                 if (index !== -1) {
@@ -85,10 +89,10 @@ export const useExercisesStore = defineStore('exercises', {
             try {
                 const pageNumber = this.metadata.pageNumber
                 const response: RetrieveDataResponseInterface = await api.get(`exercises?page=${pageNumber.toString()}`);
-                this.exercises = response.data.map((element: any) => exerciseData.fromApi(element.attributes))
-                this.metadata.pageNumber = response.meta.current_page
-                this.metadata.pageTotal = response.meta.last_page
-                this.metadata.pageSize = response.meta.per_page
+                this.exercises = response.data.data.map((element: any) => exerciseData.fromApi(element.attributes))
+                this.metadata.pageNumber = response.data.meta.current_page
+                this.metadata.pageTotal = response.data.meta.last_page
+                this.metadata.pageSize = response.data.meta.per_page
         
               } catch (exception: any) {
                 const message = handleException(exception)
@@ -98,8 +102,35 @@ export const useExercisesStore = defineStore('exercises', {
                 })
               }
         },
-        deleteExercise(exerciseId: Number) {
-            // TODO: Add deleteExercise
+        async deleteExercise(exerciseId: Number) {
+            try {
+                const response = await api.delete('exercises/' + exerciseId);
+                console.log(response)
+                if (response.status >= 300)
+                  throw 'Impossible cancellare esercizio'
+        
+                const exerciseToDelete = this.exercises.findIndex(exercise => exercise.id == exerciseId)
+                console.log(exerciseToDelete)
+                this.exercises.splice(exerciseToDelete, 1);
+                
+                if (this.exercises.length/this.metadata.pageTotal > this.metadata.pageSize) {
+                  this.metadata.pageNumber--;
+                  this.metadata.pageTotal--;
+                }
+        
+                sendNotification({
+                  type: 'success',
+                  text: 'Esercizio eliminato.'
+                })
+                router.push({ name: 'exercises' })
+        
+              } catch (exception: any) {
+                const message = handleException(exception)
+                sendNotification({
+                  type: 'error',
+                  text: message
+                })
+              }
         }
     }
 })

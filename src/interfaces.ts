@@ -92,7 +92,7 @@ export interface Notification {
 
 // FROM API
 export interface RetrieveDataResponseInterface {
-    data: any[],
+    data: any,
     meta: {
       current_page: number,
       last_page: number,

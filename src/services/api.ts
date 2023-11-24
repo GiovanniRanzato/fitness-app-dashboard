@@ -27,7 +27,7 @@ api.interceptors.request.use(
 );
 
 api.interceptors.response.use(
-  (response) => response.data,
+  (response) => response,
   (error) => {
     return Promise.reject(error);
   }

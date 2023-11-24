@@ -33,11 +33,13 @@ export const useUsersStore = defineStore('users', {
     async addUser(user: User) {
       try {
         const response = await api.post('users/', userData.toApi(user));
+        if(response.status >= 300)
+          throw 'Impossible creare utente'
 
-        if (!('id' in response.data.attributes))
-          throw 'impossible to get new user id from server response'
+        if (!('id' in response.data.data.attributes))
+          throw 'Impossible reperire id nuovo utente'
 
-        user = userData.fromApi(response.data.attributes)
+        user = userData.fromApi(response.data.data.attributes)
         
         if(!this.users) this.users = []
         
@@ -66,8 +68,10 @@ export const useUsersStore = defineStore('users', {
     async updateUser(user: User) {
       try {
         const response = await api.patch(`users/${user.id.toString()}`, userData.toApi(user));
+        if(response.status >= 300)
+          throw 'Impossible aggiornare utente'
 
-        const updatedUser = userData.fromApi(response.data.attributes)
+        const updatedUser = userData.fromApi(response.data.data.attributes)
                 
         const index = this.users.findIndex((u) => u.id === updatedUser.id);
         if (index !== -1) {
@@ -89,10 +93,11 @@ export const useUsersStore = defineStore('users', {
       try {
         const pageNumber = this.metadata.pageNumber
         const response: RetrieveDataResponseInterface = await api.get(`users?page=${pageNumber.toString()}`);
-        this.users = response.data.map((element: any) => userData.fromApi(element.attributes))
-        this.metadata.pageNumber = response.meta.current_page
-        this.metadata.pageTotal = response.meta.last_page
-        this.metadata.pageSize = response.meta.per_page
+        
+        this.users = response.data.data.map((element: any) => userData.fromApi(element.attributes))
+        this.metadata.pageNumber = response.data.meta.current_page
+        this.metadata.pageTotal = response.data.meta.last_page
+        this.metadata.pageSize = response.data.meta.per_page
 
       } catch (exception: any) {
         const message = handleException(exception)

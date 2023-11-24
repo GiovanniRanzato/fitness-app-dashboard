@@ -62,12 +62,12 @@ export const useAuthStore = defineStore('auth', {
         if (response.status >= 300)
           throw 'login error'
 
-        if (!('token' in response) || typeof response.token !== 'string')
+        if (!('token' in response.data) || typeof response.data.token !== 'string')
           throw 'impossible to get token from server response'
 
-        this.user = userData.fromApi(response.data.attributes)
+        this.user = userData.fromApi(response.data.data.attributes)
 
-        this.token = response.token
+        this.token = response.data.token
         router.push('/dashboard')
       } catch (exception: any) {
         const message = handleException(exception)
@@ -84,11 +84,11 @@ export const useAuthStore = defineStore('auth', {
         if (response.status >= 300)
           throw 'register error'
 
-        if (!('token' in response) || typeof response.token !== 'string')
+        if (!('token' in response.data) || typeof response.data.token !== 'string')
           throw 'impossible to get token from server response'
 
-        this.user = userData.fromApi(response.data.attributes)
-        this.token = response.token
+        this.user = userData.fromApi(response.data.data.attributes)
+        this.token = response.data.token
 
         router.push('/dashboard')
       } catch (exception: any) {
