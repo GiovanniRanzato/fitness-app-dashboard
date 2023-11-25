@@ -51,7 +51,8 @@ export interface NotificationStore {
 export interface UiStore {
     sideNavIsOpen: boolean,
     pageTitle: string,
-    navItems: NavItem[]
+    navItems: NavItem[],
+    onSearch: Function | undefined
 }
 
 export type UserRole = '0' | '1' | '2';

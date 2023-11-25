@@ -27,7 +27,8 @@ export const useUiStore = defineStore('ui', {
           label: "Esercizi",
           allowed: ["1", "2"]
       },
-  ]
+    ],
+    onSearch: undefined
   }),
   getters: {
     getSideNavIsOpen: (state: UiStore) => state.sideNavIsOpen,

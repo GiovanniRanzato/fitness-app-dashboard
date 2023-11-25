@@ -89,10 +89,11 @@ export const useUsersStore = defineStore('users', {
         })
       }
     },
-    async retrieveUsers() {
+    async retrieveUsers(search: String = '') {
       try {
         const pageNumber = this.metadata.pageNumber
-        const response: RetrieveDataResponseInterface = await api.get(`users?page=${pageNumber.toString()}`);
+        const searchQuery = search ? `search=${search}&` : ''
+        const response: RetrieveDataResponseInterface = await api.get(`users?${searchQuery}page=${pageNumber.toString()}`);
         
         this.users = response.data.data.map((element: any) => userData.fromApi(element.attributes))
         this.metadata.pageNumber = response.data.meta.current_page
