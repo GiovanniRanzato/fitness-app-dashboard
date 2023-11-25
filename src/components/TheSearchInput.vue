@@ -24,5 +24,6 @@ const searchFunction = () => {
     prepend-inner-icon="mdi-magnify"
     clearable hide-details
     @input="searchFunction"
+    @click:clear="searchFunction"
     ></BaseTextField>
 </template>
