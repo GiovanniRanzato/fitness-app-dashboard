@@ -9,8 +9,15 @@ const props = defineProps({
     }
 })
 const searchInput = ref('')
+let searchTimeout: any = null
+
 const searchFunction = () => {
-    props.onSearch(searchInput.value)
+    if (searchTimeout) {
+        clearTimeout(searchTimeout)
+    }
+    searchTimeout = setTimeout(() => {
+        props.onSearch(searchInput.value)
+    }, 500)
 }
 
 </script>
