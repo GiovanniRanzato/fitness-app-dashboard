@@ -52,7 +52,7 @@ const router = createRouter({
         {
           path: 'cards',
           name: 'cards',
-          component: () => import('../views/CardsIndex.vue')
+          component: () => import('../views/cards/CardsIndex.vue')
         },
         {
           path: 'exercises',
