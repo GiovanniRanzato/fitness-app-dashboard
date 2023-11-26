@@ -1,10 +1,24 @@
 # TO DO LIST TO COMPLETE PROJECT
 
+## Ui
+### Ui remote select
+ - props:
+    - onSearch
+    - options
+ - add the following functions to store to enable remote select:
+    - getOptions computed
+    - retrieve action with search param
+
+## Users
+ - Delete User - - - - - - - - OK
+ - User search - - - - - - - - OK
+ - User view page  - - - - - - 
+
 ## Exercises 
  - Exercise index  - - - - - - OK
  - Exercise create - - - - - - OK
  - Exercise Update - - - - - - OK
- - Exercise view
+ - Exercise view - - - - - - - OK
 
 ## Cards 
  - Card index
@@ -12,21 +26,13 @@
  - Card Update
  - Card view
 
-## Exercises 
- - Exercise index
- - Exercise create
- - Exercise Update
- - Exercise view
-
-## Card rows
- - Add Card Row
-
-## Users
- - Delete User - - - - - - OK
+### Cards detail 
+ - Cards detail table
+ - Cards detail create
+ - Cards detail Update
+ - Cards detail View
 
 ## Nice to have
- - User search
- - User view page
  - User cards interface
  - Add category with category page
  - Add user role selection (admin only)
