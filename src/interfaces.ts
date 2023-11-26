@@ -44,6 +44,10 @@ export interface ExercisesStore {
     metadata: MetadataPagination
 }
 
+export interface CardsStore {
+    cards: Card[],
+    metadata: MetadataPagination
+}
 export interface NotificationStore {
     notifications: Notification[]
 }
@@ -83,6 +87,15 @@ export interface Exercise {
     mediaUrl: string,
     notes: string,
     creatorUserId: string
+}
+
+export interface Card {
+    id: number,
+    name: string,
+    disabled: boolean,
+    dateFrom: string,
+    dateTo: string,
+    userId: number
 }
 
 export interface Notification {

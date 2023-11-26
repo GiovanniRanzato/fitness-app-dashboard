@@ -1,13 +1,7 @@
 # TO DO LIST TO COMPLETE PROJECT
 
 ## Ui
-### Ui remote select
- - props:
-    - onSearch
-    - options
- - add the following functions to store to enable remote select:
-    - getOptions computed
-    - retrieve action with search param
+ - remote select - - - - - - - OK
 
 ## Users
  - Delete User - - - - - - - - OK
