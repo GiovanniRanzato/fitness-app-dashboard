@@ -67,6 +67,7 @@ function searchUser (value: string) {
         <BaseInputLabel>Nome</BaseInputLabel>
         <BaseTextField v-model="cardClone.name" :readonly="loading" :rules="[required]" placeholder="Name your mission"
           append-inner-icon="mdi-weight-lifter"></BaseTextField>
+        
         <BaseInputLabel>Utente</BaseInputLabel>
         <BaseSelectRemote
           v-model="cardClone.user.id" 
@@ -76,12 +77,24 @@ function searchUser (value: string) {
           :onSearch="searchUser"
           placeholder="Type user email..."
           append-inner-icon="mdi-account"></BaseSelectRemote>
+
+          <BaseInputLabel>Data da:</BaseInputLabel>
+          <BaseTextField v-model="cardClone.dateFrom" :readonly="loading" type="date"></BaseTextField>
+
+          <BaseInputLabel>Data a:</BaseInputLabel>
+          <BaseTextField v-model="cardClone.dateTo" :readonly="loading" type="date"></BaseTextField>
+
       </v-card-item>
     </BaseCard>
 
     <div class="d-flex justify-end mt-6">
       <BaseBtnPrimary @click="onSubmit" :disabled="!form">
         Salva
+      </BaseBtnPrimary>
+    </div>
+    <div class="d-flex justify-end mt-6">
+      <BaseBtnPrimary @click="" :disabled="!form">
+        Aggiungi esercizio
       </BaseBtnPrimary>
     </div>
   </v-form>
