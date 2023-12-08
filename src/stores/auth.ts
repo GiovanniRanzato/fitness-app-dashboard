@@ -35,6 +35,9 @@ export const useAuthStore = defineStore('auth', {
     canCreateCards: (state: AuthStore) => state.user.role == '1' || state.user.role == '2'  ? true : false,
     canUpdateCards: (state: AuthStore) => state.user.role == '1' || state.user.role == '2'? true : false,
     canDeleteCards: (state: AuthStore) => state.user.role == '1' || state.user.role == '2'? true : false,
+    canCreateCardDetails: (state: AuthStore) => state.user.role == '1' || state.user.role == '2'  ? true : false,
+    canUpdateCardDetails: (state: AuthStore) => state.user.role == '1' || state.user.role == '2'? true : false,
+    canDeleteCardDetails: (state: AuthStore) => state.user.role == '1' || state.user.role == '2'? true : false,
     canCreateExercises: (state: AuthStore) => state.user.role == '1' || state.user.role == '2'  ? true : false,
     canUpdateExercises: (state: AuthStore) => state.user.role == '1' || state.user.role == '2'? true : false,
     canDeleteExercises: (state: AuthStore) => state.user.role == '1' || state.user.role == '2'? true : false

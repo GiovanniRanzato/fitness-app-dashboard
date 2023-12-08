@@ -96,6 +96,16 @@ export interface Card {
     dateFrom: string,
     dateTo: string,
     user: User
+    cardDetails: CardDetail[]
+}
+export interface CardDetail {
+    id: string,
+    quantity: number,
+    timeDuration: number,
+    timeRecovery: number,
+    weight: number,
+    notes: string,
+    exercise: Exercise
 }
 
 export interface Notification {

@@ -16,12 +16,22 @@ export const exerciseData = {
   },
   fromApi(exerciseAttributes: any): Exercise {
     return {
-      id: exerciseAttributes.id ? exerciseAttributes.id.toString() : null,
-      name: exerciseAttributes.name ?? null,
-      description: exerciseAttributes.description ?? null,
-      mediaUrl: exerciseAttributes.media_url ?? null,
-      notes: exerciseAttributes.notes ?? null,
-      creatorUserId: exerciseAttributes.creatorUserId ?? null
+      id: exerciseAttributes.id ? exerciseAttributes.id.toString() : '',
+      name: exerciseAttributes.name ?? '',
+      description: exerciseAttributes.description ?? '',
+      mediaUrl: exerciseAttributes.media_url ?? '',
+      notes: exerciseAttributes.notes ?? '',
+      creatorUserId: exerciseAttributes.creatorUserId ?? ''
+    }
+  },
+  emptyExercise(): Exercise {
+    return {    
+      id: '',
+      name: '',
+      description: '',
+      mediaUrl: '',
+      notes: '',
+      creatorUserId: ''
     }
   }
 };

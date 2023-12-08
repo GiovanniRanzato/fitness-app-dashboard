@@ -66,7 +66,7 @@ const router = createRouter({
           props: true,
           meta: {
             keepAlive: false,
-          }
+          },
         },
         {
           path: 'cards/view/:id',

@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import { ref, onBeforeMount } from 'vue'
 import BaseBtnPrimary from '../../components/base/BaseBtnPrimary.vue'
+import BaseBtnSecondary from '../../components/base/BaseBtnSecondary.vue'
 import BaseCard from '../../components/base/BaseCard.vue'
 import BaseTextField from '../../components/base/BaseTextField.vue'
 import BaseSelectRemote from '../../components/base/BaseSelectRemote.vue'
 import BaseInputLabel from '../../components/base/BaseInputLabel.vue'
+import CardDetailsHandler from './CardDetailsHandler.vue'
 
 import { useUsersStore } from '../../stores/users'
 import type { Card } from '@/interfaces'
-import { userData } from '@/services/userData'
+import { cardData } from '@/services/cardData'
 
 const userStore = useUsersStore()
 
@@ -16,15 +18,7 @@ const props = defineProps({
   card: {
     type: Object as () => Card,
     required: false,
-    default: {
-      id: 0,
-      name: '',
-      disabled: false,
-      dateFrom: '',
-      dateTo: '',
-      userId: '',
-      user: userData.emptyUser()
-    }
+    default: cardData.emptyCard()
   },
   onSubmit: {
     type: Function,
@@ -92,10 +86,7 @@ function searchUser (value: string) {
         Salva
       </BaseBtnPrimary>
     </div>
-    <div class="d-flex justify-end mt-6">
-      <BaseBtnPrimary @click="" :disabled="!form">
-        Aggiungi esercizio
-      </BaseBtnPrimary>
-    </div>
   </v-form>
+  <v-divider class="mt-6 mb-6"></v-divider>
+  <CardDetailsHandler v-if="card.id" :cardId="card.id" ></CardDetailsHandler>
 </template>

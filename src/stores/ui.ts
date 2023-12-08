@@ -21,7 +21,7 @@ export const useUiStore = defineStore('ui', {
           allowed: ["0", "1", "2"]
       },
       {
-          icon: "mdi-run",
+          icon: "mdi-weight-lifter",
           key: "exercises",
           route: "/dashboard/exercises",
           label: "Esercizi",
