@@ -8,20 +8,19 @@ export const cardData = {
         date_from: card.dateFrom ? card.dateFrom : '',
         date_to: card.dateTo ? card.dateTo : '',
         user_id: card.userId,
-
       };
       return Object.fromEntries(
         Object.entries(data).filter(([key, value]) => value !== null)
       );
   },
-  fromApi(cardAttributes: any): Card {
+  fromApi(card: any): Card {
     return {
-        id: cardAttributes.id ?? null,
-        name: cardAttributes.name ?? null,
-        disabled: cardAttributes.disabled ? true : false,
-        dateFrom: cardAttributes.date_from ?? null,
-        dateTo: cardAttributes.date_to ?? null,
-        userId: cardAttributes.user_id ?? null,
+        id: card.attributes.id ? card.attributes.id.toString() : null,
+        name: card.attributes.name ?? null,
+        disabled: card.attributes.disabled ? true : false,
+        dateFrom: card.attributes.date_from ?? null,
+        dateTo: card.attributes.date_to ?? null,
+        userId: card.user.attributes ? card.user.attributes.id.toString() : null 
     }
   }
 };

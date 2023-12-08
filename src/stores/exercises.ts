@@ -20,7 +20,7 @@ export const useExercisesStore = defineStore('exercises', {
     },
     getters: {
         getExercises: (state: ExercisesStore) => state.exercises,
-        getExerciseAttributesValuesById: (state) => (exerciseId: Number) => computed(() => {
+        getExerciseAttributesValuesById: (state) => (exerciseId: string) => computed(() => {
             const exercise = state.exercises?.find(exercises => exercises.id === exerciseId);
             return exercise ? { ...exercise } : null;
         }),
@@ -63,7 +63,7 @@ export const useExercisesStore = defineStore('exercises', {
         },
         async updateExercise(exercise: Exercise) {
             try {
-                const response = await api.patch(`exercises/${exercise.id.toString()}`, exerciseData.toApi(exercise));
+                const response = await api.patch(`exercises/${exercise.id}`, exerciseData.toApi(exercise));
                 if(response.status >= 300)
                     throw 'Impossible aggiornare esercizio'
 
@@ -103,15 +103,13 @@ export const useExercisesStore = defineStore('exercises', {
                 })
               }
         },
-        async deleteExercise(exerciseId: Number) {
+        async deleteExercise(exerciseId: string) {
             try {
                 const response = await api.delete('exercises/' + exerciseId);
-                console.log(response)
                 if (response.status >= 300)
                   throw 'Impossible cancellare esercizio'
         
                 const exerciseToDelete = this.exercises.findIndex(exercise => exercise.id == exerciseId)
-                console.log(exerciseToDelete)
                 this.exercises.splice(exerciseToDelete, 1);
                 
                 if (this.exercises.length/this.metadata.pageTotal > this.metadata.pageSize) {

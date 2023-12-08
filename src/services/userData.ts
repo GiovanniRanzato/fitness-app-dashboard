@@ -26,7 +26,7 @@ export const userData = {
   },
   fromApi(userAttributes: any) {
     return {
-      id: userAttributes.id ?? null,
+      id: userAttributes.id ? userAttributes.id.toString(): null,
       name: userAttributes.name ?? null,
       email: userAttributes.email ?? null,
       lastName: userAttributes.last_name ?? null,

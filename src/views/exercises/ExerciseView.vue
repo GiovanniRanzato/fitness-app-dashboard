@@ -14,7 +14,7 @@ const props = defineProps({
     }
 })
 const exercisesStore = useExercisesStore()
-const exerciseAttributesValues = exercisesStore.getExerciseAttributesValuesById(parseInt(props.id))
+const exerciseAttributesValues = exercisesStore.getExerciseAttributesValuesById(props.id)
 
 const formatText = (text: string) => {
     return text ? text.replace(/\n/g, "<br>") : null;

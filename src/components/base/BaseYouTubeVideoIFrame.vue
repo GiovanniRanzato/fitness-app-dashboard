@@ -15,11 +15,9 @@ const loadURL = () => {
 
     const YId =
         undefined !== url[2] ? url[2].split(/[^0-9a-z_/\\-]/i)[0] : url[0];
-    console.log("YId", YId);
+
     if (YId === url[0]) {
-        console.log("not a youtube link");
-    } else {
-        console.log("it's  a youtube video");
+        console.error(YId,"not a youtube link");
     }
     const topOfQueue = youtubeEmbedTemplate.concat(YId);
 

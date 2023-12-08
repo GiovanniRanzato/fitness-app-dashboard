@@ -55,6 +55,29 @@ const router = createRouter({
           component: () => import('../views/cards/CardsIndex.vue')
         },
         {
+          path: 'cards/add',
+          name: 'cards-add',
+          component: () => import('../views/cards/CardAdd.vue')
+        },
+        {
+          path: 'cards/edit/:id',
+          name: 'cards-edit',
+          component: () => import('../views/cards/CardEdit.vue'),
+          props: true,
+          meta: {
+            keepAlive: false,
+          }
+        },
+        {
+          path: 'cards/view/:id',
+          name: 'cards-view',
+          component: () => import('../views/cards/CardView.vue'),
+          props: true,
+          meta: {
+            keepAlive: false,
+          }
+        },
+        {
           path: 'exercises',
           name: 'exercises',
           component: () => import('../views/exercises/ExercisesIndex.vue')

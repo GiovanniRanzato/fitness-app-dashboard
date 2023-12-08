@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed } from 'vue'
 import router from '../router/index'
-import type { UseresStore, User, RetrieveDataResponseInterface } from '@/interfaces'
+import type { UseresStore, User, RetrieveDataResponseInterface, SelectItem } from '@/interfaces'
 import { sendNotification } from '@/services/notifications'
 import api from '@/services/api'
 import { userData } from '@/services/userData'
@@ -20,9 +20,12 @@ export const useUsersStore = defineStore('users', {
   },
   getters: {
     getUsers: (state: UseresStore) => state.users,
-    getUserAttributesValuesById: (state) => (userId: Number) => computed(() => {
+    getUserAttributesValuesById: (state) => (userId: string) => computed(() => {
       const user = state.users?.find(user => user.id === userId);
       return user ? { ...user }: null;
+    }),
+    getUsersSelectItems: (state) => computed(() => {
+      return state.users.map(user => { return { value: user.id, title: `${user.name} ${user.lastName ?? ''} (${user.email}` }})
     }),
     getMetadata: (state: UseresStore) => state.metadata,
     getRole: () => (role: string) => role == '1' ? 'admin' : role == '2' ? 'trainer' : 'utente',
@@ -108,10 +111,24 @@ export const useUsersStore = defineStore('users', {
         })
       }
     },
-    async deleteUser(userId: Number) {
+    async getUserById(userId: String) {
       try {
-        const response = await api.delete('users/' + userId);
-        console.log(response)
+        const response: RetrieveDataResponseInterface = await api.get(`users/${userId}`);
+        this.users = [userData.fromApi(response.data.data.attributes)]
+        this.metadata.pageNumber = 1
+        this.metadata.pageTotal = 1
+
+      } catch (exception: any) {
+        const message = handleException(exception)
+        sendNotification({
+          type: 'error',
+          text: message
+        })
+      }
+    },
+    async deleteUser(userId: string) {
+      try {
+        const response = await api.delete('users/' + userId)
         if (response.status >= 300)
           throw 'Impossible cancellare utente'
 

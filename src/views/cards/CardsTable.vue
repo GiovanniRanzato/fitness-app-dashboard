@@ -17,13 +17,13 @@ const cards = computed(() => cardsStore.getCards)
 const metadata = cardsStore.getMetadata
 
 
-const viewCard = (cardId: Number) => { 
-  router.push({ name: 'cards-view', params: { id: cardId.toString() } })
+const viewCard = (cardId: string) => { 
+  router.push({ name: 'cards-view', params: { id: cardId } })
 }
-const editCard = (cardId: Number) => { 
-  router.push({ name: 'cards-edit', params: { id: cardId.toString() } })
+const editCard = (cardId: string) => { 
+  router.push({ name: 'cards-edit', params: { id: cardId } })
 }
-const deleteCard = (userId: Number) =>{ 
+const deleteCard = (userId: string) =>{ 
   cardsStore.deleteCard(userId)
 }
 

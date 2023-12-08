@@ -17,13 +17,13 @@ const exercises = computed(() => exercisesStore.getExercises)
 const metadata = exercisesStore.getMetadata
 
 
-const viewExercise = (exerciseId: Number) => { 
-  router.push({ name: 'exercises-view', params: { id: exerciseId.toString() } })
+const viewExercise = (exerciseId: string) => { 
+  router.push({ name: 'exercises-view', params: { id: exerciseId } })
 }
-const editExercise = (exerciseId: Number) => { 
-  router.push({ name: 'exercises-edit', params: { id: exerciseId.toString() } })
+const editExercise = (exerciseId: string) => { 
+  router.push({ name: 'exercises-edit', params: { id: exerciseId } })
 }
-const deleteExercise = (userId: Number) =>{ 
+const deleteExercise = (userId: string) =>{ 
   exercisesStore.deleteExercise(userId)
 }
 

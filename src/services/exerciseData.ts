@@ -16,7 +16,7 @@ export const exerciseData = {
   },
   fromApi(exerciseAttributes: any): Exercise {
     return {
-      id: exerciseAttributes.id ?? null,
+      id: exerciseAttributes.id ? exerciseAttributes.id.toString() : null,
       name: exerciseAttributes.name ?? null,
       description: exerciseAttributes.description ?? null,
       mediaUrl: exerciseAttributes.media_url ?? null,

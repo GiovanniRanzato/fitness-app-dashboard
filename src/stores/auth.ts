@@ -10,7 +10,7 @@ import { handleException } from '../services/exceptionsHandler'
 import type { AuthStore, UserCredentials, UserRegistrationData, UserRole } from '@/interfaces'
 
 const EMPTY_USER = {
-  id: 0,
+  id: '',
   email: '',
   name: '',
   lastName: '',

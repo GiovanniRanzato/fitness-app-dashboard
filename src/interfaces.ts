@@ -62,7 +62,7 @@ export interface UiStore {
 export type UserRole = '0' | '1' | '2';
 
 export interface User {
-    id: number
+    id: string
     name: string
     email: string
     lastName: string,
@@ -81,7 +81,7 @@ export interface User {
 }
 
 export interface Exercise {
-    id: number
+    id: string
     name: string,
     description: string,
     mediaUrl: string,
@@ -90,12 +90,12 @@ export interface Exercise {
 }
 
 export interface Card {
-    id: number,
+    id: string,
     name: string,
     disabled: boolean,
     dateFrom: string,
     dateTo: string,
-    userId: number
+    userId: string
 }
 
 export interface Notification {

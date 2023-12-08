@@ -14,10 +14,10 @@ usersStore.retrieveUsers()
 const users = computed(() => usersStore.getUsers)
 const metadata = usersStore.getMetadata
 
-const editUser = (userId: Number) => { 
-  router.push({ name: 'users-edit', params: { id: userId.toString() } })
+const editUser = (userId: string) => { 
+  router.push({ name: 'users-edit', params: { id: userId } })
 }
-const deleteUser = (userId: Number) =>{ 
+const deleteUser = (userId: string) =>{ 
   usersStore.deleteUser(userId)
 }
 
