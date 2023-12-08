@@ -2,6 +2,7 @@
 import BaseContainer from './../../components/base/BaseContainer.vue'
 import BasePageTitle from './../../components/base/BasePageTitle.vue'
 import BaseCard from '../../components/base/BaseCard.vue'
+import BaseAvatar from '../../components/base/BaseAvatar.vue'
 import { useCardsStore } from "../../stores/cards"
 
 
@@ -19,13 +20,14 @@ const cardAttributesValues = cardsStore.getCardAttributesValuesById(props.id)
     <BaseContainer>
         <BasePageTitle title="Visualizza esercizio" />
         <template v-if="cardAttributesValues">
+            <h2 class="text-h2">{{ cardAttributesValues.name }}</h2>
+            <v-chip-group>
+                <v-chip prepend-icon="mdi-calendar-start" color="blue">{{ cardAttributesValues.dateFrom }}</v-chip>
+                <v-chip prepend-icon="mdi-calendar-end" color="blue">{{ cardAttributesValues.dateTo }}</v-chip> 
+            </v-chip-group>
 
-            <BaseCard :title="cardAttributesValues.name">
-                <v-card-item class="cs-text-break-word">
-                Da: {{ cardAttributesValues.dateFrom }}
-                A: {{ cardAttributesValues }}
-                </v-card-item>
-            </BaseCard>
+                
+
 
         </template>
         <BaseAlertWarning v-else>Si è verificato un problema: dati esercizio non presenti.</BaseAlertWarning>

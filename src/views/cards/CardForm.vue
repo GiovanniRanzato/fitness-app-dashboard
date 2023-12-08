@@ -76,7 +76,6 @@ function searchUser (value: string) {
           :onSearch="searchUser"
           placeholder="Type user email..."
           append-inner-icon="mdi-account"></BaseSelectRemote>
-          {{ userOptions }}
       </v-card-item>
     </BaseCard>
 

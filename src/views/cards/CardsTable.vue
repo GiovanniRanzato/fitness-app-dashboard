@@ -3,6 +3,7 @@ import { computed } from "vue"
 import { useCardsStore } from "../../stores/cards"
 import { useAuthStore } from '../../stores/auth'
 import { useUsersStore } from '../../stores/users'
+import { userData } from '@/services/userData'
 import BaseTableBtnEdit from "../../components/base/BaseTableBtnEdit.vue"
 import BaseTableBtnDelete from "../../components/base/BaseTableBtnDelete.vue"
 import BaseTableBtnView from "../../components/base/BaseTableBtnView.vue"
@@ -46,7 +47,7 @@ const onPageChange = () => {
     <tbody>
       <tr v-for="item in cards" :key="item.id" >
         <td>{{ item.name }}</td>
-        <td>{{ item.user.email}}</td>
+        <td>{{ userData.getUserNameLastNameEmail(item.user) }}</td>
 
         <td class="text-right"><v-col cols="auto">
             <BaseTableBtnView @click="()=> viewCard(item.id)"/>
