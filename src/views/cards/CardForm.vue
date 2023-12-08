@@ -8,6 +8,7 @@ import BaseInputLabel from '../../components/base/BaseInputLabel.vue'
 
 import { useUsersStore } from '../../stores/users'
 import type { Card } from '@/interfaces'
+import { userData } from '@/services/userData'
 
 const userStore = useUsersStore()
 
@@ -21,7 +22,8 @@ const props = defineProps({
       disabled: false,
       dateFrom: '',
       dateTo: '',
-      userId: ''
+      userId: '',
+      user: userData.emptyUser()
     }
   },
   onSubmit: {
@@ -40,7 +42,7 @@ const loading = ref(false)
 const cardClone = ref({ ...props.card })
 
 onBeforeMount(async () => {
-  if (props.card.userId) await userStore.getUserById(props.card.userId)
+  if (props.card.user.id) await userStore.getUserById(props.card.user.id)
   else await userStore.retrieveUsers('')
   
 })
@@ -65,16 +67,16 @@ function searchUser (value: string) {
         <BaseInputLabel>Nome</BaseInputLabel>
         <BaseTextField v-model="cardClone.name" :readonly="loading" :rules="[required]" placeholder="Name your mission"
           append-inner-icon="mdi-weight-lifter"></BaseTextField>
-        
         <BaseInputLabel>Utente</BaseInputLabel>
         <BaseSelectRemote
-          v-model="cardClone.userId" 
+          v-model="cardClone.user.id" 
           :readonly="loading" 
           :rules="[required]"
           :options="userOptions"
           :onSearch="searchUser"
           placeholder="Type user email..."
           append-inner-icon="mdi-account"></BaseSelectRemote>
+          {{ userOptions }}
       </v-card-item>
     </BaseCard>
 

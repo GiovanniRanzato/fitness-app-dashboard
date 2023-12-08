@@ -9,29 +9,10 @@ import { handleException } from '../services/exceptionsHandler'
 
 import type { AuthStore, UserCredentials, UserRegistrationData, UserRole } from '@/interfaces'
 
-const EMPTY_USER = {
-  id: '',
-  email: '',
-  name: '',
-  lastName: '',
-  phone: '',
-  sex: '',
-  birthDate: '',
-  job: '',
-  weight: 0,
-  height: 0,
-  address: '',
-  city: '',
-  zip: 0,
-  country: '',
-  avatar: '',
-  role: '0' as UserRole
-}
-
 export const useAuthStore = defineStore('auth', {
   state: (): AuthStore => {
     return {
-      user: EMPTY_USER,
+      user: userData.emptyUser(),
       token: ''
     }
   },
@@ -124,7 +105,7 @@ export const useAuthStore = defineStore('auth', {
     },
     logout() {
       console.log('logout')
-      this.user = EMPTY_USER
+      this.user = userData.emptyUser()
       this.token = ''
       router.push('/')
     },

@@ -95,7 +95,7 @@ export interface Card {
     disabled: boolean,
     dateFrom: string,
     dateTo: string,
-    userId: string
+    user: User
 }
 
 export interface Notification {

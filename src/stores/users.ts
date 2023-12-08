@@ -25,7 +25,7 @@ export const useUsersStore = defineStore('users', {
       return user ? { ...user }: null;
     }),
     getUsersSelectItems: (state) => computed(() => {
-      return state.users.map(user => { return { value: user.id, title: user.email }})
+      return state.users.map(user => { return { value: user.id, title: userData.getUserNameLastNameEmail(user) }})
     }),
     getMetadata: (state: UseresStore) => state.metadata,
     getRole: () => (role: string) => role == '1' ? 'admin' : role == '2' ? 'trainer' : 'utente',

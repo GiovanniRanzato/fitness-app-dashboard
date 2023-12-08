@@ -28,7 +28,6 @@ export const useCardsStore = defineStore('cards', {
     },
     actions: {
         async addCard(card: Card) {
-            // TO DO: check this function
             try {
                 const response = await api.post('cards/', cardData.toApi(card));
                 if(response.status >= 300)
@@ -63,7 +62,6 @@ export const useCardsStore = defineStore('cards', {
               }
         },
         async updateCard(card: Card) {
-            // TO DO: check this function
             try {
                 const response = await api.patch(`cards/${card.id}`, cardData.toApi(card));
                 if(response.status >= 300)
@@ -89,7 +87,6 @@ export const useCardsStore = defineStore('cards', {
               }
         },
         async retrieveCards() {
-            // TO DO: check this function
             try {
                 const pageNumber = this.metadata.pageNumber
                 const response: RetrieveDataResponseInterface = await api.get(`cards?page=${pageNumber.toString()}`);
@@ -107,7 +104,6 @@ export const useCardsStore = defineStore('cards', {
               }
         },
         async deleteCard(cardId: string) {
-            // TO DO: check this function
             try {
                 const response = await api.delete('cards/' + cardId);
                 if (response.status >= 300)

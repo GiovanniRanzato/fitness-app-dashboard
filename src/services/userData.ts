@@ -26,7 +26,7 @@ export const userData = {
   },
   fromApi(userAttributes: any) {
     return {
-      id: userAttributes.id ? userAttributes.id.toString(): null,
+      id: userAttributes.id ? userAttributes.id : null,
       name: userAttributes.name ?? null,
       email: userAttributes.email ?? null,
       lastName: userAttributes.last_name ?? null,
@@ -43,8 +43,31 @@ export const userData = {
       avatar: userAttributes.avatar ?? null,
       role: userAttributes.role ? userAttributes.role.toString() : '0' as UserRole,
     }
+  },
+  emptyUser() {
+    return {
+      id: '',
+      email: '',
+      name: '',
+      lastName: '',
+      phone: '',
+      sex: '',
+      birthDate: '',
+      job: '',
+      weight: 0,
+      height: 0,
+      address: '',
+      city: '',
+      zip: 0,
+      country: '',
+      avatar: '',
+      role: '0' as UserRole
+    }
+  },
+  getUserNameLastNameEmail(user: User){
+    const lastName = user.lastName ? user.lastName : ''
+    return `${user.name} ${lastName} (${user.email})`
   }
 };
-
 
 

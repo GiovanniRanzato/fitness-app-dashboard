@@ -2,6 +2,7 @@
 import { computed } from "vue"
 import { useCardsStore } from "../../stores/cards"
 import { useAuthStore } from '../../stores/auth'
+import { useUsersStore } from '../../stores/users'
 import BaseTableBtnEdit from "../../components/base/BaseTableBtnEdit.vue"
 import BaseTableBtnDelete from "../../components/base/BaseTableBtnDelete.vue"
 import BaseTableBtnView from "../../components/base/BaseTableBtnView.vue"
@@ -11,6 +12,7 @@ import router from "../../router/index"
 
 const cardsStore = useCardsStore()
 const authStore = useAuthStore()
+const usersStore = useUsersStore()
 
 cardsStore.retrieveCards()
 const cards = computed(() => cardsStore.getCards)
@@ -30,19 +32,21 @@ const deleteCard = (userId: string) =>{
 const onPageChange = () => {
   cardsStore.retrieveCards()
 }
+
 </script>
 <template>
   <v-table>
     <thead>
       <tr>
         <th>Nome</th>
+        <th>Utente</th>
         <th class="text-right"></th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="item in cards" :key="item.id" >
         <td>{{ item.name }}</td>
-
+        <td>{{ item.user.email}}</td>
 
         <td class="text-right"><v-col cols="auto">
             <BaseTableBtnView @click="()=> viewCard(item.id)"/>
