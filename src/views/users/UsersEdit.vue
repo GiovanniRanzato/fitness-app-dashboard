@@ -19,7 +19,7 @@ const usersStore = useUsersStore()
 const save = (user: User) => {
   usersStore.updateUser(user)
 }
-const userAttributesValues = usersStore.getUserAttributesValuesById(parseInt(props.id))
+const userAttributesValues = usersStore.getUserAttributesValuesById(props.id)
 </script>
 
 <template>

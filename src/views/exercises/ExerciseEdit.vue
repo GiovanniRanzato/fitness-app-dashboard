@@ -19,7 +19,7 @@ const exercisesStore = useExercisesStore()
 const save = (exercise: Exercise) => {
   exercisesStore.updateExercise(exercise)
 }
-const exerciseAttributesValues = exercisesStore.getExerciseAttributesValuesById(parseInt(props.id))
+const exerciseAttributesValues = exercisesStore.getExerciseAttributesValuesById(props.id)
 </script>
 
 <template>
