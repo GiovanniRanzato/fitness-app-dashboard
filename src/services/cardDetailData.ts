@@ -21,8 +21,8 @@ export const cardDetailData = {
     return {
         id: cardDetail.attributes.id ? cardDetail.attributes.id : '',
         quantity: cardDetail.attributes.quantity ? cardDetail.attributes.quantity : 0,
-        timeDuration: cardDetail.attributes.timeDuration ? cardDetail.attributes.timeDuration : 0,
-        timeRecovery: cardDetail.attributes.timeRecovery ? cardDetail.attributes.timeRecovery : 0,
+        timeDuration: cardDetail.attributes.time_duration ? cardDetail.attributes.time_duration : 0,
+        timeRecovery: cardDetail.attributes.time_recovery ? cardDetail.attributes.time_recovery : 0,
         weight: cardDetail.attributes.weight ? cardDetail.attributes.weight : 0,
         notes: cardDetail.attributes.notes ? cardDetail.attributes.notes : '',
         exercise: cardDetail.exercise.attributes.id ? exerciseData.fromApi(cardDetail.exercise.attributes)  : exerciseData.emptyExercise()

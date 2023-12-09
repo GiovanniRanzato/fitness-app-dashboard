@@ -134,9 +134,9 @@ export const useCardsStore = defineStore('cards', {
         async addCardDetail(cardDetail: CardDetail, cardId: string) {
             try {
                 const response = await api.post('card-details/', cardDetailData.toApi(cardDetail, cardId));
-                console.log(response)
+
                 if(response.status >= 300)
-                    throw 'Impossible aggiungere riga esercizio a scheda'
+                    throw 'Impossible aggiungere dettaglio esercizio.'
 
                 if (!('id' in response.data.data.attributes))
                   throw 'impossible to get new card id from server response'
@@ -162,5 +162,41 @@ export const useCardsStore = defineStore('cards', {
                 })
               }
         },
+        async updateCardDetail(cardDetail: CardDetail, cardId: string) {
+          try {
+              const response = await api.patch(`card-details/${cardDetail.id}`, cardDetailData.toApi(cardDetail, cardId));
+              
+              if(response.status >= 300)
+                  throw 'Impossible modificare dettaglio esercizio.'
+
+              if (!('id' in response.data.data.attributes))
+                throw 'impossible to get new card id from server response'
+      
+              const createdCardDetail = cardDetailData.fromApi(response.data.data)
+              const cardToUpdateIndex = this.cards?.findIndex((el: Card) => el.id === cardId)
+
+              if(cardToUpdateIndex < 0)
+                throw `impossible to get card to update; card id: ${cardId}`
+              
+              const cardDetailToUpdateIndex = this.cards[cardToUpdateIndex].cardDetails.findIndex((el: CardDetail) => el.id === cardDetail.id)
+              
+              if(cardDetailToUpdateIndex < 0)
+                throw `impossible to get cardDetail to update; card id: ${cardId}`
+              
+              this.cards[cardToUpdateIndex].cardDetails[cardDetailToUpdateIndex] = createdCardDetail
+              
+              sendNotification({
+                type: 'success',
+                text: 'Dettaglio esercizio aggiornato.'
+              })
+      
+            } catch (exception: any) {
+              const message = handleException(exception)
+              sendNotification({
+                type: 'error',
+                text: message
+              })
+            }
+      },
     }
 })

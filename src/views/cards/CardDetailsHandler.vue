@@ -13,8 +13,7 @@ import type { Card, CardDetail } from '@/interfaces'
 const props = defineProps({
     card: {
     type: Object as () => Card,
-    required: false,
-    default: cardData.emptyCard()
+    required: true
   },
 })
 
@@ -25,18 +24,19 @@ const editingCardDetail = ref(cardDetailData.emptyCardDetail())
 
 const onAddCardDetail = () => {
     editingCardDetail.value = cardDetailData.emptyCardDetail()
-    dialogTitle.value = "Aggiungi riga esercizio"
+    dialogTitle.value = "Aggiungi dettaglio esercizio"
     openDialog.value = true
 }
 const onEditCardDetail = (cardDetail: CardDetail) => {
-    editingCardDetail.value = cardDetailData.emptyCardDetail()
-    dialogTitle.value = "Modifica riga esercizio"
+    console.log(cardDetail)
+    dialogTitle.value = "Modifica dettaglio esercizio"
     editingCardDetail.value = cardDetail
     openDialog.value = true
 }
 
-const submitAddCardDetail = (value: CardDetail) => {
-    cardStore.addCardDetail(value, props.card.id)
+const submitCardDetailForm = (value: CardDetail) => {
+    if(!value.id) cardStore.addCardDetail(value, props.card.id)
+    else cardStore.updateCardDetail(value, props.card.id)
     openDialog.value = false
 }
 
@@ -51,9 +51,9 @@ const submitAddCardDetail = (value: CardDetail) => {
         v-model="openDialog" width="800">
         <BaseCard :title="dialogTitle">
             <v-card-item class="mb-6">
-                <CardDetailForm :onSubmit="submitAddCardDetail"/>
+                <CardDetailForm :cardDetail="editingCardDetail" :onSubmit="submitCardDetailForm"/>
             </v-card-item>
         </BaseCard>
     </v-dialog>
-    <CardDetailsTable :card="card"/>
+    <CardDetailsTable :card="card" :onEditCardDetail="onEditCardDetail" />
 </template>

@@ -16,14 +16,14 @@ const props = defineProps({
     required: false,
     default: cardData.emptyCard()
   },
+  onEditCardDetail: {
+    type: Function,
+    required: true
+  },
 })
 
 const authStore = useAuthStore()
 
-
-const editCard = (cardId: string) => { 
-  // router.push({ name: 'card-detail-edit', params: { id: cardId } })
-}
 const deleteCard = (userId: string) =>{ 
   // cardsStore.deleteCardDetail(cardDetailId)
 }
@@ -50,7 +50,7 @@ const deleteCard = (userId: string) =>{
         <td>{{ item.timeRecovery }}</td>
         <td>{{ item.weight }}</td>
         <td class="text-right"><v-col cols="auto">
-            <BaseTableBtnEdit v-if="authStore.canUpdateCardDetails" @click="()=> editCard(item.id)"/>
+            <BaseTableBtnEdit v-if="authStore.canUpdateCardDetails" @click="()=> onEditCardDetail(item)"/>
             <BaseTableBtnDelete v-if="authStore.canDeleteCardDetails" :onConfirmDelete="() => deleteCard(item.id)" />
         </v-col></td>
       </tr>
