@@ -24,9 +24,7 @@ export const useExercisesStore = defineStore('exercises', {
             const exercise = state.exercises?.find(exercises => exercises.id === exerciseId);
             return exercise ? { ...exercise } : null;
         }),
-        getExercisesSelectItems: (state) => computed(() => {
-          return state.exercises.map(exercise => { return { value: exercise.id, title: exercise.name }})
-        }),
+        getExercisesSelectItems: (state) => state.exercises.map(exercise => { return { value: exercise.id, title: exercise.name }}),
         getMetadata: (state: ExercisesStore) => state.metadata,
     },
     actions: {

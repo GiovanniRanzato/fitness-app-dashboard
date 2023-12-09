@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, computed } from 'vue'
 import BaseBtnPrimary from '../../components/base/BaseBtnPrimary.vue'
 import BaseBtnSecondary from '../../components/base/BaseBtnSecondary.vue'
 import BaseCard from '../../components/base/BaseCard.vue'
@@ -40,7 +40,7 @@ onBeforeMount(async () => {
   else await userStore.retrieveUsers('')
   
 })
-const userOptions = userStore.getUsersSelectItems
+const userOptions = computed(() => userStore.getUsersSelectItems)
 
 
 const required = (v: string) => !!v || 'Il campo è richiesto'

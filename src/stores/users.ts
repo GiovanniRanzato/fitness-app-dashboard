@@ -24,9 +24,7 @@ export const useUsersStore = defineStore('users', {
       const user = state.users?.find(user => user.id === userId);
       return user ? { ...user }: null;
     }),
-    getUsersSelectItems: (state) => computed(() => {
-      return state.users.map(user => { return { value: user.id, title: userData.getUserNameLastNameEmail(user) }})
-    }),
+    getUsersSelectItems: (state) => state.users.map(user => { return { value: user.id, title: userData.getUserNameLastNameEmail(user) }}),
     getMetadata: (state: UseresStore) => state.metadata,
     getRole: () => (role: string) => role == '1' ? 'admin' : role == '2' ? 'trainer' : 'utente',
     getColor: () => (role: string) => role == '1' ? 'red' : role == '2' ? 'blue' : 'green',

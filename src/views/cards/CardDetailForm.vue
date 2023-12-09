@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onBeforeMount } from 'vue'
+import { ref, onBeforeMount, computed } from 'vue'
 import BaseBtnPrimary from '../../components/base/BaseBtnPrimary.vue'
 import BaseTextArea from '../../components/base/BaseTextArea.vue'
 import BaseTextField from '../../components/base/BaseTextField.vue'
@@ -33,7 +33,7 @@ const loading = ref(false)
 
 const cardDetailClone = ref({ ...props.cardDetail })
 
-const exerciseOptions = exercisesStore.getExercisesSelectItems
+const exerciseOptions = computed(()=> exercisesStore.getExercisesSelectItems)
 
 
 const required = (v: string) => !!v || 'Il campo è richiesto'
