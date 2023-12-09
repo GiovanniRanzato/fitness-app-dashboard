@@ -151,7 +151,7 @@ export const useCardsStore = defineStore('cards', {
    
                 sendNotification({
                   type: 'success',
-                  text: 'Scheda creata.'
+                  text: 'Dettaglio esercizio aggiunto a scheda.'
                 })
         
               } catch (exception: any) {

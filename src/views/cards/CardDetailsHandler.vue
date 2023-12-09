@@ -44,7 +44,7 @@ const submitAddCardDetail = (value: CardDetail) => {
 <template>
     <div class="d-flex justify-end mb-6">
       <BaseBtnSecondary @click="onAddCardDetail" prepend-icon="mdi-plus">
-        Aggiungi esercizio
+        Aggiungi dettaglio esercizio
       </BaseBtnSecondary>
     </div>
     <v-dialog
