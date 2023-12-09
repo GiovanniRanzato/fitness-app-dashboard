@@ -88,5 +88,5 @@ function searchUser (value: string) {
     </div>
   </v-form>
   <v-divider class="mt-6 mb-6"></v-divider>
-  <CardDetailsHandler v-if="card.id" :cardId="card.id" ></CardDetailsHandler>
+  <CardDetailsHandler v-if="card.id" :card="card" ></CardDetailsHandler>
 </template>

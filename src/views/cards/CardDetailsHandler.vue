@@ -6,6 +6,8 @@ import CardDetailsTable from './CardDetailsTable.vue';
 import CardDetailForm from './CardDetailForm.vue'
 import { cardData } from '@/services/cardData'
 import { cardDetailData } from '@/services/cardDetailData'
+import { useCardsStore } from "../../stores/cards"
+
 import type { Card, CardDetail } from '@/interfaces'
 
 const props = defineProps({
@@ -15,6 +17,8 @@ const props = defineProps({
     default: cardData.emptyCard()
   },
 })
+
+const cardStore = useCardsStore()
 const openDialog = ref(false)
 const dialogTitle = ref('')
 const editingCardDetail = ref(cardDetailData.emptyCardDetail())
@@ -32,8 +36,8 @@ const onEditCardDetail = (cardDetail: CardDetail) => {
 }
 
 const submitAddCardDetail = (value: CardDetail) => {
-    openDialog.value = true
-    console.log(value)
+    cardStore.addCardDetail(value, props.card.id)
+    openDialog.value = false
 }
 
 </script>

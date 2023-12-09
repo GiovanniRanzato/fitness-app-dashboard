@@ -33,5 +33,8 @@ export const exerciseData = {
       notes: '',
       creatorUserId: ''
     }
+  },
+  clone(exercise: Exercise): Exercise {
+    return { ...exercise}
   }
 };

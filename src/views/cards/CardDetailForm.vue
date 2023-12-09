@@ -56,24 +56,23 @@ function searchUser (value: string) {
         :rules="[required]"
         :options="exerciseOptions"
         :onSearch="searchUser"
-        placeholder="Type exercise name..."
+        placeholder="Digita il nome dell'esercizio..."
         append-inner-icon="mdi-weight-lifter">
     </BaseSelectRemote>
-
     <BaseInputLabel>Quantità</BaseInputLabel>
-    <BaseTextField v-model="cardDetailClone.quantity" :readonly="loading" type="number" placeholder="How many time you will fight criminals"
+    <BaseTextField v-model="cardDetailClone.quantity" :readonly="loading" type="number" placeholder="Il numero di ripetizioni"
         append-inner-icon="mdi-numeric"></BaseTextField>
     
-    <BaseInputLabel>Durata</BaseInputLabel>
-    <BaseTextField v-model="cardDetailClone.timeDuration" :readonly="loading" type="number" placeholder="How many time you will fight criminals"
+    <BaseInputLabel>Durata (sec)</BaseInputLabel>
+    <BaseTextField v-model="cardDetailClone.timeDuration" :readonly="loading" type="number" placeholder="La durata dell'esercizio"
         append-inner-icon="mdi-timer-play-outline"></BaseTextField>
 
-    <BaseInputLabel>Durata recupero</BaseInputLabel>
-    <BaseTextField v-model="cardDetailClone.timeRecovery" :readonly="loading" type="number" placeholder="How many time you will fight criminals"
+    <BaseInputLabel>Durata recupero (sec)</BaseInputLabel>
+    <BaseTextField v-model="cardDetailClone.timeRecovery" :readonly="loading" type="number" placeholder="La durata del recupero"
         append-inner-icon="mdi-timer-pause-outline"></BaseTextField>
 
-    <BaseInputLabel>Peso</BaseInputLabel>
-    <BaseTextField v-model="cardDetailClone.weight" :readonly="loading" type="number" placeholder="How many time you will fight criminals"
+    <BaseInputLabel>Peso (kg)</BaseInputLabel>
+    <BaseTextField v-model="cardDetailClone.weight" :readonly="loading" type="number" placeholder="Il peso da usare per l'esercizio"
         append-inner-icon="mdi-weight"></BaseTextField>
         
     <BaseInputLabel>Note</BaseInputLabel>

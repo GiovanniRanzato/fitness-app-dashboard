@@ -2,7 +2,7 @@ import type { CardDetail } from '../interfaces';
 import { exerciseData } from './exerciseData';
 
 export const cardDetailData = {
-  toApi(cardDetail: CardDetail) {
+  toApi(cardDetail: CardDetail, cardId: string) {
     const data =  {
         quantity: cardDetail.quantity ? cardDetail.quantity : 0,
         time_duration: cardDetail.timeDuration ? cardDetail.timeDuration : 0,
@@ -10,6 +10,7 @@ export const cardDetailData = {
         weight: cardDetail.weight ? cardDetail.weight : 0,
         notes: cardDetail.notes ? cardDetail.notes : '',
         exercise_id: cardDetail.exercise.id,
+        card_id: cardId,
       };
       return Object.fromEntries(
         Object.entries(data).filter(([key, value]) => value !== null)
@@ -24,7 +25,7 @@ export const cardDetailData = {
         timeRecovery: cardDetail.attributes.timeRecovery ? cardDetail.attributes.timeRecovery : 0,
         weight: cardDetail.attributes.weight ? cardDetail.attributes.weight : 0,
         notes: cardDetail.attributes.notes ? cardDetail.attributes.notes : '',
-        exercise: cardDetail.attributes.id ? cardDetail.attributes.id : exerciseData.emptyExercise()
+        exercise: cardDetail.exercise.attributes.id ? exerciseData.fromApi(cardDetail.exercise.attributes)  : exerciseData.emptyExercise()
     }
   },
   emptyCardDetail(): CardDetail {
@@ -37,5 +38,8 @@ export const cardDetailData = {
         notes: '',
         exercise: exerciseData.emptyExercise()
     }
+  },
+  clone(cardDetail: CardDetail): CardDetail {
+    return { ...cardDetail, exercise: exerciseData.clone(cardDetail.exercise) }
   }
 };

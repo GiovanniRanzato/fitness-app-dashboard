@@ -1,5 +1,6 @@
-import type { Card } from '../interfaces';
+import type { Card, CardDetail} from '../interfaces';
 import { userData } from './userData';
+import { cardDetailData } from './cardDetailData'
 
 export const cardData = {
   toApi(card: Card) {
@@ -22,7 +23,7 @@ export const cardData = {
         dateFrom: card.attributes.date_from ?? '',
         dateTo: card.attributes.date_to ?? '',
         user: card.user.attributes ? userData.fromApi(card.user.attributes) : userData.emptyUser(),
-        cardDetails: card.cardDetails ? card.cardDetails : [] 
+        cardDetails: card.card_details ? card.card_details.map((el: any) => cardDetailData.fromApi(el)) : [] 
     }
   },
   emptyCard(): Card {
@@ -35,5 +36,9 @@ export const cardData = {
       user: userData.emptyUser(),
       cardDetails: []
     }
+  },
+  clone(card: Card): Card {
+    const clonedCardDetails = card?.cardDetails.map(cardDetail => cardDetailData.clone(cardDetail))
+    return { ...card, cardDetails: clonedCardDetails }
   }
 };

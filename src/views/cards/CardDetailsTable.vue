@@ -35,12 +35,20 @@ const deleteCard = (userId: string) =>{
     <thead>
       <tr>
         <th>Nome</th>
+        <th>Quantità</th>
+        <th>Durata</th>
+        <th>Recupero</th>
+        <th>Peso</th>
         <th class="text-right"></th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="item in card.cardDetails" :key="item.id" >
         <td>{{ item.exercise.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.timeDuration }}</td>
+        <td>{{ item.timeRecovery }}</td>
+        <td>{{ item.weight }}</td>
         <td class="text-right"><v-col cols="auto">
             <BaseTableBtnEdit v-if="authStore.canUpdateCardDetails" @click="()=> editCard(item.id)"/>
             <BaseTableBtnDelete v-if="authStore.canDeleteCardDetails" :onConfirmDelete="() => deleteCard(item.id)" />
