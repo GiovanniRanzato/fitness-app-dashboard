@@ -88,10 +88,11 @@ export const useCardsStore = defineStore('cards', {
                 })
               }
         },
-        async retrieveCards() {
+        async retrieveCards(search: string = '', page: number = 0) {
             try {
-                const pageNumber = this.metadata.pageNumber
-                const response: RetrieveDataResponseInterface = await api.get(`cards?page=${pageNumber.toString()}`);
+                const pageNumber = page ? page : this.metadata.pageNumber
+                const searchQuery = search ? `name[like]=${search}&` : ''
+                const response: RetrieveDataResponseInterface = await api.get(`cards?${searchQuery}page=${pageNumber.toString()}`);
                 this.cards = response.data.data.map((element: any) => cardData.fromApi(element))
                 this.metadata.pageNumber = response.data.meta.current_page
                 this.metadata.pageTotal = response.data.meta.last_page

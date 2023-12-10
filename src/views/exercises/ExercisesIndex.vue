@@ -12,7 +12,7 @@ const uiStore = useUiStore()
 const authStore = useAuthStore()
 const exerciseStore = useExercisesStore()
 
-uiStore.onSearch = (search: String) => exerciseStore.retrieveExercises(search, 1)
+uiStore.onSearch = (search: string) => exerciseStore.retrieveExercises(search, 1)
 
 const addItem = () => {
   router.push('exercises/add')
