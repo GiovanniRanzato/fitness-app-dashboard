@@ -16,7 +16,7 @@ const userStore = useUsersStore()
 const addItem = () => {
   router.push('users/add')
 }
-uiStore.onSearch = (search: String) => userStore.retrieveUsers(search)
+uiStore.onSearch = (search: String) => userStore.retrieveUsers(search, 1)
 
 onBeforeUnmount(()=> {
   uiStore.onSearch = undefined

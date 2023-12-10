@@ -90,9 +90,9 @@ export const useUsersStore = defineStore('users', {
         })
       }
     },
-    async retrieveUsers(search: String = '') {
+    async retrieveUsers(search: String = '', page: number = 0) {
       try {
-        const pageNumber = this.metadata.pageNumber
+        const pageNumber = page ? page : this.metadata.pageNumber
         const searchQuery = search ? `search=${search}&` : ''
         const response: RetrieveDataResponseInterface = await api.get(`users?${searchQuery}page=${pageNumber.toString()}`);
         
