@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import BaseContainer from './../../components/base/BaseContainer.vue'
 import BasePageTitle from './../../components/base/BasePageTitle.vue'
-import BaseCard from '../../components/base/BaseCard.vue'
-import BaseAvatar from '../../components/base/BaseAvatar.vue'
+import CardDetailCard from '../../components/CardDetailCard.vue'
 import { useCardsStore } from "../../stores/cards"
 
 
@@ -26,9 +25,7 @@ const cardAttributesValues = cardsStore.getCardAttributesValuesById(props.id)
                 <v-chip prepend-icon="mdi-calendar-end" color="blue">{{ cardAttributesValues.dateTo }}</v-chip> 
             </v-chip-group>
 
-                
-
-
+            <CardDetailCard  v-for="item in cardAttributesValues.cardDetails" class="mb-6" :key="item.id" :cardDetail="item" />
         </template>
         <BaseAlertWarning v-else>Si è verificato un problema: dati esercizio non presenti.</BaseAlertWarning>
     </BaseContainer>
