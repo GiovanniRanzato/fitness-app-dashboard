@@ -4,7 +4,6 @@ import BaseBtnSecondary from '../../components/base/BaseBtnSecondary.vue'
 import BaseCard from '../../components/base/BaseCard.vue'
 import CardDetailsTable from './CardDetailsTable.vue';
 import CardDetailForm from './CardDetailForm.vue'
-import { cardData } from '@/services/cardData'
 import { cardDetailData } from '@/services/cardDetailData'
 import { useCardsStore } from "../../stores/cards"
 

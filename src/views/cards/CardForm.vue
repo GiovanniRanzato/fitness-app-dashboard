@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref, onBeforeMount, computed } from 'vue'
 import BaseBtnPrimary from '../../components/base/BaseBtnPrimary.vue'
-import BaseBtnSecondary from '../../components/base/BaseBtnSecondary.vue'
 import BaseCard from '../../components/base/BaseCard.vue'
 import BaseTextField from '../../components/base/BaseTextField.vue'
 import BaseSelectRemote from '../../components/base/BaseSelectRemote.vue'

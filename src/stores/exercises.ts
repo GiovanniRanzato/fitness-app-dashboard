@@ -105,6 +105,20 @@ export const useExercisesStore = defineStore('exercises', {
                 })
               }
         },
+        async getExerciseById(exerciseId: string = '') {
+          try {
+              const response: RetrieveDataResponseInterface = await api.get(`exercises/${exerciseId}`);
+              this.exercises = [exerciseData.fromApi(response.data.data.attributes)]
+              this.metadata.pageNumber = 1
+              this.metadata.pageTotal = 1
+            } catch (exception: any) {
+              const message = handleException(exception)
+              sendNotification({
+                type: 'error',
+                text: message
+              })
+            }
+      },
         async deleteExercise(exerciseId: string) {
             try {
                 const response = await api.delete('exercises/' + exerciseId);

@@ -5,8 +5,8 @@ import BaseTextArea from '../../components/base/BaseTextArea.vue'
 import BaseTextField from '../../components/base/BaseTextField.vue'
 import BaseSelectRemote from '../../components/base/BaseSelectRemote.vue'
 import BaseInputLabel from '../../components/base/BaseInputLabel.vue'
-
 import { useExercisesStore } from '../../stores/exercises'
+
 import type { CardDetail } from '@/interfaces'
 import { cardDetailData } from '@/services/cardDetailData'
 
@@ -28,15 +28,19 @@ const props = defineProps({
     default: false
   }
 })
+
 const form = ref(false)
 const loading = ref(false)
 
 const cardDetailClone = ref({ ...props.cardDetail })
-
 const exerciseOptions = computed(()=> exercisesStore.getExercisesSelectItems)
 
-
 const required = (v: string) => !!v || 'Il campo è richiesto'
+
+onBeforeMount(async () => {
+  if (props.cardDetail.id) await exercisesStore.getExerciseById(props.cardDetail.exercise.id)
+  else await exercisesStore.retrieveExercises('')
+})
 
 function onSubmit() {
   props.onSubmit(cardDetailClone.value)
