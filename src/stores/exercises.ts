@@ -87,10 +87,11 @@ export const useExercisesStore = defineStore('exercises', {
                 })
               }
         },
-        async retrieveExercises() {
+        async retrieveExercises(search: string = '', page: number = 0) {
             try {
-                const pageNumber = this.metadata.pageNumber
-                const response: RetrieveDataResponseInterface = await api.get(`exercises?page=${pageNumber.toString()}`);
+                const pageNumber = page ? page : this.metadata.pageNumber
+                const searchQuery = search ? `name[like]=${search}&` : ''
+                const response: RetrieveDataResponseInterface = await api.get(`exercises?${searchQuery}page=${pageNumber.toString()}`);
                 this.exercises = response.data.data.map((element: any) => exerciseData.fromApi(element.attributes))
                 this.metadata.pageNumber = response.data.meta.current_page
                 this.metadata.pageTotal = response.data.meta.last_page
