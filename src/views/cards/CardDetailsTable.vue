@@ -3,10 +3,7 @@ import { useCardsStore } from "../../stores/cards"
 import { useAuthStore } from '../../stores/auth'
 import BaseTableBtnEdit from "../../components/base/BaseTableBtnEdit.vue"
 import BaseTableBtnDelete from "../../components/base/BaseTableBtnDelete.vue"
-
-
 import BaseAlertInfo from "../../components/base/BaseAlertInfo.vue"
-import router from "../../router/index"
 import { cardData } from '@/services/cardData'
 import type { Card } from '@/interfaces'
 
@@ -23,9 +20,10 @@ const props = defineProps({
 })
 
 const authStore = useAuthStore()
+const cardsStore = useCardsStore()
 
-const deleteCard = (userId: string) =>{ 
-  // cardsStore.deleteCardDetail(cardDetailId)
+const deleteCardDetail = (cardDetailId: string) =>{ 
+  cardsStore.deleteCardDetail(cardDetailId, props.card.id)
 }
 
 </script>
@@ -51,7 +49,7 @@ const deleteCard = (userId: string) =>{
         <td>{{ item.weight }}</td>
         <td class="text-right"><v-col cols="auto">
             <BaseTableBtnEdit v-if="authStore.canUpdateCardDetails" @click="()=> onEditCardDetail(item)"/>
-            <BaseTableBtnDelete v-if="authStore.canDeleteCardDetails" :onConfirmDelete="() => deleteCard(item.id)" />
+            <BaseTableBtnDelete v-if="authStore.canDeleteCardDetails" :onConfirmDelete="() => deleteCardDetail(item.id)" />
         </v-col></td>
       </tr>
     </tbody>

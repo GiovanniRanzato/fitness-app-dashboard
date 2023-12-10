@@ -198,5 +198,35 @@ export const useCardsStore = defineStore('cards', {
               })
             }
       },
+      async deleteCardDetail(cardDetailId: string, cardId: string) {
+        try {
+            const response = await api.delete('card-details/' + cardDetailId);
+            if (response.status >= 300)
+              throw 'Impossible cancellare dettaglio esercizio.'
+    
+            const cardToUpdateIndex = this.cards?.findIndex((el: Card) => el.id === cardId)
+
+            if(cardToUpdateIndex < 0)
+              throw `impossible to get card to update; card id: ${cardId}`
+              
+            const cardDetailToDeleteIndex = this.cards[cardToUpdateIndex].cardDetails.findIndex((el: CardDetail) => el.id === cardDetailId)
+              
+            if(cardDetailToDeleteIndex < 0)
+              throw `impossible to get cardDetail to update; card id: ${cardId}`
+            
+            this.cards[cardToUpdateIndex].cardDetails.splice(cardDetailToDeleteIndex, 1);
+              
+            sendNotification({
+              type: 'success',
+              text: 'Detagglio esercizio eliminato.'
+            })
+          } catch (exception: any) {
+            const message = handleException(exception)
+            sendNotification({
+              type: 'error',
+              text: message
+            })
+          }
+    },
     }
 })
