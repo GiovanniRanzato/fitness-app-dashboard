@@ -45,7 +45,6 @@ const onPageChange = () => {
 
 
         <td class="text-right"><v-col cols="auto">
-            <BaseTableBtnView @click="()=> viewExercise(item.id)"/>
             <BaseTableBtnEdit v-if="authStore.canUpdateExercises" @click="()=> editExercise(item.id)"/>
             <BaseTableBtnDelete v-if="authStore.canDeleteExercises" :onConfirmDelete="() => deleteExercise(item.id)" />
         </v-col></td>

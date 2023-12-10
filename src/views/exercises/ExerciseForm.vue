@@ -52,32 +52,25 @@ function onSubmit() {
 </script>
 <template>
   <v-form v-model="form">
-    <v-row>
-      <v-col sm="12" md="6">
-        <BaseCard title="Informazioni esercizio">
-          <v-card-item>
-            <BaseInputLabel>Nome</BaseInputLabel>
-            <BaseTextField v-model="exerciseClone.name" :readonly="loading" :rules="[required]" placeholder="Punch criminals"
-              append-inner-icon="mdi-weight-lifter"></BaseTextField>
-            <BaseInputLabel>Media Url</BaseInputLabel>
-            <BaseTextField v-model="exerciseClone.mediaUrl" :readonly="loading" placeholder="https://www.youtube.com/watch?v=ViD30k3y"
-              append-inner-icon="mdi-link"></BaseTextField>
-            <BaseInputLabel>Descrizione</BaseInputLabel>
-            <BaseTextArea v-model="exerciseClone.description" :readonly="loading" placeholder="Do stuff as batmam..."></BaseTextArea>
-            <BaseInputLabel>Note</BaseInputLabel>
-            <BaseTextArea v-model="exerciseClone.notes" :readonly="loading" placeholder="Remind batmobile key before leave!"></BaseTextArea>
-          </v-card-item>
-        </BaseCard>
-      </v-col>
-      <v-col sm="12" md="6">
-        <BaseCard title="Anteprima video">
-          <v-card-item>
-            <BaseYouTubeVideoIFrame v-if="exerciseClone.mediaUrl" :mediaUrl="exerciseClone.mediaUrl" />
-            <BaseAlertInfo v-else>Inserisci l'url del video da youtube.com da associare a questo esercizio per vedere l'anteprima.</BaseAlertInfo>
-          </v-card-item>
-        </BaseCard>
-      </v-col>
-    </v-row>
+    <BaseCard title="Informazioni esercizio">
+      <v-card-item>
+        <BaseInputLabel>Nome</BaseInputLabel>
+        <BaseTextField v-model="exerciseClone.name" :readonly="loading" :rules="[required]" placeholder="Punch criminals"
+          append-inner-icon="mdi-weight-lifter"></BaseTextField>
+        <BaseInputLabel>Media Url</BaseInputLabel>
+        <BaseTextField v-model="exerciseClone.mediaUrl" :readonly="loading" placeholder="https://www.youtube.com/watch?v=ViD30k3y"
+          append-inner-icon="mdi-link"></BaseTextField>
+        <BaseYouTubeVideoIFrame v-if="exerciseClone.mediaUrl" :mediaUrl="exerciseClone.mediaUrl" />
+        <BaseAlertInfo class="mb-3" v-else>Inserisci l'url del video da youtube.com da associare a questo esercizio per vedere l'anteprima.</BaseAlertInfo>
+
+
+        <BaseInputLabel>Descrizione</BaseInputLabel>
+        <BaseTextArea v-model="exerciseClone.description" :readonly="loading" placeholder="Do stuff as batmam..."></BaseTextArea>
+        <BaseInputLabel>Note</BaseInputLabel>
+        <BaseTextArea v-model="exerciseClone.notes" :readonly="loading" placeholder="Remind batmobile key before leave!"></BaseTextArea>
+
+      </v-card-item>
+    </BaseCard>
     <div class="d-flex justify-end mt-6">
       <BaseBtnPrimary @click="onSubmit" :disabled="!form">
         Salva
