@@ -20,10 +20,10 @@ const formatText = (text: string) => {
     <BaseCard :title="cardDetail.exercise.name">
         <v-card-item>
             <v-chip-group>
-                <v-chip v-if="cardDetail.quantity" prepend-icon="mdi-numeric" color="blue">Quantità: {{ cardDetail.quantity }}</v-chip>
-                <v-chip v-if="cardDetail.weight" prepend-icon="mdi-weight" color="blue">Peso: {{ cardDetail.weight }}</v-chip>
-                <v-chip v-if="cardDetail.timeDuration" prepend-icon="mdi-timer-play-outline" color="blue">Durata: {{ cardDetail.timeDuration }}</v-chip>
-                <v-chip v-if="cardDetail.timeRecovery" prepend-icon="mdi-timer-pause-outline" color="blue">Recupero: {{ cardDetail.timeRecovery }}</v-chip>
+                <v-chip v-if="cardDetail.quantity" prepend-icon="mdi-numeric" >Quantità: {{ cardDetail.quantity }}</v-chip>
+                <v-chip v-if="cardDetail.weight" prepend-icon="mdi-weight" >Peso: {{ cardDetail.weight }}</v-chip>
+                <v-chip v-if="cardDetail.timeDuration" prepend-icon="mdi-timer-play-outline">Durata: {{ cardDetail.timeDuration }}</v-chip>
+                <v-chip v-if="cardDetail.timeRecovery" prepend-icon="mdi-timer-pause-outline">Recupero: {{ cardDetail.timeRecovery }}</v-chip>
             </v-chip-group>
         </v-card-item>
         <BaseAlertInfo v-if="cardDetail.notes"><div class="cs-text-break-word" v-html="formatText(cardDetail.notes)"></div></BaseAlertInfo>

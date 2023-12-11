@@ -20,9 +20,9 @@ const cardAttributesValues = cardsStore.getCardAttributesValuesById(props.id)
         <BasePageTitle title="Visualizza esercizio" />
         <template v-if="cardAttributesValues">
             <h2 class="text-h2">{{ cardAttributesValues.name }}</h2>
-            <v-chip-group>
-                <v-chip prepend-icon="mdi-calendar-start" color="blue">{{ cardAttributesValues.dateFrom }}</v-chip>
-                <v-chip prepend-icon="mdi-calendar-end" color="blue">{{ cardAttributesValues.dateTo }}</v-chip> 
+            <v-chip-group class="mb-6">
+                <v-chip prepend-icon="mdi-calendar-start" variant="flat" class="bg-blue">{{ cardAttributesValues.dateFrom }}</v-chip>
+                <v-chip prepend-icon="mdi-calendar-end" variant="flat" class="bg-blue">{{ cardAttributesValues.dateTo }}</v-chip> 
             </v-chip-group>
 
             <CardDetailCard  v-for="item in cardAttributesValues.cardDetails" class="mb-6" :key="item.id" :cardDetail="item" />

@@ -4,7 +4,7 @@ import BaseLogo from "../components/base/BaseLogo.vue"
 </script>
 <template>
   <main>
-      <BaseLogo min-width="300" class="mb-12 mt-12"/>
+      <BaseLogo min-width="450" class="mb-12 mt-12"/>
       <TheLoginCard />
   </main>
 </template>

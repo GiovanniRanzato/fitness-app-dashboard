@@ -14,10 +14,10 @@ const props = defineProps({
 function getSrc() {
     switch(props.theme) {
         case 'dark': 
-            return "https://cdn.vuetifyjs.com/docs/images/logos/vuetify-logo-v3-slim-text-dark.svg"
+            return "../../../public/img/logo3.png"
         case 'light':
         default:
-            return "https://cdn.vuetifyjs.com/docs/images/logos/vuetify-logo-v3-slim-text-light.svg"
+            return "../../../public/img/logo2.png"
 
     }
 }
