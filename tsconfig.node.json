@@ -12,7 +12,8 @@
     "importHelpers": true,
     "composite": true,
     "module": "ESNext", // ESNext
-    "moduleResolution": "Bundler",
-    "types": ["node", "vite/client"]
+    "moduleResolution": "bundler",
+    "types": ["node", "vite/client"],
+    "isolatedModules": true
   }
 }
