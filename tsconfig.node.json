@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/node18/tsconfig.json",
   "include": [
+    "env.d.ts",
     "vite.config.*",
     "vitest.config.*",
     "cypress.config.*",
@@ -8,9 +9,10 @@
     "playwright.config.*"
   ],
   "compilerOptions": {
+    "importHelpers": true,
     "composite": true,
-    "module": "ES6", // ESNext
+    "module": "ESNext", // ESNext
     "moduleResolution": "Bundler",
-    "types": ["node"]
+    "types": ["node", "vite/client"]
   }
 }

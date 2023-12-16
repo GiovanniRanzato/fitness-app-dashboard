@@ -111,7 +111,7 @@ export interface CardDetail {
 export interface Notification {
     text: string,
     type: string,
-    timeout?: number
+    timeout?: any
 }
 
 // FROM API

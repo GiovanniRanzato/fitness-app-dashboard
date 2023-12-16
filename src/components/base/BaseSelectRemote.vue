@@ -29,5 +29,5 @@ const searchFunction = (value: String) => {
     <v-autocomplete 
     variant="outlined" density="compact" rounded="xl" color="blue"
     :items="options"
-    @update:search="(value) => searchFunction(value)"></v-autocomplete>
+    @update:search="(value: String) => searchFunction(value)"></v-autocomplete>
 </template>

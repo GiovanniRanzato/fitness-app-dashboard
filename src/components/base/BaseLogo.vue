@@ -11,13 +11,16 @@ const props = defineProps({
         default: 'light'
     }
 })
+
+const baseURL = import.meta.env.VITE_BASE_URL  as string;
+
 function getSrc() {
     switch(props.theme) {
         case 'dark': 
-            return "../../../public/img/logo3.png"
+            return baseURL+"/img/logo3.png"
         case 'light':
         default:
-            return "../../../public/img/logo2.png"
+            return baseURL+"/img/logo2.png"
 
     }
 }
