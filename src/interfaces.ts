@@ -8,6 +8,12 @@ export interface UserCredentials {
     password: string
 }
 
+export interface ResetPassword {
+    password: string,
+    passwordConfirm: string,
+    token: string
+}
+
 export interface UserRegistrationData extends UserCredentials{
     name: string
 }

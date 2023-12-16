@@ -7,7 +7,7 @@ import api from '../services/api'
 import { userData } from '../services/userData'
 import { handleException } from '../services/exceptionsHandler'
 
-import type { AuthStore, UserCredentials, UserRegistrationData, UserRole } from '@/interfaces'
+import type { AuthStore, UserCredentials, UserRegistrationData, ResetPassword } from '@/interfaces'
 
 export const useAuthStore = defineStore('auth', {
   state: (): AuthStore => {
@@ -112,7 +112,7 @@ export const useAuthStore = defineStore('auth', {
       this.token = ''
       router.push('/')
     },
-    async sendResetLinkEmail(email: string) {
+    async sendResetLinkEmail(passe: string) {
       try {
         const response = await authService.sendResetLinkEmail(email);
         if (response.status >= 300)
@@ -128,6 +128,26 @@ export const useAuthStore = defineStore('auth', {
         sendNotification({
           type: 'error',
           text: 'Errore durante l\'invio del link di reset. Controlla l\'email inserita o prova più tardi.'
+        })
+      }
+
+    },
+    async resetPassword(resetPassword: ResetPassword) {
+      try {
+        const response = await authService.resetPassword(resetPassword);
+        if (response.status >= 300)
+          throw 'Si è verificato un errore. Riprova più tardi..'
+        
+          sendNotification({
+          type: 'success',
+          text: 'La password è stata cambiata.'
+        })
+  
+      } catch (exception: any) {
+        const message = handleException(exception)
+        sendNotification({
+          type: 'error',
+          text: 'Errore durante il reset della password. Controlla l\'email inserita o prova più tardi.'
         })
       }
 

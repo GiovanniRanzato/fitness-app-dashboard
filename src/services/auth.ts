@@ -1,4 +1,4 @@
-import type { UserCredentials, UserRegistrationData } from '@/interfaces'
+import type { UserCredentials, UserRegistrationData, ResetPassword } from '@/interfaces'
 import api from './api'
 
 export default {
@@ -13,6 +13,11 @@ export default {
     async sendResetLinkEmail(email: string){
       const response = await api.post('password/email', {email: email});
       return response;
-    }
+    },
+    async resetPassword(resetPassword: ResetPassword){
+      const response = await api.post('password/reset', resetPassword);
+      return response;
+    },
+    
   };
   
