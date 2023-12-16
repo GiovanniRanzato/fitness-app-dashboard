@@ -44,7 +44,7 @@ function onSubmit() {
   <v-card class="pa-12 mx-auto" elevation="6" rounded="xl" max-width="448">
     <v-form v-model="form">
       <BaseInputLabel>Nome</BaseInputLabel>
-      <BaseTextField v-model="name" :readonly="loading" :rules="nameRules" clearable placeholder="example@email.com"
+      <BaseTextField v-model="name" :readonly="loading" :rules="nameRules" clearable placeholder="Mario"
         prepend-inner-icon="mdi-account"></BaseTextField>
 
       <BaseInputLabel>Email</BaseInputLabel>

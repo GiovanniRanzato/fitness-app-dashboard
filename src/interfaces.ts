@@ -8,7 +8,8 @@ export interface UserCredentials {
     password: string
 }
 
-export interface ResetPassword {
+export interface UpdatePassword {
+    email: string,
     password: string,
     passwordConfirm: string,
     token: string

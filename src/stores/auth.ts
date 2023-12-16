@@ -7,7 +7,7 @@ import api from '../services/api'
 import { userData } from '../services/userData'
 import { handleException } from '../services/exceptionsHandler'
 
-import type { AuthStore, UserCredentials, UserRegistrationData, ResetPassword } from '@/interfaces'
+import type { AuthStore, UserCredentials, UserRegistrationData, UpdatePassword } from '@/interfaces'
 
 export const useAuthStore = defineStore('auth', {
   state: (): AuthStore => {
@@ -132,9 +132,9 @@ export const useAuthStore = defineStore('auth', {
       }
 
     },
-    async resetPassword(resetPassword: ResetPassword) {
+    async updatePassword(updatePassword: UpdatePassword) {
       try {
-        const response = await authService.resetPassword(resetPassword);
+        const response = await authService.updatePassword(updatePassword);
         if (response.status >= 300)
           throw 'Si è verificato un errore. Riprova più tardi..'
         

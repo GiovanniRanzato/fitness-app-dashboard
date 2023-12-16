@@ -1,4 +1,5 @@
-import type { UserCredentials, UserRegistrationData, ResetPassword } from '@/interfaces'
+import type { UserCredentials, UserRegistrationData, UpdatePassword } from '@/interfaces'
+import { authData } from './authData'
 import api from './api'
 
 export default {
@@ -14,8 +15,8 @@ export default {
       const response = await api.post('password/email', {email: email});
       return response;
     },
-    async resetPassword(resetPassword: ResetPassword){
-      const response = await api.post('password/reset', resetPassword);
+    async updatePassword(resetPassword: UpdatePassword){
+      const response = await api.post('password/update', authData.toApi(resetPassword));
       return response;
     },
     
