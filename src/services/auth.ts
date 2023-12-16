@@ -10,5 +10,9 @@ export default {
       const response = await api.post('register', userRegistrationData);
       return response;
     },
+    async sendResetLinkEmail(email: string){
+      const response = await api.post('password/email', {email: email});
+      return response;
+    }
   };
   

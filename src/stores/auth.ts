@@ -112,6 +112,26 @@ export const useAuthStore = defineStore('auth', {
       this.token = ''
       router.push('/')
     },
+    async sendResetLinkEmail(email: string) {
+      try {
+        const response = await authService.sendResetLinkEmail(email);
+        if (response.status >= 300)
+          throw 'Si è verificato un errore. Riprova più tardi..'
+        
+          sendNotification({
+          type: 'success',
+          text: 'Abbiamo inviato una mail con il link per resettare la password.'
+        })
+  
+      } catch (exception: any) {
+        const message = handleException(exception)
+        sendNotification({
+          type: 'error',
+          text: 'Errore durante l\'invio del link di reset. Controlla l\'email inserita o prova più tardi.'
+        })
+      }
+
+    },
   }
 }
 )

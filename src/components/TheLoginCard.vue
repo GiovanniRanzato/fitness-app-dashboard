@@ -30,22 +30,21 @@ function onSubmit() {
 
       <BaseInputLabel class="d-flex align-center justify-space-between">
         Password
-        <a v-if="false" class="text-caption text-decoration-none text-blue" href="#" rel="noopener noreferrer"
-          target="_blank">Hai dimenticato la password?</a>
       </BaseInputLabel>
-
       <BaseTextField v-model="password" :append-inner-icon="showPassword ? 'mdi-eye-off' : 'mdi-eye'"
         :type="showPassword ? 'text' : 'password'" placeholder="Enter your password" prepend-inner-icon="mdi-lock-outline"
         :readonly="loading" :rules="[required]" @click:append-inner="showPassword = !showPassword"></BaseTextField>
       <BaseBtnPrimary block class="mt-8" :disabled="!form" @click="onSubmit">
         Accedi
       </BaseBtnPrimary>
-
-      <v-card-text class="text-center pb-0">
+    </v-form>
+    <v-card-text class="text-center pb-0">
         <BaseLink to="/register">
           Non sei registrato<v-icon icon="mdi-chevron-right"></v-icon>
         </BaseLink>
+        <BaseLink to="/forgot-password">
+          Password dimenticata<v-icon icon="mdi-chevron-right"></v-icon>
+        </BaseLink>
       </v-card-text>
-    </v-form>
   </v-card>
 </template>

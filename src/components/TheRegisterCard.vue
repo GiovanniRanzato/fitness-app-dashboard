@@ -61,9 +61,7 @@ function onSubmit() {
       </BaseBtnPrimary>
     </v-form>
     <v-card-text class="text-center pb-0">
-      <BaseLink to="/">
-        Sei già registrato<v-icon icon="mdi-chevron-right"></v-icon>
-      </BaseLink>
+      <BaseLink to="/"><v-icon icon="mdi-chevron-left"></v-icon>Sei già registrato</BaseLink>
     </v-card-text>
   </v-card>
 </template>
