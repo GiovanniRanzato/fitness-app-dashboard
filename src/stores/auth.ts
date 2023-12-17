@@ -112,7 +112,7 @@ export const useAuthStore = defineStore('auth', {
       this.token = ''
       router.push('/')
     },
-    async sendResetLinkEmail(passe: string) {
+    async sendResetLinkEmail(email: string) {
       try {
         const response = await authService.sendResetLinkEmail(email);
         if (response.status >= 300)
