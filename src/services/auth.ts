@@ -1,5 +1,6 @@
 import type { UserCredentials, UserRegistrationData, UpdatePassword } from '@/interfaces'
 import { updatePasswordData } from './authData'
+import { userRegistrationData } from './authData'
 import api from './api'
 
 export default {
@@ -7,8 +8,8 @@ export default {
         const response = await api.post('login', credentials);
         return response;
     },
-    async register(userRegistrationData: UserRegistrationData) {
-      const response = await api.post('register', userRegistrationData);
+    async register(userRegistration: UserRegistrationData) {
+      const response = await api.post('register', userRegistrationData.toApi(userRegistration));
       return response;
     },
     async sendResetLinkEmail(email: string){

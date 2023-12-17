@@ -5,7 +5,6 @@ import { sendNotification } from '@/services/notifications'
 import authService from '../services/auth'
 import api from '../services/api'
 import { userData } from '../services/userData'
-import { userRegistrationData } from '../services/authData'
 
 import { handleException } from '../services/exceptionsHandler'
 
@@ -69,7 +68,7 @@ export const useAuthStore = defineStore('auth', {
     },
     async register(userRegistration: UserRegistrationData) {
       try {
-        const response = await authService.register(userRegistrationData.toApi(userRegistration));
+        const response = await authService.register(userRegistration);
         if (response.status >= 300)
           throw 'register error'
 
