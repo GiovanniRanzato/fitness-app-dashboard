@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 import BaseCard from '../../components/base/BaseCard.vue'
+import BaseLink from '../../components/base/BaseLink.vue'
 import type { User, UserRole} from '@/interfaces'
 import { useCommonDataStore } from '../../stores/commonData'
 
@@ -38,8 +39,8 @@ const gender = commonDataStore.getGenderFromValue(props.user.sex)
       <v-col>
         <BaseCard title="Informazioni contatto">
             <v-card-item><v-icon class="mr-3" icon="mdi-account"></v-icon>{{ user.name }} {{ user.lastName }}</v-card-item>
-            <v-card-item><v-icon class="mr-3" icon="mdi-email"></v-icon>{{ user.email }}</v-card-item>
-            <v-card-item><v-icon class="mr-3" icon="mdi-phone"></v-icon>{{ user.phone }}</v-card-item>
+            <v-card-item><v-icon class="mr-3" icon="mdi-email"></v-icon><BaseLink to="" :href="'mailto:'+user.email" target="_blank">{{ user.email }}</BaseLink></v-card-item>
+            <v-card-item><v-icon class="mr-3" icon="mdi-phone"></v-icon><BaseLink to="" :href="'tel:'+user.phone" target="_blank">{{ user.phone }}</BaseLink></v-card-item>
         </BaseCard>
       </v-col>
     </v-row>

@@ -2,6 +2,7 @@
 import BaseContainer from './../../components/base/BaseContainer.vue'
 import BasePageTitle from './../../components/base/BasePageTitle.vue'
 import CardDetailCard from '../../components/CardDetailCard.vue'
+import BaseAlertWarning from '../../components/base/BaseAlertWarning.vue'
 import { useCardsStore } from "../../stores/cards"
 
 
