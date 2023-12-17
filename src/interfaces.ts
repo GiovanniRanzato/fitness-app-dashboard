@@ -17,6 +17,7 @@ export interface UpdatePassword {
 
 export interface UserRegistrationData extends UserCredentials{
     name: string
+    termsOfServiceAccepted: string
 }
 
 export interface MetadataPagination {
@@ -64,6 +65,12 @@ export interface UiStore {
     pageTitle: string,
     navItems: NavItem[],
     onSearch: Function | undefined
+}
+
+export interface TermsOfServiceStore {
+    id: string,
+    text: string,
+    date: string
 }
 
 export type UserRole = '0' | '1' | '2';
