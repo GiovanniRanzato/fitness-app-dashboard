@@ -33,6 +33,7 @@ export const useAuthStore = defineStore('auth', {
     canCreateUsers: (state: AuthStore) => state.user.role == '1' ? true : false,
     canUpdateUsers: (state: AuthStore) => state.user.role == '1' ? true : false,
     canDeleteUsers: (state: AuthStore) => state.user.role == '1' ? true : false,
+    canViewUsers: (state: AuthStore) => state.user.role == '1' || state.user.role == '2'  ? true : false,
     canCreateCards: (state: AuthStore) => state.user.role == '1' || state.user.role == '2'  ? true : false,
     canUpdateCards: (state: AuthStore) => state.user.role == '1' || state.user.role == '2'? true : false,
     canDeleteCards: (state: AuthStore) => state.user.role == '1' || state.user.role == '2'? true : false,

@@ -43,6 +43,15 @@ const router = createRouter({
           }
         },
         {
+          path: 'users/view/:id',
+          name: 'users-view',
+          props: true,
+          component: () => import('../views/users/UserView.vue'),
+          meta: {
+            keepAlive: false,
+          }
+        },
+        {
           path: 'users/add',
           name: 'users-add',
           component: () => import('../views/users/UsersAdd.vue'),

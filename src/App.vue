@@ -9,7 +9,7 @@ import TheNotifications from './components/TheNotifications.vue'
 </template>
 <style>
   body {
-    background: radial-gradient(circle, rgba(221,255,245,1) 0%, rgba(148,187,233,1) 100%);
+    background: radial-gradient(circle, rgba(221,255,245,0.25) 0%, rgba(148,187,233,0.5) 100%);
   }
 </style>
 

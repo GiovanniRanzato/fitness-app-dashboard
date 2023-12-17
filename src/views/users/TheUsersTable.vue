@@ -4,6 +4,7 @@ import { useUsersStore } from "../../stores/users"
 import { useAuthStore } from '../../stores/auth'
 import BaseTableBtnEdit from "../../components/base/BaseTableBtnEdit.vue"
 import BaseTableBtnDelete from "../../components/base/BaseTableBtnDelete.vue"
+import BaseTableBtnView from "../../components/base/BaseTableBtnView.vue"
 import BaseAlertInfo from "../../components/base/BaseAlertInfo.vue"
 import router from "../../router/index"
 
@@ -14,6 +15,9 @@ usersStore.retrieveUsers()
 const users = computed(() => usersStore.getUsers)
 const metadata = usersStore.getMetadata
 
+const viewUser = (userId: string) => { 
+  router.push({ name: 'users-view', params: { id: userId } })
+}
 const editUser = (userId: string) => { 
   router.push({ name: 'users-edit', params: { id: userId } })
 }
@@ -44,6 +48,7 @@ const onPageChange = () => {
         <td><v-chip size="small" :color="usersStore.getColor(item.role)" class="mt-1">{{ usersStore.getRole(item.role)
         }}</v-chip></td>
         <td class="text-right"><v-col cols="auto">
+            <BaseTableBtnView v-if="authStore.canViewUsers" @click="()=> viewUser(item.id)"/>
             <BaseTableBtnEdit v-if="authStore.canUpdateUsers" @click="()=> editUser(item.id)"/>
             <BaseTableBtnDelete v-if="authStore.canDeleteUsers" :onConfirmDelete="() => deleteUser(item.id)" />
         </v-col></td>

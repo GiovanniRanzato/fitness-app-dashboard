@@ -16,5 +16,8 @@ export const useCommonDataStore = defineStore('commonData', {
   }),
   getters: {
     getGenders: (state: CommonDataStore) => state.genders,
+    getGenderFromValue: (state: CommonDataStore) => (value: string) => {
+      return state.genders.find(el => el.value === value)
+    },
   },
 });
