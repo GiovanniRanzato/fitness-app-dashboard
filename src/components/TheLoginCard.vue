@@ -40,7 +40,7 @@ function onSubmit() {
     </v-form>
     <v-card-text class="text-center pb-0">
         <BaseLink to="/register">
-          Non sei registrato<v-icon icon="mdi-chevron-right"></v-icon>
+          Registrati<v-icon icon="mdi-chevron-right"></v-icon>
         </BaseLink>
         <BaseLink to="/forgot-password">
           Password dimenticata<v-icon icon="mdi-chevron-right"></v-icon>

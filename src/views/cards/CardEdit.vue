@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from "vue" 
 import BaseContainer from './../../components/base/BaseContainer.vue'
 import BasePageTitle from './../../components/base/BasePageTitle.vue'
 import BaseAlertWarning from './../../components/base/BaseAlertWarning.vue'
@@ -19,7 +20,7 @@ const cardsStore = useCardsStore()
 const save = (card: Card) => {
   cardsStore.updateCard(card)
 }
-const cardAttributesValues = cardsStore.getCardAttributesValuesById(props.id)
+const cardAttributesValues = computed(() => cardsStore.getCardAttributesValuesById(props.id))
 </script>
 
 <template>

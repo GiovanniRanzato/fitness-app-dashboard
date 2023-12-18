@@ -13,7 +13,7 @@ if(!authStore.isLogin) authStore.logout()
         <TheSideNav />
         <TheAppBar />
         <v-main>
-            <v-sheet width="100%" min-height="100vh" class="pa-8 mx-auto">
+            <v-sheet width="100%" min-height="100vh" class="mx-auto">
                 <RouterView />
             </v-sheet>
         </v-main>

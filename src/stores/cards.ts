@@ -22,10 +22,10 @@ export const useCardsStore = defineStore('cards', {
     },
     getters: {
         getCards: (state: CardsStore) => state.cards,
-        getCardAttributesValuesById: (state) => (cardId: string) => computed(() => {
+        getCardAttributesValuesById: (state) => (cardId: string) => {
             const card = state.cards?.find((el: Card) => el.id === cardId);
             return card ? cardData.clone(card) : null
-        }),
+        },
         getMetadata: (state: CardsStore) => state.metadata,
     },
     actions: {
